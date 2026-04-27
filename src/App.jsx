@@ -14,7 +14,6 @@ import WithdrawalHistory from "./component/WithdrawalHistory";
 import IncomeDashboard from "./component/IncomeDashboard";
 import Helpsupport from "./component/Helpsupport";
 import WithdrawalPromptPay from "./component/WithdrawalPromptPay";
-import KPlusPay from "./component/KPlusPay";
 import BankTransfer from "./component/BankTransfer";
 import EWalletWithdrawal from "./component/EWalletWithdrawal";
 import DailySeeMore from "./component/DailySeeMore";
@@ -42,7 +41,6 @@ function App() {
         <Route path="/VideoCallHistory" element={<VideoCallHistory />} />
         <Route path="/Helpsupport" element={<Helpsupport />} />
         {/* <Route path="/WithdrawalPromptPay" element={<WithdrawalPromptPay />} /> */}
-        {/* <Route path="/KPlusPay" element={<KPlusPay />} /> */}
         {/* <Route path="/BankTransfer" element={<BankTransfer />} /> */}
         {/* <Route path="/EWalletWithdrawal" element={<EWalletWithdrawal />} /> */}
         <Route path="/DailySeeMore" element={<DailySeeMore />} />
