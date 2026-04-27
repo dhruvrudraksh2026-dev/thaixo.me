@@ -1,0 +1,206 @@
+:root {
+  --thaixo-pink: #e9527a;
+  --thaixo-light-pink: #f8c0cf;
+  --thaixo-bg: #f5f5f5;
+}
+
+.earnings-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.income-toggle-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.income-toggle-group {
+  display: flex;
+  background-color: white;
+  border: 1px solid var(--thaixo-pink);
+  border-radius: 50px;
+  overflow: hidden;
+  padding: 2px;
+}
+
+.income-toggle-btn {
+  padding: 10px 30px;
+  border: none;
+  background: transparent;
+  color: var(--thaixo-pink);
+  font-weight: 600;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.income-toggle-btn.active {
+  background-color: var(--thaixo-pink);
+  color: white;
+}
+
+.earnings-card {
+  background-color: var(--thaixo-pink);
+  border-radius: 20px;
+  padding: 40px;
+  color: white;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(233, 82, 122, 0.2);
+}
+
+.earnings-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 30px;
+}
+
+.total-amount {
+  font-size: 48px;
+  font-weight: 700;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.currency-symbol {
+  font-size: 36px;
+  font-weight: 400;
+}
+
+.income-label {
+  font-size: 18px;
+  opacity: 0.9;
+  margin-top: -5px;
+}
+
+.current-date {
+  font-size: 20px;
+  font-weight: 600;
+  opacity: 0.9;
+}
+
+.earnings-body {
+  display: flex;
+  gap: 40px;
+  align-items: flex-end;
+}
+
+.chart-section {
+  flex: 2;
+  height: 300px;
+}
+
+.table-section {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  padding: 10px;
+  max-height: 350px;
+  overflow-y: auto;
+}
+
+.income-table {
+  width: 100%;
+  border-collapse: collapse;
+  color: white;
+  font-size: 14px;
+}
+
+.income-table th {
+  text-align: left;
+  padding: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  opacity: 0.8;
+  font-weight: 600;
+}
+
+.income-table td {
+  padding: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.income-table tr:last-child td {
+  border-bottom: none;
+}
+
+.see-more-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.see-more-btn {
+  background-color: white;
+  color: var(--thaixo-pink);
+  border: none;
+  border-radius: 50px;
+  padding: 12px 60px;
+  font-weight: 600;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.see-more-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Custom Recharts styling */
+.recharts-cartesian-grid-horizontal line,
+.recharts-cartesian-grid-vertical line {
+  stroke: rgba(255, 255, 255, 0.1);
+}
+
+.recharts-text {
+  /* fill: rgba(255, 255, 255, 0.8) !important; */
+  fill: #000 !important;
+  font-size: 12px;
+}
+
+/* See More Page Styles */
+.see-more-page {
+  padding: 40px;
+  background-color: white;
+  min-height: 100vh;
+}
+
+.back-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--thaixo-pink);
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 30px;
+  border: none;
+  background: none;
+}
+
+.see-more-title {
+  color: var(--thaixo-pink);
+  font-weight: 700;
+  margin-bottom: 40px;
+}
+
+@media (max-width:768px) {
+  .earnings-body {
+    display:block;
+    gap: 40px;
+    align-items: flex-end;
+}
+
+.table-section{
+  margin-top:25px ;
+}
+}
+
+.font-dollar{
+    font-size: 60px;
+    font-weight: 700;
+}

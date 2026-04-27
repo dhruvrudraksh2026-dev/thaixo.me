@@ -1,0 +1,165 @@
+:root {
+  --bg-color: #B02245;
+  --border-intop:#fff;
+  --color-normal:#FFF;
+  --color-active:#FFF;
+  --bg-active:#D33B59;
+  --income-card-bg:#C93552;
+  --tabale-color:#FFF;
+  --tabale-bg-color:#C93552;
+}
+
+/* ===============================
+   LIGHT THEME
+   =============================== */
+[data-theme="light"] {
+  --bg-color: #FFFFFF;
+  --border-intop:#A61036;
+  --color-normal:#A61036;
+  --bg-active:#A61036;
+  --income-card-bg:#C93552;
+  --tabale-color:#FFF;
+  --tabale-bg-color:#C93552;
+}
+
+/* ===============================
+   DARK THEME
+   =============================== */
+[data-theme="dark"] {
+  --bg-color: #090203;
+  --border-intop:#F84B75;
+  --income-card-bg:#1A0A0E;
+  --tabale-bg-color:#1A0A0E;
+}
+
+
+
+
+
+.income-wrapper {
+  background: var(--bg-color);
+  min-height: 100vh;
+  background-image: url("../assets/Videocallhistory.png");
+  background-repeat: no-repeat;
+  /* stop repeat */
+  background-position: right bottom;
+  /* align to left */
+  background-size: contain;
+  background-attachment: fixed;
+}
+
+/* Toggle */
+.income-toggle {
+  display: flex;
+  border: 1px solid var(--border-intop);
+  border-radius: 30px;
+  overflow: hidden;
+}
+
+.income-toggle button {
+  background: transparent;
+  color: var(--color-normal);
+  border: none;
+  padding: 8px 22px;
+  font-size: 14px;
+}
+
+.income-toggle button.active {
+  background: var(--bg-active);
+  color: var(--color-active);
+}
+
+
+.table tr .date-incone-color{
+  color:var(--tabale-color);
+}
+
+
+/* Card */
+.income-card {
+  background:var(--income-card-bg);
+  border-radius: 12px;
+  color: #fff;
+}
+
+/* Amount */
+.income-amount {
+  font-size: 36px;
+  font-weight: 700;
+}
+
+.income-label {
+  margin: 0;
+  opacity: 0.9;
+}
+
+.income-date {
+  font-size: 14px;
+}
+
+/* Chart */
+.chart-box {
+  margin-top: 10px;
+}
+
+/* Table */
+.income-table {
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.income-table th {
+  background: var(--tabale-bg-color);
+  color: #fff;
+  text-align: center;
+}
+
+.income-table td {
+  background: transparent;
+  color: #fff;
+  text-align: center;
+}
+
+.income-table th,
+.income-table td {
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  padding: 8px;
+}
+
+/* Button */
+.see-more-btn {
+  background: #f06a8c;
+  border: none;
+  color: #fff;
+  padding: 10px 40px;
+  border-radius: 30px;
+  font-size: 14px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

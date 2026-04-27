@@ -1,0 +1,120 @@
+/* .history-wrapper {
+  background: #b01f3e;
+  min-height: 100vh;
+  background-image: url(../assets/Videocallhistory.png);
+} */
+
+
+
+:root {
+  --bg-color: #B02245;
+  --main-title: #FFF;
+  --table-bg-color: #E7587B;
+  --tabale-data-color:#FFF;
+  --border-color:#FFF;
+  /* --background-images: url("../assets/Withdrawalbg.png");  */
+
+}
+
+/* ===============================
+   LIGHT THEME
+   =============================== */
+[data-theme="light"] {
+  --bg-color: #FFFFFF;
+  --main-title: #B02245;
+  --table-bg-color: #A61036;
+  --tabale-data-color:#000;
+  --border-color:#A61036;
+  /* --background-images: url("../assets/WithdrawalBgDark.png"); */
+
+}
+
+/* ===============================
+   DARK THEME
+   =============================== */
+[data-theme="dark"] {
+  --bg-color: #090203;
+  /* --background-images: url("../assets/Withdrawalbg.png"); */
+
+}
+
+
+
+
+.history-wrapper {
+  background: var(--bg-color);
+  min-height: 100vh;
+  background-image:var(--background-images);
+  background-repeat: no-repeat;
+  /* stop repeat */
+  background-position: right bottom;
+  /* align to left */
+  background-size: contain;
+  background-attachment: fixed;
+}
+
+.video-call-history {
+  color: var(--main-title);
+}
+
+table {
+  border: 1px solid var(--border-color);
+}
+
+.table tr td {
+  color: var(--tabale-data-color);
+}
+
+/* Table wrapper */
+.history-table-wrapper {
+  border: 1px solid var(--border-color);
+}
+
+/* Table */
+.history-table {
+  color: #fff;
+  border-collapse: collapse;
+}
+
+/* Header */
+.history-table thead th {
+  background: var(--table-bg-color);
+  color: #fff;
+  font-weight: 600;
+  text-align: center;
+  border: 1px solid var(--border-color);
+}
+
+/* Body cells */
+.history-table tbody td {
+  text-align: center;
+  border: 1px solid var(--border-color);
+  background: transparent;
+  font-size: 14px;
+}
+
+/* Remove default bootstrap */
+.history-table th,
+.history-table td {
+  padding: 10px 12px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container-fluid {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+  }
+
+  .history-wrapper {
+    background: #b01f3e;
+    min-height: 100vh;
+    background-image: url("../assets/Videocallhistory.png");
+    background-repeat: no-repeat;
+    /* stop repeat */
+    background-position: right center;
+    /* align to left */
+    background-size: contain;
+    background-attachment: fixed;
+  }
+}

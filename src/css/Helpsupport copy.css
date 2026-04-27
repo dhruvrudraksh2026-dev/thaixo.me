@@ -1,0 +1,95 @@
+:root {
+    --bg-color: #B02245;
+    --background-image: url("../assets/Videocallhistory.png");
+}
+
+/* ===============================
+   LIGHT THEME
+   =============================== */
+[data-theme="light"] {
+    --bg-color: #FFFFFF;
+    --background-image: url("../assets/lightbg.jpg");
+}
+
+/* ===============================
+   DARK THEME
+   =============================== */
+[data-theme="dark"] {
+    --bg-color: #090203;
+    --background-image: url("../assets/darkbg.png");
+}
+
+
+
+
+.other-color{
+color: #05CFD9 !important;
+}
+
+.help-wrapper {
+    background: var(--bg-color);
+    /* min-height: 60vh; */
+    /* background-image: var(--background-image); */
+    background-repeat: no-repeat;
+    /* stop repeat */
+    background-position: right bottom;
+    /* align to left */
+    background-size: 45%;
+    background-attachment: fixed;
+}
+
+
+.help-card {
+    background: #c93a56;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 900px;
+    color: #fff;
+}
+
+
+.help-title {
+    font-size: 32px;
+    font-weight: 700;
+}
+
+
+.help-subtitle {
+    font-size: 15px;
+    opacity: 0.9;
+}
+
+
+.help-divider {
+    /* border-color: rgba(255, 255, 255, 0.3); */
+    /* border-color:; */
+    border:2px solid #05CFD9;
+    margin: 25px 0;
+}
+
+
+.help-box {
+    background: #e86482;
+    border-radius: 12px;
+    padding: 25px 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+
+.help-box h5 {
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+
+.help-box span {
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+
+.help-box:hover {
+    background: #f07a95;
+    transform: translateY(-5px);
+}

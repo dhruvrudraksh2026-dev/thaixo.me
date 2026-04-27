@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Property Filter</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
+
+:root {
+  --cf-primary:       #2874f0;
+  --cf-primary-dark:  #1a5cbf;
+  --cf-primary-light: #e8f0fe;
+  --cf-accent:        #ff6161;
+  --cf-white:         #ffffff;
+  --cf-text:          #212121;
+  --cf-muted:         #878787;
+  --cf-border:        #e0e0e0;
+  --cf-shadow:        0 2px 8px rgba(0,0,0,0.12);
+  --cf-radius:        4px;
+  --cf-font:          'Nunito', sans-serif;
+}
+
+/* ══════════════════════════════════
+   DESKTOP SIDEBAR
+══════════════════════════════════ */
+.custom-filter {
+  background: var(--cf-white);
+  border-radius: var(--cf-radius);
+  box-shadow: var(--cf-shadow);
+  width: 260px;
+  min-width: 260px;
+  font-family: var(--cf-font);
+  overflow: hidden;
+}
+
+.custom-filter-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--cf-border);
+}
+.custom-filter h3 {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--cf-text);
+  letter-spacing: 0.2px;
+  margin: 0;
+}
+.cf-clear-btn {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--cf-primary);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--cf-font);
+  padding: 0;
+}
+.cf-clear-btn:hover { text-decoration: underline; }
+
+/* Accordion */
+.cf-section { border-bottom: 1px solid var(--cf-border); overflow: hidden; }
+.cf-section-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 13px 16px;
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--cf-text);
+  cursor: pointer;
+  user-select: none;
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  font-family: var(--cf-font);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+.cf-section-title svg { transition: transform 0.2s ease; color: var(--cf-muted); flex-shrink: 0; }
+.cf-section.open .cf-section-title svg { transform: rotate(180deg); }
+.cf-section-body { max-height: 0; overflow: hidden; transition: max-height 0.28s ease; }
+.cf-section.open .cf-section-body { max-height: 400px; }
+.cf-section-inner { padding: 4px 16px 14px; }
+
+/* Select dropdown */
+.cf-select {
+  width: 100%;
+  padding: 9px 32px 9px 11px;
+  border: 1.5px solid var(--cf-border);
+  border-radius: var(--cf-radius);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--cf-text);
+  background: var(--cf-white);
+  cursor: pointer;
+  font-family: var(--cf-font);
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23878787' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  transition: border-color 0.15s;
+}
+.cf-select:focus { outline: none; border-color: var(--cf-primary); }
+
+/* Radio buttons */
+.cf-radio-group { display: flex; flex-direction: column; gap: 10px; }
+.cf-radio-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--cf-text);
+}
+.cf-radio-label input[type="radio"] { display: none; }
+.cf-radio-box {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid var(--cf-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: border-color 0.15s;
+}
+.cf-radio-label input:checked ~ .cf-radio-box { border-color: var(--cf-primary); }
+.cf-radio-label input:checked ~ .cf-radio-box::after {
+  content: '';
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--cf-primary);
+}
+
+/* Chip checkboxes */
+.cf-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.cf-chip-label {
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1.5px solid var(--cf-border);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--cf-muted);
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: var(--cf-font);
+  background: none;
+}
+.cf-chip-label input { display: none; }
+.cf-chip-label:hover,
+.cf-chip-label.cf-checked {
+  border-color: var(--cf-primary);
+  color: var(--cf-primary);
+  background: var(--cf-primary-light);
+}
+
+/* Desktop Apply button */
+.custom-filter button[type="submit"] {
+  display: block;
+  width: calc(100% - 32px);
+  margin: 14px 16px;
+  padding: 11px;
+  background: var(--cf-primary);
+  color: #fff;
+  border: none;
+  border-radius: var(--cf-radius);
+  font-size: 14px;
+  font-weight: 800;
+  font-family: var(--cf-font);
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  transition: background 0.15s;
+}
+.custom-filter button[type="submit"]:hover { background: var(--cf-primary-dark); }
+
+/* ══════════════════════════════════
+   SELECTED FILTERS DISPLAY
+══════════════════════════════════ */
+.cf-selected-filters {
+  display: none;
+  padding: 16px;
+  background: var(--cf-white);
+  border-radius: var(--cf-radius);
+  box-shadow: var(--cf-shadow);
+  margin-bottom: 16px;
+  font-family: var(--cf-font);
+}
+.cf-selected-filters.visible {
+  display: block;
+}
+.cf-selected-filters h4 {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--cf-muted);
+  margin: 0 0 12px 0;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+.cf-selected-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.cf-selected-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: var(--cf-primary-light);
+  color: var(--cf-primary);
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  border: 1.5px solid var(--cf-primary);
+}
+.cf-selected-tag .cf-remove-tag {
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--cf-primary);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 800;
+  line-height: 1;
+  border: none;
+  padding: 0;
+}
+.cf-selected-tag .cf-remove-tag:hover {
+  background: var(--cf-accent);
+}
+
+/* ══════════════════════════════════
+   MOBILE FLOATING TOGGLE BUTTON
+══════════════════════════════════ */
+.cf-mobile-toggle {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 100;
+  background: var(--cf-primary);
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  padding: 14px 24px;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: var(--cf-font);
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(40,116,240,0.4);
+  transition: all 0.3s ease;
+  align-items: center;
+  gap: 8px;
+}
+
+.cf-mobile-toggle:hover {
+  background: var(--cf-primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(40,116,240,0.5);
+}
+
+.cf-mobile-toggle svg {
+  width: 18px;
+  height: 18px;
+}
+
+.cf-mobile-toggle .cf-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background: var(--cf-accent);
+  color: #fff;
+  border-radius: 50%;
+  font-size: 11px;
+  font-weight: 800;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  display: none;
+}
+
+.cf-mobile-toggle.has-filters .cf-badge {
+  display: flex;
+}
+
+/* ══════════════════════════════════
+   MOBILE POPUP MODAL
+══════════════════════════════════ */
+.cf-popup-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 200;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  backdrop-filter: blur(4px);
+}
+
+.cf-popup-overlay.visible {
+  opacity: 1;
+}
+
+.cf-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.9);
+  z-index: 201;
+  background: var(--cf-white);
+  border-radius: 16px;
+  width: 90%;
+  max-width: 400px;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  transition: all 0.3s ease;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+
+.cf-popup-overlay.visible .cf-popup {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.cf-popup-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--cf-border);
+  background: var(--cf-primary-light);
+  border-radius: 16px 16px 0 0;
+}
+
+.cf-popup-header h4 {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--cf-primary);
+  margin: 0;
+  font-family: var(--cf-font);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cf-popup-close {
+  background: var(--cf-white);
+  border: none;
+  cursor: pointer;
+  color: var(--cf-muted);
+  padding: 6px;
+  border-radius: 50%;
+  display: flex;
+  transition: all 0.2s;
+}
+
+.cf-popup-close:hover {
+  background: var(--cf-border);
+  color: var(--cf-text);
+}
+
+.cf-popup-body {
+  overflow-y: auto;
+  flex: 1;
+  padding: 20px;
+}
+
+.cf-popup-field {
+  margin-bottom: 20px;
+}
+
+.cf-popup-field:last-child {
+  margin-bottom: 0;
+}
+
+.cf-popup-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--cf-muted);
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  font-family: var(--cf-font);
+}
+
+.cf-popup-footer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  padding: 16px 20px;
+  border-top: 1px solid var(--cf-border);
+  background: #fafafa;
+  border-radius: 0 0 16px 16px;
+}
+
+.cf-btn-clear {
+  padding: 12px;
+  border: 1.5px solid var(--cf-border);
+  border-radius: var(--cf-radius);
+  background: var(--cf-white);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--cf-text);
+  cursor: pointer;
+  font-family: var(--cf-font);
+  transition: all 0.2s;
+}
+
+.cf-btn-clear:hover {
+  border-color: var(--cf-text);
+  background: var(--cf-border);
+}
+
+.cf-btn-apply {
+  padding: 12px;
+  background: var(--cf-primary);
+  color: #fff;
+  border: none;
+  border-radius: var(--cf-radius);
+  font-size: 14px;
+  font-weight: 700;
+  font-family: var(--cf-font);
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 2px 8px rgba(40,116,240,0.3);
+}
+
+.cf-btn-apply:hover {
+  background: var(--cf-primary-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(40,116,240,0.4);
+}
+
+/* Sort options in popup */
+.cf-sort-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cf-sort-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--cf-text);
+  background: #f5f5f5;
+  transition: all 0.2s;
+  border: 2px solid transparent;
+}
+
+.cf-sort-item:hover {
+  background: var(--cf-primary-light);
+}
+
+.cf-sort-item.cf-selected {
+  background: var(--cf-primary-light);
+  border-color: var(--cf-primary);
+  color: var(--cf-primary);
+}
+
+.cf-sort-check {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid var(--cf-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.cf-sort-item.cf-selected .cf-sort-check {
+  border-color: var(--cf-primary);
+  background: var(--cf-primary);
+}
+
+.cf-sort-item.cf-selected .cf-sort-check::after {
+  content: '✓';
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* ══════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════ */
+@media (max-width: 768px) {
+  .custom-filter { display: none; }
+  .cf-mobile-toggle { display: flex; }
+}
+  </style>
+</head>
+<body>
+
+<!-- ══ SELECTED FILTERS DISPLAY ══ -->
+<div class="cf-selected-filters" id="cfSelectedFilters">
+  <h4>Selected Filters</h4>
+  <div class="cf-selected-tags" id="cfSelectedTags"></div>
+</div>
+
+<!-- ══ DESKTOP SIDEBAR (ORIGINAL IDs PRESERVED) ══ -->
+<div class="custom-filter">
+  <div class="custom-filter-header">
+    <h3>Filter</h3>
+    <button type="button" class="cf-clear-btn" onclick="cfClearAll()">CLEAR ALL</button>
+  </div>
+
+  <form method="GET" action="" id="cf-desktop-form">
+
+    <!-- City — id="city" preserved -->
+    <div class="cf-section open" id="cf-sec-city">
+      <button type="button" class="cf-section-title" onclick="cfToggle('cf-sec-city')">
+        City
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="cf-section-body"><div class="cf-section-inner">
+        <select id="city" name="city" class="cf-select">
+          <option value="">Select City</option>
+          <option value="mumbai">Mumbai</option>
+          <option value="pune">Pune</option>
+        </select>
+      </div></div>
+    </div>
+
+    <!-- Area — id="location" name="location" preserved -->
+    <div class="cf-section open" id="cf-sec-area">
+      <button type="button" class="cf-section-title" onclick="cfToggle('cf-sec-area')">
+        Area
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="cf-section-body"><div class="cf-section-inner">
+        <select name="location" id="location" class="cf-select">
+          <option value="">Select Area</option>
+        </select>
+      </div></div>
+    </div>
+
+    <!-- Price — name="price" preserved -->
+    <div class="cf-section open" id="cf-sec-price">
+      <button type="button" class="cf-section-title" onclick="cfToggle('cf-sec-price')">
+        Price Range
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="cf-section-body"><div class="cf-section-inner">
+        <div class="cf-radio-group">
+          <label class="cf-radio-label"><input type="radio" name="price" value=""><span class="cf-radio-box"></span>Any Price</label>
+          <label class="cf-radio-label"><input type="radio" name="price" value="0-10000"><span class="cf-radio-box"></span>Under ₹10,000</label>
+          <label class="cf-radio-label"><input type="radio" name="price" value="10000-20000"><span class="cf-radio-box"></span>₹10k – ₹20k</label>
+          <label class="cf-radio-label"><input type="radio" name="price" value="20000-50000"><span class="cf-radio-box"></span>₹20k+</label>
+        </div>
+      </div></div>
+    </div>
+
+    <!-- Occupancy — name="occupancy" preserved -->
+    <div class="cf-section open" id="cf-sec-occ">
+      <button type="button" class="cf-section-title" onclick="cfToggle('cf-sec-occ')">
+        Occupancy
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="cf-section-body"><div class="cf-section-inner">
+        <div class="cf-chips">
+          <label class="cf-chip-label"><input type="checkbox" name="occupancy" value="single" onchange="cfSyncChip(this)">Single</label>
+          <label class="cf-chip-label"><input type="checkbox" name="occupancy" value="double" onchange="cfSyncChip(this)">Double</label>
+          <label class="cf-chip-label"><input type="checkbox" name="occupancy" value="triple" onchange="cfSyncChip(this)">Triple</label>
+          <label class="cf-chip-label"><input type="checkbox" name="occupancy" value="quadruple" onchange="cfSyncChip(this)">Quadruple</label>
+          <label class="cf-chip-label"><input type="checkbox" name="occupancy" value="dorm" onchange="cfSyncChip(this)">Dorm</label>
+        </div>
+      </div></div>
+    </div>
+
+    <!-- Gender — name="gender" preserved -->
+    <div class="cf-section open" id="cf-sec-gender">
+      <button type="button" class="cf-section-title" onclick="cfToggle('cf-sec-gender')">
+        Gender
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="cf-section-body"><div class="cf-section-inner">
+        <div class="cf-chips">
+          <label class="cf-chip-label"><input type="checkbox" name="gender" value="male" onchange="cfSyncChip(this)">Male</label>
+          <label class="cf-chip-label"><input type="checkbox" name="gender" value="female" onchange="cfSyncChip(this)">Female</label>
+          <label class="cf-chip-label"><input type="checkbox" name="gender" value="unisex" onchange="cfSyncChip(this)">Unisex</label>
+        </div>
+      </div></div>
+    </div>
+
+    <button type="submit">Apply</button>
+  </form>
+</div>
+
+
+<!-- ══ MOBILE FLOATING TOGGLE BUTTON ══ -->
+<button type="button" class="cf-mobile-toggle" id="cfMobileToggle" onclick="cfOpenPopup()">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+    <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/>
+  </svg>
+  <span>Filters</span>
+  <span class="cf-badge" id="cfToggleBadge">0</span>
+</button>
+
+
+<!-- ══ MOBILE POPUP MODAL ══ -->
+<div class="cf-popup-overlay" id="cfPopupOverlay" onclick="cfClosePopup()">
+  <div class="cf-popup" onclick="event.stopPropagation()">
+    
+    <!-- Popup Header -->
+    <div class="cf-popup-header">
+      <h4>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/>
+        </svg>
+        All Filters
+      </h4>
+      <button type="button" class="cf-popup-close" onclick="cfClosePopup()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="18" y1="6" x2="6" y2="18"/>
+          <line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Popup Body -->
+    <div class="cf-popup-body">
+
+      <!-- City -->
+      <div class="cf-popup-field">
+        <span class="cf-popup-label">City</span>
+        <div class="cf-chips" id="cf-popup-city-chips">
+          <button type="button" class="cf-chip-label" data-city="mumbai" onclick="cfPickPopupCity(this)">Mumbai</button>
+          <button type="button" class="cf-chip-label" data-city="pune" onclick="cfPickPopupCity(this)">Pune</button>
+        </div>
+      </div>
+
+      <!-- Area -->
+      <div class="cf-popup-field">
+        <span class="cf-popup-label">Area</span>
+        <select id="cf-popup-location" class="cf-select">
+          <option value="">Select Area</option>
+        </select>
+      </div>
+
+      <!-- Price -->
+      <div class="cf-popup-field">
+        <span class="cf-popup-label">Price Range</span>
+        <div class="cf-radio-group">
+          <label class="cf-radio-label"><input type="radio" name="cf-popup-price" value=""><span class="cf-radio-box"></span>Any Price</label>
+          <label class="cf-radio-label"><input type="radio" name="cf-popup-price" value="0-10000"><span class="cf-radio-box"></span>Under ₹10,000</label>
+          <label class="cf-radio-label"><input type="radio" name="cf-popup-price" value="10000-20000"><span class="cf-radio-box"></span>₹10k – ₹20k</label>
+          <label class="cf-radio-label"><input type="radio" name="cf-popup-price" value="20000-50000"><span class="cf-radio-box"></span>₹20k+</label>
+        </div>
+      </div>
+
+      <!-- Occupancy -->
+      <div class="cf-popup-field">
+        <span class="cf-popup-label">Occupancy</span>
+        <div class="cf-chips" id="cf-popup-occ">
+          <button type="button" class="cf-chip-label" data-name="occupancy" data-value="single" onclick="cfTogglePopupChip(this)">Single</button>
+          <button type="button" class="cf-chip-label" data-name="occupancy" data-value="double" onclick="cfTogglePopupChip(this)">Double</button>
+          <button type="button" class="cf-chip-label" data-name="occupancy" data-value="triple" onclick="cfTogglePopupChip(this)">Triple</button>
+          <button type="button" class="cf-chip-label" data-name="occupancy" data-value="quadruple" onclick="cfTogglePopupChip(this)">Quadruple</button>
+          <button type="button" class="cf-chip-label" data-name="occupancy" data-value="dorm" onclick="cfTogglePopupChip(this)">Dorm</button>
+        </div>
+      </div>
+
+      <!-- Gender -->
+      <div class="cf-popup-field">
+        <span class="cf-popup-label">Gender</span>
+        <div class="cf-chips" id="cf-popup-gender">
+          <button type="button" class="cf-chip-label" data-name="gender" data-value="male" onclick="cfTogglePopupChip(this)">Male</button>
+          <button type="button" class="cf-chip-label" data-name="gender" data-value="female" onclick="cfTogglePopupChip(this)">Female</button>
+          <button type="button" class="cf-chip-label" data-name="gender" data-value="unisex" onclick="cfTogglePopupChip(this)">Unisex</button>
+        </div>
+      </div>
+
+
+
+      <!-- Sort Section -->
+      <div class="cf-popup-field">
+        <span class="cf-popup-label">Sort By</span>
+        <div class="cf-sort-list">
+          <div class="cf-sort-item cf-selected" onclick="cfSelectSortOption(this)">
+            <span>Relevance</span>
+            <span class="cf-sort-check"></span>
+          </div>
+          <div class="cf-sort-item" onclick="cfSelectSortOption(this)">
+            <span>Price: Low to High</span>
+            <span class="cf-sort-check"></span>
+          </div>
+          <div class="cf-sort-item" onclick="cfSelectSortOption(this)">
+            <span>Price: High to Low</span>
+            <span class="cf-sort-check"></span>
+          </div>
+          <div class="cf-sort-item" onclick="cfSelectSortOption(this)">
+            <span>Newest First</span>
+            <span class="cf-sort-check"></span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Popup Footer -->
+    <div class="cf-popup-footer">
+      <button type="button" class="cf-btn-clear" onclick="cfClearAllPopupFilters()">CLEAR ALL</button>
+      <button type="button" class="cf-btn-apply" onclick="cfApplyPopupFilters()">APPLY</button>
+    </div>
+
+  </div>
+</div>
+
+
+<script>
+/* ══════════════════════════════════════════════
+   YOUR ORIGINAL JS — completely unchanged
+   id="city" and id="location" are ONLY in
+   the desktop sidebar (no duplicates)
+══════════════════════════════════════════════ */
+const locationDropdown = document.getElementById("location");
+const cityDropdown     = document.getElementById("city");
+
+const areas = {
+  mumbai: [
+    ["Andheri East","andheri-east"],["Andheri West","andheri-west"],
+    ["Juhu","juhu"],["Vile Parle East","vile-parle-east"],
+    ["Vile Parle West","vile-parle-west"],["Malad East","malad-east"],
+    ["Malad West","malad-west"],["Santacruz East","santacruz-east"],
+    ["Santacruz West","santacruz-west"],["Bandra","bandra"],
+    ["BKC","bkc"],["Churchgate","churchgate"]
+  ],
+  pune: [
+    ["Baner","baner"],["Dhankawadi","dhankawadi"],["Hinjewadi","hinjewadi"],
+    ["Shivaji Nagar","shivaji-nagar"],["Vadgaon","vadgaon"],
+    ["Wakad","wakad"],["Wagholi","wagholi"]
+  ]
+};
+
+/* Your original listener — untouched */
+cityDropdown.addEventListener("change", function () {
+  const selectedCity = this.value;
+  locationDropdown.innerHTML = '<option value="">Select Area</option>';
+  if (areas[selectedCity]) {
+    areas[selectedCity].forEach(area => {
+      const option = document.createElement("option");
+      option.value       = area[1];
+      option.textContent = area[0];
+      locationDropdown.appendChild(option);
+    });
+  }
+});
+
+
+/* ══════════════════════════════════════════════
+   POPUP FUNCTIONS — all prefixed "cf"
+   No conflicts with your original code
+══════════════════════════════════════════════ */
+
+let cfPopupCity = '';
+let cfSelectedSort = 'Relevance';
+
+/* Open/Close Popup */
+function cfOpenPopup() {
+  const overlay = document.getElementById('cfPopupOverlay');
+  overlay.style.display = 'block';
+  document.body.style.overflow = 'hidden';
+  requestAnimationFrame(() => {
+    overlay.classList.add('visible');
+  });
+}
+
+function cfClosePopup() {
+  const overlay = document.getElementById('cfPopupOverlay');
+  overlay.classList.remove('visible');
+  setTimeout(() => {
+    overlay.style.display = 'none';
+    document.body.style.overflow = '';
+  }, 300);
+}
+
+/* City Selection in Popup */
+function cfPickPopupCity(btn) {
+  document.querySelectorAll('#cf-popup-city-chips .cf-chip-label').forEach(b => b.classList.remove('cf-checked'));
+  btn.classList.add('cf-checked');
+  cfPopupCity = btn.dataset.city;
+  cfPopulateAreas(cfPopupCity, document.getElementById('cf-popup-location'));
+  cfUpdateToggleBadge();
+}
+
+/* Populate Area Dropdown */
+function cfPopulateAreas(cityKey, selectEl) {
+  selectEl.innerHTML = '<option value="">Select Area</option>';
+  (areas[cityKey] || []).forEach(([label, val]) => {
+    const o = document.createElement("option");
+    o.value = val; 
+    o.textContent = label;
+    selectEl.appendChild(o);
+  });
+}
+
+/* Toggle Chips in Popup */
+function cfTogglePopupChip(btn) {
+  btn.classList.toggle('cf-checked');
+  cfUpdateToggleBadge();
+}
+
+/* Sort Selection */
+function cfSelectSortOption(el) {
+  document.querySelectorAll('.cf-sort-item').forEach(item => item.classList.remove('cf-selected'));
+  el.classList.add('cf-selected');
+  cfSelectedSort = el.querySelector('span').textContent;
+}
+
+/* Update Badge Count */
+function cfUpdateToggleBadge() {
+  let count = 0;
+  
+  // City
+  if (cfPopupCity) count++;
+  
+  // Area
+  if (document.getElementById('cf-popup-location').value) count++;
+  
+  // Price
+  if (document.querySelector('[name="cf-popup-price"]:checked')) count++;
+  
+  // Occupancy & Gender chips
+  count += document.querySelectorAll('#cf-popup-occ .cf-chip-label.cf-checked').length;
+  count += document.querySelectorAll('#cf-popup-gender .cf-chip-label.cf-checked').length;
+  
+  const badge = document.getElementById('cfToggleBadge');
+  const toggle = document.getElementById('cfMobileToggle');
+  
+  badge.textContent = count;
+  if (count > 0) {
+    toggle.classList.add('has-filters');
+  } else {
+    toggle.classList.remove('has-filters');
+  }
+}
+
+/* Clear All Popup Filters */
+function cfClearAllPopupFilters() {
+  // Clear city
+  document.querySelectorAll('#cf-popup-city-chips .cf-chip-label').forEach(b => b.classList.remove('cf-checked'));
+  cfPopupCity = '';
+  document.getElementById('cf-popup-location').innerHTML = '<option value="">Select Area</option>';
+  
+  // Clear price
+  document.querySelectorAll('[name="cf-popup-price"]').forEach(r => r.checked = false);
+  
+  // Clear occupancy & gender
+  document.querySelectorAll('#cf-popup-occ .cf-chip-label, #cf-popup-gender .cf-chip-label').forEach(b => b.classList.remove('cf-checked'));
+  
+  cfUpdateToggleBadge();
+}
+
+/* Apply Popup Filters to Desktop Form */
+function cfApplyPopupFilters() {
+  // 1. City & Area
+  if (cfPopupCity) {
+    cityDropdown.value = cfPopupCity;
+    cityDropdown.dispatchEvent(new Event('change'));
+    const popupArea = document.getElementById('cf-popup-location').value;
+    if (popupArea) {
+      setTimeout(() => {
+        locationDropdown.value = popupArea;
+      }, 50);
+    }
+  }
+
+  // 2. Price
+  const popupPrice = document.querySelector('[name="cf-popup-price"]:checked');
+  if (popupPrice) {
+    const deskPrice = document.querySelector(`#cf-desktop-form [name="price"][value="${popupPrice.value}"]`);
+    if (deskPrice) deskPrice.checked = true;
+  }
+
+  // 3. Occupancy
+  document.querySelectorAll('#cf-desktop-form [name="occupancy"]').forEach(cb => cb.checked = false);
+  document.querySelectorAll('#cf-popup-occ .cf-chip-label.cf-checked').forEach(btn => {
+    const match = document.querySelector(`#cf-desktop-form [name="occupancy"][value="${btn.dataset.value}"]`);
+    if (match) { 
+      match.checked = true; 
+      cfSyncChip(match); 
+    }
+  });
+
+  // 4. Gender
+  document.querySelectorAll('#cf-desktop-form [name="gender"]').forEach(cb => cb.checked = false);
+  document.querySelectorAll('#cf-popup-gender .cf-chip-label.cf-checked').forEach(btn => {
+    const match = document.querySelector(`#cf-desktop-form [name="gender"][value="${btn.dataset.value}"]`);
+    if (match) { 
+      match.checked = true; 
+      cfSyncChip(match); 
+    }
+  });
+
+  cfClosePopup();
+  
+  // Show selected filters
+  cfShowSelectedFilters();
+
+  // Submit form after a short delay to ensure city/area sync
+  setTimeout(() => {
+    document.getElementById('cf-desktop-form').submit();
+  }, 100);
+}
+
+/* ══════════════════════════════════════════════
+   SELECTED FILTERS DISPLAY FUNCTIONS
+══════════════════════════════════════════════ */
+
+function cfShowSelectedFilters() {
+  const container = document.getElementById('cfSelectedTags');
+  const wrapper = document.getElementById('cfSelectedFilters');
+  const tags = [];
+  
+  // City
+  const cityVal = cityDropdown.value;
+  if (cityVal) {
+    const cityText = cityDropdown.options[cityDropdown.selectedIndex].text;
+    tags.push({ label: cityText, type: 'city', value: cityVal });
+  }
+  
+  // Area
+  const areaVal = locationDropdown.value;
+  if (areaVal) {
+    const areaText = locationDropdown.options[locationDropdown.selectedIndex].text;
+    tags.push({ label: areaText, type: 'area', value: areaVal });
+  }
+  
+  // Price
+  const priceRadio = document.querySelector('#cf-desktop-form [name="price"]:checked');
+  if (priceRadio && priceRadio.value) {
+    const priceLabel = priceRadio.closest('.cf-radio-label').textContent.trim();
+    tags.push({ label: priceLabel, type: 'price', value: priceRadio.value });
+  }
+  
+  // Occupancy
+  document.querySelectorAll('#cf-desktop-form [name="occupancy"]:checked').forEach(cb => {
+    const label = cb.closest('.cf-chip-label').textContent.trim();
+    tags.push({ label: label, type: 'occupancy', value: cb.value });
+  });
+  
+  // Gender
+  document.querySelectorAll('#cf-desktop-form [name="gender"]:checked').forEach(cb => {
+    const label = cb.closest('.cf-chip-label').textContent.trim();
+    tags.push({ label: label, type: 'gender', value: cb.value });
+  });
+  
+  // Sort
+  if (cfSelectedSort && cfSelectedSort !== 'Relevance') {
+    tags.push({ label: cfSelectedSort, type: 'sort', value: cfSelectedSort });
+  }
+  
+  // Render tags
+  if (tags.length === 0) {
+    wrapper.classList.remove('visible');
+    container.innerHTML = '';
+    return;
+  }
+  
+  container.innerHTML = tags.map(tag => `
+    <span class="cf-selected-tag" data-type="${tag.type}" data-value="${tag.value}">
+      ${tag.label}
+      <button type="button" class="cf-remove-tag" onclick="cfRemoveFilter('${tag.type}', '${tag.value}')" title="Remove">×</button>
+    </span>
+  `).join('');
+  
+  wrapper.classList.add('visible');
+}
+
+function cfRemoveFilter(type, value) {
+  // Remove from desktop form
+  if (type === 'city') {
+    cityDropdown.value = '';
+    locationDropdown.innerHTML = '<option value="">Select Area</option>';
+  } else if (type === 'area') {
+    locationDropdown.value = '';
+  } else if (type === 'price') {
+    const radio = document.querySelector(`#cf-desktop-form [name="price"][value="${value}"]`);
+    if (radio) radio.checked = false;
+  } else if (type === 'occupancy') {
+    const cb = document.querySelector(`#cf-desktop-form [name="occupancy"][value="${value}"]`);
+    if (cb) {
+      cb.checked = false;
+      cfSyncChip(cb);
+    }
+  } else if (type === 'gender') {
+    const cb = document.querySelector(`#cf-desktop-form [name="gender"][value="${value}"]`);
+    if (cb) {
+      cb.checked = false;
+      cfSyncChip(cb);
+    }
+  } else if (type === 'sort') {
+    cfSelectedSort = 'Relevance';
+    // Reset sort UI in popup if open later
+    document.querySelectorAll('.cf-sort-item').forEach((item, idx) => {
+      item.classList.toggle('cf-selected', idx === 0);
+    });
+  }
+  
+  // Also remove from popup state
+  if (type === 'city') {
+    cfPopupCity = '';
+    document.querySelectorAll('#cf-popup-city-chips .cf-chip-label').forEach(b => b.classList.remove('cf-checked'));
+  } else if (type === 'area') {
+    document.getElementById('cf-popup-location').value = '';
+  } else if (type === 'price') {
+    document.querySelectorAll('[name="cf-popup-price"]').forEach(r => {
+      if (r.value === value) r.checked = false;
+    });
+  } else if (type === 'occupancy') {
+    document.querySelectorAll('#cf-popup-occ .cf-chip-label').forEach(btn => {
+      if (btn.dataset.value === value) btn.classList.remove('cf-checked');
+    });
+  } else if (type === 'gender') {
+    document.querySelectorAll('#cf-popup-gender .cf-chip-label').forEach(btn => {
+      if (btn.dataset.value === value) btn.classList.remove('cf-checked');
+    });
+  }
+  
+  cfUpdateToggleBadge();
+  cfShowSelectedFilters();
+  
+  // Auto-submit after removing
+  setTimeout(() => {
+    document.getElementById('cf-desktop-form').submit();
+  }, 100);
+}
+
+/* Desktop Helpers */
+function cfToggle(id) {
+  document.getElementById(id).classList.toggle('open');
+}
+
+function cfSyncChip(input) {
+  input.closest('.cf-chip-label').classList.toggle('cf-checked', input.checked);
+}
+
+function cfClearAll() {
+  document.querySelectorAll('#cf-desktop-form input[type="radio"]').forEach(r => r.checked = false);
+  document.querySelectorAll('#cf-desktop-form input[type="checkbox"]').forEach(c => {
+    c.checked = false;
+    cfSyncChip(c);
+  });
+  cityDropdown.value = '';
+  locationDropdown.innerHTML = '<option value="">Select Area</option>';
+  
+  // Clear popup state too
+  cfClearAllPopupFilters();
+  
+  // Hide selected filters
+  document.getElementById('cfSelectedFilters').classList.remove('visible');
+  document.getElementById('cfSelectedTags').innerHTML = '';
+  
+  // Submit cleared form
+  setTimeout(() => {
+    document.getElementById('cf-desktop-form').submit();
+  }, 100);
+}
+
+// Listen for area changes to update badge
+document.getElementById('cf-popup-location').addEventListener('change', cfUpdateToggleBadge);
+
+// Show selected filters on page load if filters exist in URL
+window.addEventListener('DOMContentLoaded', cfShowSelectedFilters);
+</script>
+
+</body>
+</html>

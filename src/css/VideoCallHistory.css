@@ -1,0 +1,119 @@
+/* VideoCallHistory.css */
+
+.video-history-content {
+  padding: 40px;
+  background-color: #fff;
+  min-height: calc(100vh - 80px);
+}
+
+.video-table-container {
+  border: 1px solid #e9527a;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.video-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.video-table thead th {
+  background-color: #e9527a;
+  color: white;
+  padding: 15px 10px;
+  text-align: center;
+  font-weight: 500;
+  font-size: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.video-table tbody td {
+  padding: 12px 10px;
+  text-align: center;
+  border: 1px solid #e9527a;
+  color: #333;
+  font-size: 16px;
+}
+
+.video-table tbody tr:nth-child(even) {
+  background-color: #fff;
+}
+
+.video-table tbody tr:hover {
+  background-color: #fff5f7;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .video-history-content {
+    padding: 20px;
+  }
+  
+  .video-table thead th {
+    font-size: 16px;
+    padding: 12px 5px;
+  }
+  
+  .video-table tbody td {
+    font-size: 14px;
+    padding: 10px 5px;
+  }
+}
+
+@media (max-width: 768px) {
+  .video-table thead th,
+  .video-table tbody td {
+    min-width: 100px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Custom horizontal scroll for video call table on mobile/tablet */
+.video-table-container .table-responsive {
+  overflow-x: auto;                     /* enable horizontal scroll */
+  -webkit-overflow-scrolling: touch;    /* smooth scrolling on iOS */
+  scrollbar-width: thin;                /* Firefox: thin scrollbar */
+  scrollbar-color: #e9527a #f1f1f1;     /* Firefox: thumb and track color */
+}
+
+/* WebKit (Chrome, Safari, Edge) custom scrollbar */
+.video-table-container .table-responsive::-webkit-scrollbar {
+  height: 6px;                          /* horizontal scrollbar height */
+}
+
+.video-table-container .table-responsive::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.video-table-container .table-responsive::-webkit-scrollbar-thumb {
+  background: #e9527a;                  /* match your theme */
+  border-radius: 10px;
+}
+
+.video-table-container .table-responsive::-webkit-scrollbar-thumb:hover {
+  background: #c73d62;
+}
+
+/* Optional: force table to stay at full width so scroll is visible */
+.video-table-container table {
+  min-width: 800px;                     /* adjust if needed */
+}
+
+.video-table-container .table-responsive::-webkit-scrollbar-thumb {
+  background: #e9527a;
+}
+/* No :hover specificity needed */

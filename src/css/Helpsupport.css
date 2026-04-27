@@ -1,0 +1,115 @@
+/* HelpSupport.css */
+
+.help-support-content {
+  padding: 60px 40px;
+  background-color: #fff;
+  min-height: calc(100vh - 80px);
+}
+
+.help-title {
+  font-size: 48px;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 15px;
+}
+
+.help-subtitle {
+  font-size: 20px;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+.help-divider {
+  height: 1px;
+  background-color: #e9527a;
+  opacity: 0.3;
+  width: 100%;
+  max-width: 800px;
+}
+
+.support-card {
+  background-color: #fce7eb; /* Light pink background from image */
+  border-radius: 12px;
+  padding: 25px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+}
+
+.support-card:hover {
+  box-shadow: 0 10px 20px rgba(233, 82, 122, 0.1);
+  border-color: rgba(233, 82, 122, 0.2);
+}
+
+.support-icon-wrapper {
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.support-icon {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.support-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.support-name {
+  font-size: 28px;
+  font-weight: 600;
+  color: #e9527a;
+  margin: 0;
+}
+
+.start-chat-link {
+  color: #e9527a;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.start-chat-link:hover {
+  text-decoration: underline;
+}
+
+.start-chat-link .arrow {
+  font-size: 18px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .help-support-content {
+    padding: 40px 20px;
+  }
+  
+  .help-title {
+    font-size: 36px;
+  }
+  
+  .help-subtitle {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 768px) {
+  .support-card {
+    padding: 20px;
+  }
+  
+  .support-name {
+    font-size: 24px;
+  }
+}

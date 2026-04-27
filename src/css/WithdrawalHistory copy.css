@@ -1,0 +1,131 @@
+:root {
+  --bg-color: #B02245;
+  --top-table-bg: #E95A7A;
+  --table-border-color: #FFF;
+  --table-second-border-color: #FFF;
+  --table-text-color:#FFF;
+  --heading-text-color:#fff;
+  --all-status-color:#FFF;
+  /* --background-images: url("../assets/Withdrawalbg.png");  */
+
+}
+
+/* ===============================
+   LIGHT THEME
+   =============================== */
+[data-theme="light"] {
+  --bg-color: #FFFFFF;
+  --top-table-bg: #A61036;
+  --table-border-color: #A61036;
+  --table-second-border-color: #A61036;
+  --heading-text-color:#A61036;
+  --all-status-color:#000;
+  /* --background-images: url("../assets/WithdrawalBgDark.png"); */
+}
+
+/* ===============================
+   DARK THEME
+   =============================== */
+[data-theme="dark"] {
+  --bg-color: #090203;
+  --top-table-bg: #E95A7A;
+  --table-border-color: #FFF;
+  --heading-text-color:#fff;
+  --all-status-color:#FFF;
+  /* --background-images: url("../assets/Withdrawalbg.png"); */
+}
+
+
+
+.withdrawal-history-wrapper {
+  /* background: var(--bg-color);
+  min-height: 100vh;
+  background-image: var(--background-images);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+  background-size: contain;
+  background-attachment: fixed; */
+}
+
+.text-color{
+  color: var(--table-text-color);
+}
+
+.heading-text{
+  color: var(--heading-text-color);
+}
+
+/* Table wrapper */
+.history-table-wrapper {
+  border: 1px solid var(--table-border-color);
+}
+
+/* Table */
+.history-tables {
+  color: #fff;
+  border-collapse: collapse;
+}
+
+/* Header */
+.history-tables thead th {
+  /* background: var(--top-table-bg); */
+  background:#05CFD9;
+  /* color: #fff; */
+  color: #000;
+  font-weight: 600;
+  text-align: center;
+  border: 1px solid var(--table-border-color);
+  white-space: nowrap;
+}
+
+/* Body cells */
+.history-tables tbody td {
+  background: transparent;
+  text-align: center;
+  border: 1px solid var(--table-second-border-color);
+  font-size: 14px;
+}
+
+/* Padding fix */
+.history-tables th,
+.history-tables td {
+  padding: 10px 12px;
+}
+
+/* Status styles */
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 500;
+}
+
+.status.completed {
+  color: var(--all-status-color);
+}
+
+.status.rejected {
+  color: var(--all-status-color);
+}
+
+.status.pending {
+  color: var(--all-status-color);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .container-fluid {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+  }
+
+  /* .withdrawal-history-wrapper {
+    background: #b01f3e;
+    min-height: 100vh;
+    background-image: url(/src/assets/Videocallhistory.png);
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: contain;
+    background-attachment: fixed;
+  } */
+}

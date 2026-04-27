@@ -1,0 +1,277 @@
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+:root {
+  --thaixo-pink: #e95d82;
+  --thaixo-light-pink: #fdf2f5;
+  --thaixo-dark: #2d2d2d;
+}
+
+body {
+  background-color: #f8f9fa;
+  color: var(--thaixo-dark);
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+}
+
+/* Sidebar Styles */
+.sidebar {
+  width: 260px;
+  background-color: var(--thaixo-pink);
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1000;
+  transition: transform 0.3s ease-in-out;
+  overflow: auto;
+}
+
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 24px;
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  transition: background 0.2s;
+  cursor: pointer;
+}
+
+.sidebar-item:hover {
+  /* background-color: rgba(255, 255, 255, 0.1); */
+  color: white;
+}
+
+.sidebar-item-active {
+  background-color: white;
+  color: var(--thaixo-pink) !important;
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
+  /* margin-left: 16px; */
+}
+
+/* Dashboard Styles */
+.main-content {
+  margin-left: 260px;
+  /* padding: 40px; */
+  min-height: 100vh;
+  background-color: white;
+}
+
+@media (max-width: 991.98px) {
+  .sidebar {
+    transform: translateX(-100%);
+  }
+
+  .sidebar.show {
+    transform: translateX(0);
+  }
+
+  .main-content {
+    margin-left: 0;
+    /* padding: 20px; */
+  }
+
+  .stat-card {
+    background-color: var(--thaixo-light-pink);
+    /* padding: 24px; */
+    height: 100px !important;
+    padding: 10px 10px 10px 10px !important;
+    border-radius: 16px;
+    position: relative;
+    overflow: hidden;
+    border: none;
+  }
+}
+
+.stat-card {
+  background-color: var(--thaixo-light-pink);
+  padding: 24px;
+  border-radius: 16px;
+  position: relative;
+  overflow: hidden;
+  border: none;
+}
+
+.stat-card-icon {
+  position: absolute;
+  bottom: -16px;
+  right: -16px;
+  opacity: 0.1;
+  color: var(--thaixo-pink);
+  width: 96px;
+  height: 96px;
+}
+
+.pink-dot {
+  display: inline-block;
+  width: 12px;
+  height: 4px;
+  background-color: var(--thaixo-pink);
+  border-radius: 2px;
+  margin: 0 8px;
+}
+
+.custom-table thead th {
+  background-color: #f8f9fa;
+  border-bottom: 2px solid #dee2e6;
+  color: #6c757d;
+  font-weight: 700;
+}
+
+.mobile-toggle {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 1100;
+  background-color: var(--thaixo-pink);
+  color: white;
+  border: none;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.profile-wrapper {
+  position: relative;
+}
+
+.profile-dropdown {
+  position: absolute;
+  top: 55px;
+  right: 0;
+  width: 320px;
+  background: #ffffff;
+  color: #000;
+  border-radius: 12px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+  padding: 12px;
+  z-index: 999;
+}
+
+/* TOP PROFILE */
+.profile-top {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.profile-top img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.profile-name {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.verified {
+  color: #1d9bf0;
+  margin-left: 4px;
+}
+
+.profile-phone {
+  font-size: 14px;
+  color: #666;
+}
+
+/* DIVIDER */
+.divider {
+  height: 1px;
+  background: #e5e5e5;
+  margin: 12px 0;
+}
+
+/* DROPDOWN ROW */
+.dropdown-item-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 8px;
+  font-size: 15px;
+  border-radius: 8px;
+}
+
+.dropdown-item-row select {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 4px 8px;
+}
+
+.dropdown-item-row.clickable:hover {
+  background: #f5f5f5;
+  cursor: pointer;
+}
+
+.logout {
+  color: #d9534f;
+  font-weight: 500;
+}
+
+.logout:hover {
+  background: #fff0f0;
+  cursor: pointer;
+}
+
+.profile-dropdown {
+  animation: dropdownFade 0.2s ease;
+}
+
+@keyframes dropdownFade {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+
+
+
+
+.recharts-tooltip-label {
+  color: #000;
+}
+
+.recharts-tooltip-item span {
+  color: #000;
+}
+
+
+/* .sidebar {
+  transition: transform 0.5s ease, border-radius 0.5s ease;
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
+}
+
+.sidebar.show {
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+.sidebar {
+  filter: url(#goo);
+} */

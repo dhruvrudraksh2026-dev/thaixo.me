@@ -1,0 +1,216 @@
+/* SelfCreator.css */
+:root {
+  --thaixo-pink: #e95d82;
+  --thaixo-dark-pink: #d84b71;
+}
+
+.self-creator-container {
+  padding: 20px;
+  max-width: 800px;
+}
+
+.self-creator-title {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 24px;
+  color: #1a1a1a;
+}
+
+.form-wrapper {
+  background-color: var(--thaixo-pink);
+  padding: 40px;
+  border-radius: 20px;
+  color: white;
+  box-shadow: 0 10px 30px rgba(233, 93, 130, 0.3);
+}
+
+.form-group-custom {
+  position: relative;
+  margin-bottom: 35px;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 12px;
+  padding: 15px 20px;
+}
+
+.form-label-custom {
+  position: absolute;
+  top: -12px;
+  left: 20px;
+  background-color: var(--thaixo-pink);
+  padding: 0 10px;
+  font-size: 14px;
+  color: white;
+  white-space: nowrap;
+}
+
+.form-input-custom {
+  background: transparent;
+  border: none;
+  width: 100%;
+  color: white;
+  font-size: 18px;
+  font-weight: 500;
+  outline: none;
+  padding: 5px 0;
+}
+
+.form-input-custom::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.form-select-custom {
+  background: transparent;
+  border: none;
+  width: 100%;
+  color: white;
+  font-size: 18px;
+  font-weight: 500;
+  outline: none;
+  appearance: none;
+  cursor: pointer;
+  padding: 5px 0;
+}
+
+.select-wrapper {
+  position: relative;
+}
+
+/* Dark Select Dropdown Fix */
+/* .dark-select {
+  background-color: #FFF !important;
+  color: #0000 !important;
+  border: 2px solid #e9527a !important;
+} */
+
+.dark-select option {
+  background-color: #fff !important;
+  color: #000 !important;
+  padding: 8px;
+}
+
+/* Hover effect for options */
+.dark-select option:hover {
+  background-color: #1a1a1a !important;
+}
+
+/* .select-wrapper::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 10px solid white;
+  pointer-events: none;
+} */
+
+.helper-text {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.9);
+  margin-top: 5px;
+  position: absolute;
+  bottom: -22px;
+  left: 20px;
+}
+
+.upload-box {
+  border: 1px dashed rgba(255, 255, 255, 0.8);
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.upload-box:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.upload-icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.upload-icon-svg {
+  width: 40px;
+  height: 40px;
+  stroke: white;
+  stroke-width: 2;
+  fill: none;
+}
+
+.upload-text {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.submit-btn-custom {
+  background-color: white;
+  color: var(--thaixo-pink);
+  border: none;
+  border-radius: 50px;
+  padding: 15px;
+  width: 100%;
+  font-weight: 600;
+  font-size: 20px;
+  margin-top: 10px;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.submit-btn-custom:hover {
+  background-color: #fff0f5;
+  transform: translateY(-2px);
+}
+
+.submit-btn-custom:active {
+  transform: translateY(0);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+
+  /* .self-creator-container {
+    padding: 15px;
+  } */
+  .form-wrapper {
+    padding: 25px 20px;
+  }
+
+  .self-creator-container {
+    padding: 20px 20px 20px 20px;
+  }
+
+  .upload-box {
+    border: 1px dashed rgba(255, 255, 255, 0.8);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: background 0.2s;
+    display: block;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+  }
+}
+
+  .dropdown-toggle::after {
+    display: inline-block;
+    margin-left: .255em;
+    vertical-align: .255em;
+    content: "";
+    border-top: .3em solid;
+    border-right: .3em solid transparent;
+    border-bottom: 0;
+    border-left: .3em solid transparent;
+    font-size: 28px;
+}

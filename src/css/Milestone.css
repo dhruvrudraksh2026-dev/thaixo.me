@@ -1,0 +1,676 @@
+/* Milestone.css
+.milestone-container {
+  padding: 20px;
+  max-width: 1000px;
+  font-family: 'Inter', sans-serif;
+}
+
+.creator-level-text {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 25px;
+  color: #1a1a1a;
+}
+
+
+.progress-card {
+  background-color: #fce4ec; 
+  border-radius: 16px;
+  padding: 30px;
+  margin-bottom: 40px;
+  border: none;
+  box-shadow: 0 4px 15px rgba(237, 92, 130, 0.05);
+}
+
+.progress-header {
+  margin-bottom: 15px;
+}
+
+.progress-label {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+.progress-label span {
+  color: #ed5c82;
+}
+
+.progress-hours-range {
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+  color: #333;
+  font-weight: 600;
+  margin-bottom: 10px;
+  padding: 0 5px;
+}
+
+.progress-bar-container {
+  height: 28px;
+  background-color: #f8bbd0;
+  border-radius: 14px;
+  overflow: visible; 
+  position: relative;
+  margin-bottom: 15px;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background-color: #ed5c82;
+  border-radius: 14px;
+  position: relative;
+}
+
+.progress-current-marker {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 2px;
+  background-color: rgba(0,0,0,0.2);
+}
+
+.progress-current-label {
+  text-align: center;
+  font-size: 16px;
+  color: #ed5c82;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.progress-current-label span {
+  color: #666;
+  font-weight: 500;
+}
+
+.progress-remaining-text {
+  text-align: center;
+  font-size: 16px;
+  color: #333;
+  font-weight: 500;
+}
+
+.progress-remaining-text span {
+  color: #ed5c82;
+  font-weight: 700;
+}
+
+
+.levels-section-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 25px;
+  color: #1a1a1a;
+}
+
+.levels-table-container {
+  background-color: #fce4ec;
+  border-radius: 16px;
+  padding: 20px;
+}
+
+.levels-header {
+  display: grid;
+  grid-template-columns: 1.5fr 1.5fr 1fr 1fr;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.level-row {
+  display: grid;
+  grid-template-columns: 1.5fr 1.5fr 1fr 1fr;
+  align-items: center;
+  padding: 15px 25px;
+  border-radius: 12px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.level-row:last-child {
+  margin-bottom: 0;
+}
+
+
+.level-silver {
+  background-color: #ed5c82;
+  color: white;
+}
+
+.level-gold {
+  background-color: #fff8e1;
+  color: #1a1a1a;
+}
+
+.level-diamond {
+  background-color: #e1f5fe;
+  color: #1a1a1a;
+}
+
+.level-name-cell {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.level-icon {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
+
+.level-milestone-cell, .level-earnings-cell {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.level-status-cell {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.status-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.status-active {
+  background-color: #4caf50;
+  color: white;
+}
+
+.status-locked {
+  color: #fbc02d;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.status-locked-blue {
+  color: #0288d1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.status-locked-text {
+  font-size: 11px;
+  display: block;
+  font-weight: 500;
+  color: #666;
+  margin-top: 2px;
+} */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*------------------------------------------------------------------------------------------------*/
+
+
+@import 'bootstrap/dist/css/bootstrap.min.css';
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  --thaixo-pink: #e9527a;
+  --thaixo-pink-light: #fce7eb;
+  --thaixo-bg: #fdf2f5;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--thaixo-bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Custom Sidebar Styles */
+.sidebar-container {
+  width: 280px;
+  height: 100vh;
+  background-color: var(--thaixo-pink);
+  color: white;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 4px 0 10px rgba(0,0,0,0.1);
+}
+
+.sidebar-logo-circle {
+  width: 64px;
+  height: 64px;
+  background-color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.sidebar-nav-btn {
+  width: 100%;
+  text-align: left;
+  padding: 15px 30px;
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.9);
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.sidebar-nav-btn:hover {
+  color: white;
+}
+
+.sidebar-nav-btn.active {
+  color: var(--thaixo-pink);
+}
+
+.sidebar-active-bg {
+  position: absolute;
+  left: 15px;
+  right: 0;
+  top: 5px;
+  bottom: 5px;
+  background-color: white;
+  border-radius: 30px 0 0 30px;
+  z-index: 0;
+}
+
+.sidebar-nav-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* Main Content Layout */
+.main-wrapper {
+  margin-left: 260px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-header {
+  height: 80px;
+  background-color: white;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  position: sticky;
+  top: 0;
+  z-index: 900;
+}
+
+.notification-badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: var(--thaixo-pink);
+  color: white;
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 10px;
+  border: 2px solid white;
+}
+
+/* Milestone Specifics */
+.milestone-card {
+  background-color: var(--thaixo-pink-light);
+  border-radius: 25px;
+  padding: 30px;
+  border: 1px solid #f8d7da;
+  margin-bottom: 40px;
+}
+
+.custom-progress-container {
+  height: 32px;
+  background-color: rgba(233, 82, 122, 0.2);
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+}
+
+.custom-progress-bar {
+  height: 100%;
+  background-color: var(--thaixo-pink);
+  border-radius: 16px;
+}
+
+/* .level-row {
+  border-radius: 20px;
+  padding: 15px 25px;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  transition: transform 0.2s ease;
+} */
+
+.level-row:hover {
+  transform: scale(1.01);
+}
+
+.level-icon-wrapper {
+  width: 48px;
+  height: 48px;
+  /* background-color: rgba(255,255,255,0.2); */
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 15px;
+}
+
+.status-pill {
+  padding: 8px 20px;
+  border-radius: 12px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+
+@media (max-width:992px) {
+  .main-wrapper{
+    margin-left: 0px;
+  }
+}
+
+
+
+.level-row{
+  transition: all 0.3s ease;
+}
+
+.level-row:hover{
+  transform: translateY(-3px);
+}
+
+/* Tablet */
+@media (max-width: 991px){
+
+  .level-row{
+    padding:16px;
+  }
+
+}
+
+/* Mobile */
+@media (max-width: 576px){
+
+  .level-row{
+    flex-direction: column;
+    align-items: flex-start !important;
+  }
+
+  .level-icon-wrapper img{
+    width:28px;
+    height:28px;
+  }
+
+}
+
+
+
+/* .level-row {
+  position: relative;
+  border-radius: 12px;
+  padding: 12px;
+} */
+
+.level-row {
+  position: relative;
+  border-radius: 12px;
+  /* padding: 12px 12px 20px 12px; */
+  background-color: #F07D99;
+  overflow: hidden;
+}
+
+/* INNER DASHED BORDER */
+.level-row.active-level::before {
+  content: "";
+  position: absolute;
+  inset: 6px; /* space inside */
+  /* border: 3px dashed rgba(255, 255, 255, 0.9); */
+  border-radius: 8px;
+  pointer-events: none;
+  background-color: #F07D99;
+  z-index: 0;
+}
+
+/* KEEP CONTENT ABOVE BORDER */
+.level-row > * {
+  position: relative;
+  z-index: 1;
+}
+
+
+
+
+
+
+.level-row.active-level {
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 0 2px rgba(233, 82, 122, 0.3);
+}
+
+.responsive-images{
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+}
+
+@media (max-width: 768px) {
+  .level-row {
+    padding: 12px !important;
+  }
+  .responsive-design{
+    width: 100% !important;
+  }
+
+  .responsive-design div{
+    text-align: end;
+    padding-right: 2px;
+    margin-top:10px;
+  }
+
+  .margin-left-reesponsive{
+    margin-left: auto;
+  }
+
+  .responsive-images{
+ width: 70px !important;
+  height: 70px !important;
+  object-fit: contain;
+  padding: 5px;
+}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ===== MILESTONE MOBILE & TABLET CUSTOMIZATION ===== */
+
+/* Tablet and below (max-width: 991px) */
+@media (max-width: 991.98px) {
+  .level-row {
+    padding: 20px 15px !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+
+  .responsive-design {
+    width: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 15px !important;
+  }
+
+  .level-icon-wrapper {
+    margin-right: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
+  .responsive-images {
+    width: 50px !important;
+    height: auto !important;
+    object-fit: contain;
+  }
+
+  /* Earnings line for mobile/tablet */
+  .d-lg-none.w-100.d-flex.justify-content-end {
+    margin-top: 12px !important;
+    padding-top: 8px !important;
+    border-top: 1px dashed rgba(0, 0, 0, 0.1);
+    justify-content: space-between !important;
+  }
+
+  /* Show "Earnings:" label on mobile/tablet */
+  .d-lg-none.w-100.d-flex .text-muted.small {
+    display: inline !important;
+    font-weight: 600 !important;
+    color: #666 !important;
+  }
+
+  /* Status pill container */
+  .level-row .w-100.w-lg-auto {
+    width: 100% !important;
+    margin-top: 12px !important;
+  }
+
+  .status-pill {
+    width: 100% !important;
+    justify-content: center !important;
+    padding: 8px 16px !important;
+  }
+}
+
+/* Mobile only (max-width: 767px) */
+@media (max-width: 767.98px) {
+  .level-row {
+    padding: 16px 12px !important;
+  }
+
+  .responsive-images {
+    width: 45px !important;
+  }
+
+  .responsive-design .fw-bold.fs-6 {
+    font-size: 1rem !important;
+  }
+
+  /* Milestone hours under name on mobile */
+  .d-lg-none.small.opacity-75 {
+    font-size: 0.8rem !important;
+    color: #555 !important;
+  }
+
+  /* Earnings value on mobile */
+  .d-lg-none.w-100.d-flex .fw-medium {
+    font-size: 1rem !important;
+    font-weight: 700 !important;
+    color: #e9527a !important;
+  }
+
+  /* Active level text contrast improvement */
+  .level-row.active-level .d-lg-none.small.opacity-75 {
+    color: rgba(255, 255, 255, 0.8) !important;
+  }
+
+  .level-row.active-level .d-lg-none.w-100.d-flex .fw-medium {
+    color: white !important;
+  }
+
+  .level-row.active-level .d-lg-none.w-100.d-flex .text-muted.small {
+    color: rgba(255, 255, 255, 0.7) !important;
+  }
+
+  /* Status pill on mobile */
+  .status-pill {
+    font-size: 0.9rem !important;
+    padding: 6px 12px !important;
+  }
+}
+
+/* Extra small devices (max-width: 480px) */
+@media (max-width: 480px) {
+  .responsive-design {
+    gap: 10px !important;
+  }
+
+  .responsive-images {
+    width: 40px !important;
+  }
+
+  .responsive-design .fw-bold.fs-6 {
+    font-size: 0.95rem !important;
+  }
+
+  .d-lg-none.small.opacity-75 {
+    font-size: 0.75rem !important;
+  }
+
+  .level-row {
+    padding: 14px 10px !important;
+  }
+
+  .status-pill {
+    font-size: 0.85rem !important;
+  }
+}

@@ -1,0 +1,91 @@
+/* WithdrawalHistory.css */
+
+.withdrawal-content {
+  padding: 24px;
+  background-color: #fff;
+  min-height: calc(100vh - 70px);
+}
+
+.note-section {
+  margin-bottom: 24px;
+}
+
+.note-title {
+  color: #e9527a;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.note-text {
+  color: #333;
+  font-size: 14px;
+  margin: 0;
+}
+
+.withdrawal-table-container {
+  border: 1px solid #eee;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.withdrawal-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.withdrawal-table thead th {
+  background-color: #e9527a;
+  color: white;
+  padding: 20px 10px;
+  text-align: center;
+  font-weight: 500;
+  font-size: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.withdrawal-table tbody td {
+  padding: 16px 10px;
+  text-align: center;
+  border: 1px solid #dee2e6;
+  color: #333;
+  font-size: 16px;
+}
+
+.withdrawal-table tbody tr:nth-child(even) {
+  background-color: #fff;
+}
+
+.withdrawal-table tbody tr:hover {
+  background-color: #f8f9fa;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 100px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.status-badge.completed {
+  color: #4caf50;
+}
+
+.status-badge.rejected {
+  color: #f44336;
+}
+
+.status-badge.pending {
+  color: #795548;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .withdrawal-table thead th,
+  .withdrawal-table tbody td {
+    padding: 10px;
+    font-size: 13px;
+  }
+}
