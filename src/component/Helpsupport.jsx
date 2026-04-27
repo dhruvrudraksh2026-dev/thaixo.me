@@ -1062,7 +1062,7 @@ import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import Sidebar from "./Sidebar";
 import Header from "./Header";
-import "../css/HelpSupport.css";
+import "../css/Helpsupport.css";
 import { Menu, X, AlertCircle } from "lucide-react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
