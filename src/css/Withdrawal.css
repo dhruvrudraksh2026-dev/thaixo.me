@@ -95,7 +95,8 @@
   position: absolute;
   left: 16px;
   top: -10px;
-  background: #984358;
+  /* background: #984358; */
+  background: #ff6184d4;
   padding: 2px 8px;
   border-radius: 6px;
   font-size: 14px;

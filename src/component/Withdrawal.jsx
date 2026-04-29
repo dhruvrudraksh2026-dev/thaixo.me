@@ -5908,7 +5908,7 @@ export default function Withdrawal() {
                   </div>
 
                   <div className="form-field">
-                    <label className="field-label">{t("withdrawal.chooseBank")}</label>
+                    <label className="field-label z-3">{t("withdrawal.chooseBank")}</label>
                     <div className="select-wrapper w-100">
                       <select
                         className="field-select field-selectsss w-100 text-white"

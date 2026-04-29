@@ -1066,7 +1066,6 @@ import "../css/Helpsupport.css";
 import { Menu, X, AlertCircle } from "lucide-react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
 const HelpSupport = () => {
   const { t } = useTranslation();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
