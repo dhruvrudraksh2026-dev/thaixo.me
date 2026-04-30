@@ -21,8 +21,7 @@ import CreatorSelectionSelf from "./component/CreatorSelectionSelf";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
+    <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/otp" element={<Otp />} />
         <Route path="/Dashboard" element={<Dashboard />} />
@@ -42,7 +41,6 @@ function App() {
           element={<CreatorSelectionSelf />}
         />
       </Routes>
-    </BrowserRouter>
   );
 }
 
