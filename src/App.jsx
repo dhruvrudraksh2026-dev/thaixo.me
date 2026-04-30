@@ -28,6 +28,8 @@ import CreatorSelectionSelf  from './component/CreatorSelectionSelf';
 
 function App() {
   return (
+    <BrowserRouter>
+
     <Router>
       <Routes>
         {/* Public Routes */}
@@ -54,6 +56,8 @@ function App() {
         
       </Routes>
     </Router>
+    </ BrowserRouter>
+
   );
 }
 
