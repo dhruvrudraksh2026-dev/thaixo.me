@@ -191,3 +191,13 @@
   justify-content: center;
 
 }
+
+
+.field-input::placeholder {
+  color: rgba(255, 255, 255, 1); /* white placeholder */
+  opacity: 1; /* important for Firefox/browser consistency */
+}
+
+.field-input:disabled::placeholder {
+  color: rgba(255, 255, 255, 1);
+}
