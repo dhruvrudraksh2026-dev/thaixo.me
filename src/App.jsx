@@ -1,8 +1,9 @@
 import {
-  BrowserRouter as Router,
+  Router,
   Routes,
   Route,
   Navigate,
+  BrowserRouter,
 } from "react-router-dom";
 import Login from "./component/Login";
 import Otp from "./component/Otp";
