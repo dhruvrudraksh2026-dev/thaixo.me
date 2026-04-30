@@ -1,8 +1,63 @@
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-} from "react-router-dom";
+// import {
+//   BrowserRouter,
+//   Routes,
+//   Route,
+// } from "react-router-dom";
+
+// import Login from "./component/Login";
+// import Otp from "./component/Otp";
+// import Dashboard from "./component/Dashboard";
+// import Withdrawal from "./component/Withdrawal";
+// import VideoCallHistory from "./component/VideoCallHistory";
+// import WithdrawalHistory from "./component/WithdrawalHistory";
+// import IncomeDashboard from "./component/IncomeDashboard";
+// import Helpsupport from "./component/Helpsupport";
+// import DailySeeMore from "./component/DailySeeMore";
+// import CreatorSelection from "./component/CreatorSelection";
+// import SelfCreator from "./component/SelfCreator";
+// import AgencyCreator from "./component/AgencyCreator";
+// import Milestone from "./component/Milestone";
+// import CreatorSelectionSelf from "./component/CreatorSelectionSelf";
+
+// function App() {
+//   return (
+//     <Routes>
+//         <Route path="/" element={<Login />} />
+//         <Route path="/otp" element={<Otp />} />
+//         <Route path="/Dashboard" element={<Dashboard />} />
+//         <Route path="/Withdrawal" element={<Withdrawal />} />
+//         <Route path="/WithdrawalHistory" element={<WithdrawalHistory />} />
+//         <Route path="/IncomeDashboard" element={<IncomeDashboard />} />
+//         <Route path="/VideoCallHistory" element={<VideoCallHistory />} />
+//         <Route path="/Helpsupport" element={<Helpsupport />} />
+//         <Route path="/DailySeeMore" element={<DailySeeMore />} />
+//         <Route path="/dailyseemore/:type" element={<DailySeeMore />} />
+//         <Route path="/CreatorSelection" element={<CreatorSelection />} />
+//         <Route path="/SelfCreator" element={<SelfCreator />} />
+//         <Route path="/AgencyCreator" element={<AgencyCreator />} />
+//         <Route path="/Milestone" element={<Milestone />} />
+//         <Route
+//           path="/CreatorSelectionSelf"
+//           element={<CreatorSelectionSelf />}
+//         />
+//       </Routes>
+//   );
+// }
+
+// export default App;
+
+
+
+
+
+
+
+
+
+
+
+
+import { Routes, Route } from "react-router-dom";
 
 import Login from "./component/Login";
 import Otp from "./component/Otp";
@@ -22,25 +77,25 @@ import CreatorSelectionSelf from "./component/CreatorSelectionSelf";
 function App() {
   return (
     <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/otp" element={<Otp />} />
-        <Route path="/Dashboard" element={<Dashboard />} />
-        <Route path="/Withdrawal" element={<Withdrawal />} />
-        <Route path="/WithdrawalHistory" element={<WithdrawalHistory />} />
-        <Route path="/IncomeDashboard" element={<IncomeDashboard />} />
-        <Route path="/VideoCallHistory" element={<VideoCallHistory />} />
-        <Route path="/Helpsupport" element={<Helpsupport />} />
-        <Route path="/DailySeeMore" element={<DailySeeMore />} />
-        <Route path="/dailyseemore/:type" element={<DailySeeMore />} />
-        <Route path="/CreatorSelection" element={<CreatorSelection />} />
-        <Route path="/SelfCreator" element={<SelfCreator />} />
-        <Route path="/AgencyCreator" element={<AgencyCreator />} />
-        <Route path="/Milestone" element={<Milestone />} />
-        <Route
-          path="/CreatorSelectionSelf"
-          element={<CreatorSelectionSelf />}
-        />
-      </Routes>
+      <Route path="/" element={<Login />} />
+      <Route path="/otp" element={<Otp />} />
+      <Route path="/Dashboard" element={<Dashboard />} />
+      <Route path="/Withdrawal" element={<Withdrawal />} />
+      <Route path="/WithdrawalHistory" element={<WithdrawalHistory />} />
+      <Route path="/IncomeDashboard" element={<IncomeDashboard />} />
+      <Route path="/VideoCallHistory" element={<VideoCallHistory />} />
+      <Route path="/Helpsupport" element={<Helpsupport />} />
+      <Route path="/DailySeeMore" element={<DailySeeMore />} />
+      <Route path="/dailyseemore/:type" element={<DailySeeMore />} />
+      <Route path="/CreatorSelection" element={<CreatorSelection />} />
+      <Route path="/SelfCreator" element={<SelfCreator />} />
+      <Route path="/AgencyCreator" element={<AgencyCreator />} />
+      <Route path="/Milestone" element={<Milestone />} />
+      <Route
+        path="/CreatorSelectionSelf"
+        element={<CreatorSelectionSelf />}
+      />
+    </Routes>
   );
 }
 
