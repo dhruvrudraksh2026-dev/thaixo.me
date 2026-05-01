@@ -1314,11 +1314,17 @@ i18n
     fallbackLng: 'en',
     debug: false,
     interpolation: { escapeValue: false },
-    detection: {
-      order: ['localStorage', 'navigator'],
-      caches: ['localStorage'],
-      lookupLocalStorage: 'appLanguage'
-    }
+    // detection: {
+    //   order: ['localStorage', 'navigator'],
+    //   caches: ['localStorage'],
+    //   lookupLocalStorage: 'appLanguage'
+    // }
+     detection: {
+      order: ["navigator"], // detect browser language only
+      caches: [] // IMPORTANT: disables cookies/localStorage/sessionStorage
+    },
+
+    
   });
 
 export default i18n;
