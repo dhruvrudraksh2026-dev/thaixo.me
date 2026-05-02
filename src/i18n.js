@@ -1307,6 +1307,30 @@ bankNames: {
   }
 };
 
+// i18n
+//   .use(LanguageDetector)
+//   .use(initReactI18next)
+//   .init({
+//     resources,
+//     fallbackLng: 'en',
+//     debug: false,
+//     interpolation: { escapeValue: false },
+//     // detection: {
+//     //   order: ['localStorage', 'navigator'],
+//     //   caches: ['localStorage'],
+//     //   lookupLocalStorage: 'appLanguage'
+//     // }
+//      detection: {
+//       order: ["navigator"], // detect browser language only
+//       caches: [] // IMPORTANT: disables cookies/localStorage/sessionStorage
+//     },
+
+    
+//   });
+
+
+
+
 i18n
   .use(LanguageDetector)
   .use(initReactI18next)
@@ -1315,17 +1339,14 @@ i18n
     fallbackLng: 'en',
     debug: false,
     interpolation: { escapeValue: false },
-    // detection: {
-    //   order: ['localStorage', 'navigator'],
-    //   caches: ['localStorage'],
-    //   lookupLocalStorage: 'appLanguage'
-    // }
-     detection: {
-      order: ["navigator"], // detect browser language only
-      caches: [] // IMPORTANT: disables cookies/localStorage/sessionStorage
+    detection: {
+      order: ['cookie', 'navigator'],
+      caches: ['cookie'],
+      // optional: keep the language for 30 days
+      cookieMinutes: 60 * 24 * 30,
+      // if you previously used a custom key, uncomment:
+      // lookupCookie: 'appLanguage',
     },
-
-    
   });
 
 export default i18n;

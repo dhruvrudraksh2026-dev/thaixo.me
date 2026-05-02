@@ -1607,6 +1607,367 @@
 
 
 
+// import React, { useState, useEffect } from "react";
+// import { motion } from "framer-motion";
+// import { useTranslation } from "react-i18next";
+// import Sidebar from "./Sidebar";
+// import Header from "./Header";
+// import "../css/VideoCallHistory.css";
+// import { Menu, X, AlertCircle } from "lucide-react";
+// import axios from "axios";
+// import { useNavigate } from "react-router-dom";
+
+// const VideoCallHistory = () => {
+//   const { t, i18n } = useTranslation();
+//   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+//   const [videoCallData, setVideoCallData] = useState([]);
+//   const [loading, setLoading] = useState(true);
+//   const [error, setError] = useState(null);
+//   const navigate = useNavigate();
+
+//   const handleCloseSidebar = () => setIsSidebarOpen(false);
+
+//   // ===== FORMATTING HELPERS (Thai & English) =====
+//   const formatNumber = (value) => {
+//     const num = parseFloat(value) || 0;
+//     return num.toLocaleString(i18n.language === "th" ? "th-TH" : "en-US", {
+//       minimumFractionDigits: 2,
+//       maximumFractionDigits: 2,
+//     });
+//   };
+
+//   const formatDate = (dateStr) => {
+//     if (!dateStr || dateStr === "—") return "—";
+//     const parts = dateStr.split("/");
+//     if (parts.length !== 3) return dateStr;
+//     const day = parseInt(parts[0]);
+//     const month = parseInt(parts[1]) - 1;
+//     let year = parseInt(parts[2]);
+//     const date = new Date(year, month, day);
+
+//     if (i18n.language === "th") {
+//       // Convert to Buddhist year (พ.ศ.)
+//       const buddhistYear = year + 543;
+//       return date.toLocaleDateString("th-TH", {
+//         year: "numeric",
+//         month: "short",
+//         day: "numeric",
+//       });
+//     }
+//     return date.toLocaleDateString("en-GB", {
+//       year: "numeric",
+//       month: "short",
+//       day: "numeric",
+//     });
+//   };
+
+//   // Parses API's "X min Y sec" string → { minutes, seconds }
+//   const parseDurationString = (str) => {
+//     if (!str || str === "—") return null;
+//     // Pattern: "0 min 21 sec"
+//     const match = str.match(/(\d+)\s*min\s+(\d+)\s*sec/i);
+//     if (match) {
+//       return { minutes: parseInt(match[1]), seconds: parseInt(match[2]) };
+//     }
+//     // Fallback for "MM:SS"
+//     if (str.includes(":")) {
+//       const [m, s] = str.split(":");
+//       return { minutes: parseInt(m), seconds: parseInt(s) };
+//     }
+//     // Fallback for pure seconds
+//     const totalSecs = parseInt(str);
+//     if (!isNaN(totalSecs)) {
+//       return {
+//         minutes: Math.floor(totalSecs / 60),
+//         seconds: totalSecs % 60,
+//       };
+//     }
+//     return null; // can't parse, return original
+//   };
+
+//   const formatDuration = (durationStr) => {
+//     const parsed = parseDurationString(durationStr);
+//     if (!parsed) return durationStr; // keep raw if unparseable
+
+//     const { minutes, seconds } = parsed;
+//     if (i18n.language === "th") {
+//       return `${minutes} นาที ${seconds} วินาที`;
+//     }
+//     return `${minutes} min ${seconds} sec`;
+//   };
+
+//   // ===== FETCH VIDEO CALL HISTORY =====
+//   const fetchVideoCallHistory = async () => {
+//     try {
+//       const token = localStorage.getItem("token");
+//       if (!token) {
+//         setError(t("errorSession"));
+//         setLoading(false);
+//         setTimeout(() => navigate("/"), 2000);
+//         return;
+//       }
+
+//       const apiUrl = "https://sagarxo.app/web-api/customer/video-call-history";
+//       const response = await axios.get(apiUrl, {
+//         headers: {
+//           "Content-Type": "application/json",
+//           Authorization: `${token}`,
+//         },
+//         withCredentials: true,
+//       });
+
+//       const data = response.data;
+
+//       if (data.loginRequired) {
+//         setError(t("errorSession"));
+//         localStorage.removeItem("token");
+//         setTimeout(() => navigate("/"), 2000);
+//         setLoading(false);
+//         return;
+//       }
+
+//       if (data.success && data.data) {
+//         const transformedData = data.data.map((call, index) => {
+//           const rawRate = parseFloat(call.rate_per_minute || 0);
+//           const rawIncome = parseFloat(call.income || 0);
+
+//           // Safe fallback for caller name
+//           const callerName =
+//             call.customer_from_name ||
+//             call.customer_name ||
+//             call.username ||
+//             "—";
+
+//           return {
+//             id: index,
+//             rawDate: call.date,
+//             date: formatDate(call.date),
+//             packageName: call.package_name || "—",
+//             customerFromName: callerName,
+//             rawStartTime: call.start_time || "—",
+//             startTime: call.start_time || "—",
+//             rawEndTime: call.end_time || "—",
+//             endTime: call.end_time || "—",
+//             rawDuration: call.duration || "—",
+//             duration: formatDuration(call.duration),
+//             rawRatePerMinute: rawRate,
+//             ratePerMinute: `${formatNumber(rawRate)} ${t("thb")}/min`,
+//             rawIncome: rawIncome,
+//             income: `${formatNumber(rawIncome)} ${t("thb")}`,
+//           };
+//         });
+
+//         setVideoCallData(transformedData);
+//       } else if (data.success && (!data.data || data.data.length === 0)) {
+//         setVideoCallData([]);
+//       } else {
+//         setError(data.message || t("errorFetch"));
+//       }
+//     } catch (err) {
+//       console.error("Error fetching video call history:", err);
+//       if (err.response?.status === 401 || err.response?.data?.loginRequired) {
+//         setError(t("errorSession"));
+//         localStorage.removeItem("token");
+//         setTimeout(() => navigate("/"), 2000);
+//       } else {
+//         setError(err.response?.data?.message || t("errorFetch"));
+//       }
+//     } finally {
+//       setLoading(false);
+//     }
+//   };
+
+//   useEffect(() => {
+//     fetchVideoCallHistory();
+//   }, []);
+
+//   // Re-format when language changes
+//   useEffect(() => {
+//     if (videoCallData.length > 0) {
+//       setVideoCallData((prev) =>
+//         prev.map((item) => ({
+//           ...item,
+//           date: formatDate(item.rawDate),
+//           duration: formatDuration(item.rawDuration),
+//           ratePerMinute: `${formatNumber(item.rawRatePerMinute)} ${t("thb")}/min`,
+//           income: `${formatNumber(item.rawIncome)} ${t("thb")}`,
+//         }))
+//       );
+//     }
+//   }, [i18n.language]);
+
+//   // ===== RENDER: LOADING =====
+//   if (loading) {
+//     return (
+//       <div className="main-container">
+//         <button
+//           className="mobile-toggle d-none"
+//           onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+//         >
+//           {isSidebarOpen ? <X /> : <Menu />}
+//         </button>
+//         {isSidebarOpen && (
+//           <div className="sidebar-overlay d-lg-none" onClick={handleCloseSidebar} />
+//         )}
+//         <Sidebar show={isSidebarOpen} onClose={handleCloseSidebar} />
+//         <div className="main-wrapper">
+//           <Header toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)} />
+//           <main className="video-history-content">
+//             <motion.div
+//               initial={{ opacity: 0, y: 20 }}
+//               animate={{ opacity: 1, y: 0 }}
+//               className="video-table-container"
+//             >
+//               <div className="text-center py-5">
+//                 <div
+//                   className="spinner-border"
+//                   role="status"
+//                   style={{ color: "#e9527a" }}
+//                 >
+//                   <span className="visually-hidden">{t("loading")}</span>
+//                 </div>
+//                 <p className="mt-3 text-muted">{t("loading")}</p>
+//               </div>
+//             </motion.div>
+//           </main>
+//         </div>
+//       </div>
+//     );
+//   }
+
+//   // ===== RENDER: ERROR =====
+//   if (error) {
+//     return (
+//       <div className="main-container">
+//         <button
+//           className="mobile-toggle d-none"
+//           onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+//         >
+//           {isSidebarOpen ? <X /> : <Menu />}
+//         </button>
+//         {isSidebarOpen && (
+//           <div className="sidebar-overlay d-lg-none" onClick={handleCloseSidebar} />
+//         )}
+//         <Sidebar show={isSidebarOpen} onClose={handleCloseSidebar} />
+//         <div className="main-wrapper">
+//           <Header toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)} />
+//           <main className="video-history-content">
+//             <motion.div
+//               initial={{ opacity: 0, y: 20 }}
+//               animate={{ opacity: 1, y: 0 }}
+//               className="video-table-container"
+//             >
+//               <div className="text-center py-5">
+//                 <AlertCircle size={48} className="text-danger mb-3" />
+//                 <p className="text-danger mb-3">{error}</p>
+//                 <button
+//                   onClick={fetchVideoCallHistory}
+//                   className="btn btn-primary"
+//                   style={{
+//                     backgroundColor: "#e9527a",
+//                     border: "none",
+//                     padding: "8px 24px",
+//                   }}
+//                 >
+//                   {t("tryAgain")}
+//                 </button>
+//               </div>
+//             </motion.div>
+//           </main>
+//         </div>
+//       </div>
+//     );
+//   }
+
+//   // ===== RENDER: TABLE =====
+//   return (
+//     <div className="main-container">
+//       <button
+//         className="mobile-toggle d-none"
+//         onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+//       >
+//         {isSidebarOpen ? <X /> : <Menu />}
+//       </button>
+
+//       {isSidebarOpen && (
+//         <div className="sidebar-overlay d-lg-none" onClick={handleCloseSidebar} />
+//       )}
+
+//       <Sidebar show={isSidebarOpen} onClose={handleCloseSidebar} />
+//       <div className="main-wrapper">
+//         <Header toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)} />
+
+//         <main className="video-history-content">
+//           <motion.div
+//             initial={{ opacity: 0, y: 20 }}
+//             animate={{ opacity: 1, y: 0 }}
+//             className="video-table-container"
+//           >
+//             <div className="table-responsive">
+//               <table className="video-table">
+//                 <thead>
+//                   <tr>
+//                     <th>{t("videoHistory.date")}</th>
+//                     <th>{t("videoHistory.packageName")}</th>
+//                     <th>{t("videoHistory.callFrom")}</th>
+//                     <th>{t("videoHistory.startTime")}</th>
+//                     <th>{t("videoHistory.endTime")}</th>
+//                     <th>{t("videoHistory.duration")}</th>
+//                     <th>{t("videoHistory.ratePerMin")}</th>
+//                     <th>{t("videoHistory.income")}</th>
+//                   </tr>
+//                 </thead>
+//                 <tbody>
+//                   {videoCallData.length === 0 ? (
+//                     <tr>
+//                       <td colSpan="8" className="text-center py-5">
+//                         <p className="text-muted mb-0">
+//                           {t("videoHistory.noData")}
+//                         </p>
+//                       </td>
+//                     </tr>
+//                   ) : (
+//                     videoCallData.map((row, index) => (
+//                       <tr key={row.id || index}>
+//                         <td>{row.date}</td>
+//                         <td>{row.packageName}</td>
+//                         <td>{row.customerFromName}</td>
+//                         <td>{row.startTime}</td>
+//                         <td>{row.endTime}</td>
+//                         <td>{row.duration}</td>
+//                         <td>{row.ratePerMinute}</td>
+//                         <td className="fw-bold text-success">{row.income}</td>
+//                       </tr>
+//                     ))
+//                   )}
+//                 </tbody>
+//               </table>
+//             </div>
+//           </motion.div>
+//         </main>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default VideoCallHistory;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
@@ -1627,7 +1988,8 @@ const VideoCallHistory = () => {
 
   const handleCloseSidebar = () => setIsSidebarOpen(false);
 
-  // ===== FORMATTING HELPERS (Thai & English) =====
+  // ===== FORMATTING HELPERS =====
+
   const formatNumber = (value) => {
     const num = parseFloat(value) || 0;
     return num.toLocaleString(i18n.language === "th" ? "th-TH" : "en-US", {
@@ -1642,18 +2004,19 @@ const VideoCallHistory = () => {
     if (parts.length !== 3) return dateStr;
     const day = parseInt(parts[0]);
     const month = parseInt(parts[1]) - 1;
-    let year = parseInt(parts[2]);
-    const date = new Date(year, month, day);
-
+    const year = parseInt(parts[2]);
+    
     if (i18n.language === "th") {
-      // Convert to Buddhist year (พ.ศ.)
+      // Buddhist year format
       const buddhistYear = year + 543;
-      return date.toLocaleDateString("th-TH", {
-        year: "numeric",
-        month: "short",
-        day: "numeric",
-      });
+      const thaiMonths = [
+        "ม.ค.", "ก.พ.", "มี.ค.", "เม.ย.", "พ.ค.", "มิ.ย.",
+        "ก.ค.", "ส.ค.", "ก.ย.", "ต.ค.", "พ.ย.", "ธ.ค."
+      ];
+      return `${day} ${thaiMonths[month]} ${buddhistYear}`;
     }
+    
+    const date = new Date(year, month, day);
     return date.toLocaleDateString("en-GB", {
       year: "numeric",
       month: "short",
@@ -1661,20 +2024,53 @@ const VideoCallHistory = () => {
     });
   };
 
-  // Parses API's "X min Y sec" string → { minutes, seconds }
+  // Format time to Thai localized format
+  const formatTime = (timeStr) => {
+    if (!timeStr || timeStr === "—") return "—";
+    
+    // Try to parse time string (handles "HH:MM", "HH:MM:SS", "HH.MM", etc.)
+    const timeMatch = timeStr.match(/(\d{1,2})[:.\s](\d{2})(?::(\d{2}))?/);
+    if (!timeMatch) return timeStr;
+    
+    let hours = parseInt(timeMatch[1]);
+    const minutes = timeMatch[2];
+    const seconds = timeMatch[3] || "00";
+    
+    if (i18n.language === "th") {
+      // Thai time format: 24-hour with Thai labels
+      return `${hours.toString().padStart(2, "0")}:${minutes}:${seconds} น.`;
+    }
+    
+    // English: 12-hour format with AM/PM
+    const ampm = hours >= 12 ? "PM" : "AM";
+    hours = hours % 12;
+    hours = hours ? hours : 12;
+    return `${hours}:${minutes} ${ampm}`;
+  };
+
+  // Parse duration from API string
   const parseDurationString = (str) => {
     if (!str || str === "—") return null;
-    // Pattern: "0 min 21 sec"
+    
+    // Pattern: "X min Y sec"
     const match = str.match(/(\d+)\s*min\s+(\d+)\s*sec/i);
     if (match) {
       return { minutes: parseInt(match[1]), seconds: parseInt(match[2]) };
     }
-    // Fallback for "MM:SS"
+    
+    // Pattern: "X นาที Y วินาที" (Thai format)
+    const thaiMatch = str.match(/(\d+)\s*นาที\s+(\d+)\s*วินาที/);
+    if (thaiMatch) {
+      return { minutes: parseInt(thaiMatch[1]), seconds: parseInt(thaiMatch[2]) };
+    }
+    
+    // Pattern: "MM:SS"
     if (str.includes(":")) {
       const [m, s] = str.split(":");
-      return { minutes: parseInt(m), seconds: parseInt(s) };
+      return { minutes: parseInt(m) || 0, seconds: parseInt(s) || 0 };
     }
-    // Fallback for pure seconds
+    
+    // Pure seconds
     const totalSecs = parseInt(str);
     if (!isNaN(totalSecs)) {
       return {
@@ -1682,18 +2078,44 @@ const VideoCallHistory = () => {
         seconds: totalSecs % 60,
       };
     }
-    return null; // can't parse, return original
+    return null;
   };
 
   const formatDuration = (durationStr) => {
     const parsed = parseDurationString(durationStr);
-    if (!parsed) return durationStr; // keep raw if unparseable
-
+    if (!parsed) return durationStr;
+    
     const { minutes, seconds } = parsed;
     if (i18n.language === "th") {
       return `${minutes} นาที ${seconds} วินาที`;
     }
     return `${minutes} min ${seconds} sec`;
+  };
+
+  // Translate package name based on language
+  const translatePackageName = (packageName) => {
+    if (!packageName || packageName === "—") return "—";
+    
+    // Map common package names to translation keys
+    const packageKeyMap = {
+      "Basic": "package.basic",
+      "Standard": "package.standard",
+      "Premium": "package.premium",
+      "VIP": "package.vip",
+      "Gold": "package.gold",
+      "Silver": "package.silver",
+      "Platinum": "package.platinum",
+    };
+    
+    // Check if we have a translation key for this package
+    const key = packageKeyMap[packageName];
+    if (key) {
+      const translated = t(key, { defaultValue: packageName });
+      return translated !== key ? translated : packageName;
+    }
+    
+    // Return original if no translation found
+    return packageName;
   };
 
   // ===== FETCH VIDEO CALL HISTORY =====
@@ -1730,24 +2152,19 @@ const VideoCallHistory = () => {
         const transformedData = data.data.map((call, index) => {
           const rawRate = parseFloat(call.rate_per_minute || 0);
           const rawIncome = parseFloat(call.income || 0);
-
-          // Safe fallback for caller name
-          const callerName =
-            call.customer_from_name ||
-            call.customer_name ||
-            call.username ||
-            "—";
+          const callerName = call.customer_from_name || call.customer_name || call.username || "—";
 
           return {
             id: index,
             rawDate: call.date,
             date: formatDate(call.date),
-            packageName: call.package_name || "—",
+            rawPackageName: call.package_name || "—",
+            packageName: translatePackageName(call.package_name),
             customerFromName: callerName,
             rawStartTime: call.start_time || "—",
-            startTime: call.start_time || "—",
+            startTime: formatTime(call.start_time),
             rawEndTime: call.end_time || "—",
-            endTime: call.end_time || "—",
+            endTime: formatTime(call.end_time),
             rawDuration: call.duration || "—",
             duration: formatDuration(call.duration),
             rawRatePerMinute: rawRate,
@@ -1788,6 +2205,9 @@ const VideoCallHistory = () => {
         prev.map((item) => ({
           ...item,
           date: formatDate(item.rawDate),
+          packageName: translatePackageName(item.rawPackageName),
+          startTime: formatTime(item.rawStartTime),
+          endTime: formatTime(item.rawEndTime),
           duration: formatDuration(item.rawDuration),
           ratePerMinute: `${formatNumber(item.rawRatePerMinute)} ${t("thb")}/min`,
           income: `${formatNumber(item.rawIncome)} ${t("thb")}`,
