@@ -1317,6 +1317,431 @@
 
 
 
+// import { useState } from "react";
+// import { useNavigate } from "react-router-dom";
+// import { motion } from "framer-motion";
+// import axios from "axios";
+// import { useTranslation } from "react-i18next";
+
+// import Side from "../assets/Side.jpg";
+// import Logos from "../assets/Logos.png";
+// import "../css/Login.css";
+
+// export default function Login() {
+//   const { t, i18n } = useTranslation();
+//   const navigate = useNavigate();
+
+//   const [contactNo, setContactNo] = useState("");
+//   const [loading, setLoading] = useState(false);
+//   const [error, setError] = useState("");
+
+//   const toggleLanguage = () => {
+//     const newLang = i18n.language.startsWith("en") ? "th" : "en";
+//     i18n.changeLanguage(newLang);
+//   };
+
+//   const handleLogin = async (e) => {
+//     e.preventDefault();
+
+//     if (contactNo.trim().length < 8) {
+//       setError(t("login.error.invalidPhone"));
+//       return;
+//     }
+
+//     setError("");
+//     setLoading(true);
+
+//     try {
+//       const response = await axios.post(
+//         `${import.meta.env.VITE_SERVER_URL}/login`,
+//         { contactNo },
+//         {
+//           headers: {
+//             "Content-Type": "application/json",
+//           },
+//           withCredentials: true,
+//         }
+//       );
+
+//       if (response.data.success) {
+//         navigate("/otp", {
+//           state: {
+//             userId: response.data.data.userId,
+//           },
+//         });
+//       } else {
+//         setError(
+//           response.data.message || t("login.error.loginFailed")
+//         );
+//       }
+//     } catch (err) {
+//       setError(
+//         err.response?.data?.message ||
+//           t("login.error.genericError")
+//       );
+//     } finally {
+//       setLoading(false);
+//     }
+//   };
+
+//   return (
+//     <div className="login-container">
+//       <div className="login-card">
+
+//         {/* Left Image */}
+//         <div className="login-illustration d-lg-flex">
+//           <motion.img
+//             initial={{ opacity: 0, x: -50 }}
+//             animate={{ opacity: 1, x: 0 }}
+//             transition={{ duration: 0.8 }}
+//             src={Side}
+//             alt="Community Illustration"
+//             className="login-image"
+//           />
+//         </div>
+
+//         {/* Right Form */}
+//         <div className="login-form-section">
+
+//           {/* Language Button */}
+//           <div
+//             style={{
+//               position: "absolute",
+//               top: "20px",
+//               right: "20px",
+//             }}
+//           >
+//             <button
+//               type="button"
+//               onClick={toggleLanguage}
+//               className="btn btn-sm btn-outline-secondary"
+//               style={{
+//                 borderRadius: "20px",
+//                 padding: "4px 12px",
+//               }}
+//             >
+//               {i18n.language.startsWith("en")
+//                 ? "ไทย"
+//                 : "English"}
+//             </button>
+//           </div>
+
+//           {/* Logo */}
+//           <motion.div
+//             initial={{ opacity: 0, y: -20 }}
+//             animate={{ opacity: 1, y: 0 }}
+//             className="login-logo-wrapper"
+//           >
+//             <img
+//               src={Logos}
+//               alt="ThaiXO Logo"
+//               className="img-fluid w-25 mb-3"
+//             />
+//             <span className="login-brand-name">
+//               ThaiXO Creator Studio
+//             </span>
+//           </motion.div>
+
+//           <h2 className="login-title">{t("login.title")}</h2>
+//           <h3 className="login-subtitle">{t("login.subtitle")}</h3>
+//           <p className="login-description">
+//             {t("login.description")}
+//           </p>
+
+//           {error && (
+//             <div className="alert alert-danger mb-3 text-center">
+//               {error}
+//             </div>
+//           )}
+
+//           <form onSubmit={handleLogin} className="login-form">
+//             <div className="login-inputs-row">
+
+//               {/* Country Code */}
+//               <div className="country-code-box">
+//                 <span className="input-label-floating">
+//                   {t("login.countryCodeLabel")}
+//                 </span>
+
+//                 <div className="country-code-content">
+//                   <img
+//                     src="https://flagcdn.com/w40/th.png"
+//                     alt="Thailand Flag"
+//                     className="flag-icon"
+//                   />
+//                   <span className="country-code-text text-black">
+//                     (+66)
+//                   </span>
+//                 </div>
+//               </div>
+
+//               {/* Phone Input */}
+//               <div className="phone-input-box">
+//                 <span className="input-label-floating">
+//                   {t("login.phoneLabel")}
+//                 </span>
+
+//                 <input
+//                   type="tel"
+//                   className="phone-input-field"
+//                   placeholder={t("login.phonePlaceholder")}
+//                   value={contactNo}
+//                   onChange={(e) =>
+//                     setContactNo(
+//                       e.target.value.replace(/\D/g, "")
+//                     )
+//                   }
+//                   disabled={loading}
+//                 />
+//               </div>
+//             </div>
+
+//             <button
+//               type="submit"
+//               className="verify-btn"
+//               disabled={loading}
+//             >
+//               {loading
+//                 ? t("login.buttonLoading")
+//                 : t("login.button")}
+//             </button>
+//           </form>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import { useState } from "react";
+// import { useNavigate } from "react-router-dom";
+// import { motion } from "framer-motion";
+// import axios from "axios";
+// import { useTranslation } from "react-i18next";
+
+// import Side from "../assets/Side.jpg";
+// import Logos from "../assets/Logos.png";
+// import "../css/Login.css";
+
+// export default function Login() {
+//   const { t, i18n } = useTranslation();
+//   const navigate = useNavigate();
+
+//   const [contactNo, setContactNo] = useState("");
+//   const [loading, setLoading] = useState(false);
+//   const [error, setError] = useState("");
+
+//   // Toggle between Thai and English
+//   const toggleLanguage = () => {
+//     const newLang = i18n.language.startsWith("en") ? "th" : "en";
+//     i18n.changeLanguage(newLang);
+//   };
+
+//   const handleLogin = async (e) => {
+//     e.preventDefault();
+
+//     if (contactNo.trim().length < 8) {
+//       setError(t("login.error.invalidPhone"));
+//       return;
+//     }
+
+//     setError("");
+//     setLoading(true);
+
+//     try {
+//       const response = await axios.post(
+//         `${import.meta.env.VITE_SERVER_URL}/login`,
+//         { contactNo },
+//         {
+//           headers: {
+//             "Content-Type": "application/json",
+//           },
+//           withCredentials: true,
+//         }
+//       );
+
+//       if (response.data.success) {
+//         navigate("/otp", {
+//           state: {
+//             userId: response.data.data.userId,
+//           },
+//         });
+//       } else {
+//         setError(
+//           response.data.message || t("login.error.loginFailed")
+//         );
+//       }
+//     } catch (err) {
+//       setError(
+//         err.response?.data?.message ||
+//           t("login.error.genericError")
+//       );
+//     } finally {
+//       setLoading(false);
+//     }
+//   };
+
+//   return (
+//     <div className="login-container">
+//       <div className="login-card">
+
+//         {/* Left Image */}
+//         <div className="login-illustration d-lg-flex">
+//           <motion.img
+//             initial={{ opacity: 0, x: -50 }}
+//             animate={{ opacity: 1, x: 0 }}
+//             transition={{ duration: 0.8 }}
+//             src={Side}
+//             alt="Community Illustration"
+//             className="login-image"
+//           />
+//         </div>
+
+//         {/* Right Form */}
+//         <div className="login-form-section">
+
+//           {/* Language Toggle Button */}
+//           <div
+//             style={{
+//               position: "absolute",
+//               top: "20px",
+//               right: "20px",
+//             }}
+//           >
+//             <button
+//               type="button"
+//               onClick={toggleLanguage}
+//               className="btn btn-sm btn-outline-secondary"
+//               style={{
+//                 borderRadius: "20px",
+//                 padding: "4px 12px",
+//               }}
+//             >
+//               {/* Show the current language */}
+//               {i18n.language.startsWith("en")
+//                 ? "English"
+//                 : "ไทย"}
+//             </button>
+//           </div>
+
+//           {/* Logo */}
+//           <motion.div
+//             initial={{ opacity: 0, y: -20 }}
+//             animate={{ opacity: 1, y: 0 }}
+//             className="login-logo-wrapper"
+//           >
+//             <img
+//               src={Logos}
+//               alt="ThaiXO Logo"
+//               className="img-fluid w-25 mb-3"
+//             />
+//             <span className="login-brand-name">
+//               ThaiXO Creator Studio
+//             </span>
+//           </motion.div>
+
+//           <h2 className="login-title">{t("login.title")}</h2>
+//           <h3 className="login-subtitle">{t("login.subtitle")}</h3>
+//           <p className="login-description">
+//             {t("login.description")}
+//           </p>
+
+//           {error && (
+//             <div className="alert alert-danger mb-3 text-center">
+//               {error}
+//             </div>
+//           )}
+
+//           <form onSubmit={handleLogin} className="login-form">
+//             <div className="login-inputs-row">
+
+//               {/* Country Code */}
+//               <div className="country-code-box">
+//                 <span className="input-label-floating">
+//                   {t("login.countryCodeLabel")}
+//                 </span>
+
+//                 <div className="country-code-content">
+//                   <img
+//                     src="https://flagcdn.com/w40/th.png"
+//                     alt="Thailand Flag"
+//                     className="flag-icon"
+//                   />
+//                   <span className="country-code-text text-black">
+//                     (+66)
+//                   </span>
+//                 </div>
+//               </div>
+
+//               {/* Phone Input */}
+//               <div className="phone-input-box">
+//                 <span className="input-label-floating">
+//                   {t("login.phoneLabel")}
+//                 </span>
+
+//                 <input
+//                   type="tel"
+//                   className="phone-input-field"
+//                   placeholder={t("login.phonePlaceholder")}
+//                   value={contactNo}
+//                   onChange={(e) =>
+//                     setContactNo(
+//                       e.target.value.replace(/\D/g, "")
+//                     )
+//                   }
+//                   disabled={loading}
+//                 />
+//               </div>
+//             </div>
+
+//             <button
+//               type="submit"
+//               className="verify-btn"
+//               disabled={loading}
+//             >
+//               {loading
+//                 ? t("login.buttonLoading")
+//                 : t("login.button")}
+//             </button>
+//           </form>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -1387,8 +1812,6 @@ export default function Login() {
   return (
     <div className="login-container">
       <div className="login-card">
-
-        {/* Left Image */}
         <div className="login-illustration d-lg-flex">
           <motion.img
             initial={{ opacity: 0, x: -50 }}
@@ -1400,33 +1823,18 @@ export default function Login() {
           />
         </div>
 
-        {/* Right Form */}
         <div className="login-form-section">
-
-          {/* Language Button */}
-          <div
-            style={{
-              position: "absolute",
-              top: "20px",
-              right: "20px",
-            }}
-          >
+          <div style={{ position: "absolute", top: "20px", right: "20px" }}>
             <button
               type="button"
               onClick={toggleLanguage}
               className="btn btn-sm btn-outline-secondary"
-              style={{
-                borderRadius: "20px",
-                padding: "4px 12px",
-              }}
+              style={{ borderRadius: "20px", padding: "4px 12px" }}
             >
-              {i18n.language.startsWith("en")
-                ? "ไทย"
-                : "English"}
+              {i18n.language.startsWith("en") ? "English" : "ไทย"}
             </button>
           </div>
 
-          {/* Logo */}
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -1438,72 +1846,43 @@ export default function Login() {
               className="img-fluid w-25 mb-3"
             />
             <span className="login-brand-name">
-              ThaiXO Creator Studio
+              {t("header.title")}
             </span>
           </motion.div>
 
           <h2 className="login-title">{t("login.title")}</h2>
           <h3 className="login-subtitle">{t("login.subtitle")}</h3>
-          <p className="login-description">
-            {t("login.description")}
-          </p>
+          <p className="login-description">{t("login.description")}</p>
 
           {error && (
-            <div className="alert alert-danger mb-3 text-center">
-              {error}
-            </div>
+            <div className="alert alert-danger mb-3 text-center">{error}</div>
           )}
 
           <form onSubmit={handleLogin} className="login-form">
             <div className="login-inputs-row">
-
-              {/* Country Code */}
               <div className="country-code-box">
-                <span className="input-label-floating">
-                  {t("login.countryCodeLabel")}
-                </span>
-
+                <span className="input-label-floating">{t("login.countryCodeLabel")}</span>
                 <div className="country-code-content">
-                  <img
-                    src="https://flagcdn.com/w40/th.png"
-                    alt="Thailand Flag"
-                    className="flag-icon"
-                  />
-                  <span className="country-code-text text-black">
-                    (+66)
-                  </span>
+                  <img src="https://flagcdn.com/w40/th.png" alt="Thailand Flag" className="flag-icon" />
+                  <span className="country-code-text text-black">(+66)</span>
                 </div>
               </div>
 
-              {/* Phone Input */}
               <div className="phone-input-box">
-                <span className="input-label-floating">
-                  {t("login.phoneLabel")}
-                </span>
-
+                <span className="input-label-floating">{t("login.phoneLabel")}</span>
                 <input
                   type="tel"
                   className="phone-input-field"
                   placeholder={t("login.phonePlaceholder")}
                   value={contactNo}
-                  onChange={(e) =>
-                    setContactNo(
-                      e.target.value.replace(/\D/g, "")
-                    )
-                  }
+                  onChange={(e) => setContactNo(e.target.value.replace(/\D/g, ""))}
                   disabled={loading}
                 />
               </div>
             </div>
 
-            <button
-              type="submit"
-              className="verify-btn"
-              disabled={loading}
-            >
-              {loading
-                ? t("login.buttonLoading")
-                : t("login.button")}
+            <button type="submit" className="verify-btn" disabled={loading}>
+              {loading ? t("login.buttonLoading") : t("login.button")}
             </button>
           </form>
         </div>

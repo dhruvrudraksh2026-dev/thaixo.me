@@ -733,6 +733,7 @@ const resources = {
         cancel: "Cancel",
         confirmLogout: "Logout",
         loadError: "Could not load notifications"
+
       },
 
       milestone: {
@@ -975,7 +976,7 @@ const resources = {
     }
   },
   "otp": {
-    "title": "Get OTP via WhatsApp",
+    "titles": "Get OTP via WhatsApp",
     "instruction": "Open Your WhatsApp → Copy Your secure OTP.",
     "verifyButton": "Verify OTP",
     "verifying": "Verifying...",
@@ -1027,7 +1028,7 @@ const resources = {
       },
 
       header: {
-        title: "ไทยXO Creator Studio",
+        title: "ไทยเอ็กซ์โอ ผู้สร้าง สตูดิโอ",
         notifications: "การแจ้งเตือน",
         markAllRead: "ทำเครื่องหมายว่าอ่านทั้งหมด",
         loading: "กำลังโหลด...",
@@ -1283,20 +1284,20 @@ bankNames: {
   },
 
   "otp": {
-    "title": "รับ OTP จาก WhatsApp",
-    "instruction": "เปิด WhatsApp ของคุณ → คัดลอก OTP ที่ปลอดภัย",
-    "verifyButton": "ยืนยัน OTP",
+    "titles": "รับ สนข จาก วอทส์แอพพ์",
+    "instruction": "เปิด วอทส์แอพพ์ ของคุณ → คัดลอก OTP ที่ปลอดภัย",
+    "verifyButton": "ยืนยัน สนข",
     "verifying": "กำลังยืนยัน...",
     "didntReceive": "ไม่ได้รับโค้ด?",
     "resend": "ส่งใหม่",
     "sending": "กำลังส่ง...",
     "timer": " - ",
-    "resendSuccess": "ส่ง OTP ใหม่สำเร็จ!",
+    "resendSuccess": "ส่ง สนข ใหม่สำเร็จ!",
     "error": {
-      "invalidOtp": "กรุณากรอก OTP 6 หลักที่ถูกต้อง",
+      "invalidOtp": "กรุณากรอก สนข 6 หลักที่ถูกต้อง",
       "verificationFailed": "การยืนยันล้มเหลว",
-      "genericError": "เกิดข้อผิดพลาดระหว่างการยืนยัน OTP",
-      "resendFailed": "ไม่สามารถส่ง OTP ใหม่ได้"
+      "genericError": "เกิดข้อผิดพลาดระหว่างการยืนยัน สนข",
+      "resendFailed": "ไม่สามารถส่ง สนข ใหม่ได้"
     }
   }
   
