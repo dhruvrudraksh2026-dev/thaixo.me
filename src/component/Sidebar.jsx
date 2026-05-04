@@ -2002,7 +2002,7 @@ const menuItems = [
   { icon: Wallet,     labelKey: 'My Earnings',        path: '/IncomeDashboard',  id: 'earnings' },
   { icon: History,    labelKey: 'Pay Out History',    path: '/WithdrawalHistory', id: 'payout' },
   { icon: UserCheck,  labelKey: 'Verify Identity',    path: '/CreatorSelection', id: 'verify' },
-  { icon: CreditCard, labelKey: 'Withdrawal',         path: '/Withdrawal',       id: 'withdrawal' },
+  { icon: CreditCard, labelKey: 'Withdraw',         path: '/Withdrawal',       id: 'withdrawal' },
   { icon: Trophy,     labelKey: 'Milestone',          path: '/Milestone',        id: 'milestone' },
   { icon: Video,      labelKey: 'Video Call History', path: '/VideoCallHistory', id: 'videohistory' },
   { icon: HelpCircle, labelKey: 'Help & Support',     path: '/helpsupport',      id: 'help' },

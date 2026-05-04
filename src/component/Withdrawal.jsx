@@ -5795,7 +5795,8 @@ export default function Withdrawal() {
               {/* Notice Banner */}
               <div className="notice-banner">
                 <div className="d-flex gap-2">
-                  <span className="notice-icon">&#9432;</span>
+                  {/* <span className="notice-icon">&#9432;</span> */}
+                  <i className="bi bi-info-circle" style={{color:'red'}}></i>
                   <p className="text-colors" style={{ fontSize: "13px" }}>
                     {t("withdrawal.noticeMessage")}
                   </p>
