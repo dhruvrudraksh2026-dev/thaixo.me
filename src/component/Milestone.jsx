@@ -5086,7 +5086,6 @@
 
 
 
-
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from "framer-motion";
@@ -5101,8 +5100,35 @@ import silverIcon from "../assets/Thai-Silver.png";
 import goldIcon from "../assets/Thai-Gold.png";
 import diamondIcon from "../assets/Thai-Dimond.png";
 
+// ===== THAI TRANSLATION MAP FOR PACKAGE NAMES =====
+const packageNameThaiMap = {
+  "Thai Silver": "ไทย เงิน",
+  "Thai Gold": "ไทย ทอง",
+  "Thai Diamond": "ไทย เพชร",
+  "Thai Dimond": "ไทย เพชร", // In case API has typo
+  "Silver": "เงิน",
+  "Gold": "ทอง",
+  "Diamond": "เพชร",
+  "Basic": "พื้นฐาน",
+  "Standard": "มาตรฐาน",
+  "Premium": "พรีเมียม",
+  "VIP": "วีไอพี",
+  "Platinum": "แพลตินัม",
+  "Bronze": "บรอนซ์",
+  "Free": "ฟรี",
+  "Trial": "ทดลองใช้",
+  "Enterprise": "องค์กร",
+  "Pro": "มืออาชีพ",
+};
+
+// Function to translate package name
+const translatePackageName = (name, language) => {
+  if (!name || language !== "th") return name;
+  return packageNameThaiMap[name] || name;
+};
+
 export default function Milestone() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation(); // Add i18n to get current language
   const [milestonesData, setMilestonesData] = useState(null);
   const [error, setError] = useState(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -5206,9 +5232,13 @@ export default function Milestone() {
   const unlockInfo = milestonesData.unlock_info;
 
   const currentPackage = packages.find(pkg => pkg.id === activePackageId) || packages[0];
+  
+  // Translate current package name
+  const currentPackageNameThai = translatePackageName(currentPackage.package_name, i18n.language);
+  
   const nextPackage = unlockInfo ? {
     id: unlockInfo.next_package_id,
-    name: unlockInfo.next_package_name,
+    name: translatePackageName(unlockInfo.next_package_name, i18n.language), // Translate next package name
     rate: unlockInfo.next_rate_per_minute,
   } : null;
 
@@ -5227,9 +5257,14 @@ export default function Milestone() {
   const levels = packages.map((pkg, index) => {
     const isActive = pkg.id === activePackageId;
     const colors = levelColors[index] || levelColors[levelColors.length - 1];
+    
+    // Translate package name to Thai
+    const translatedName = translatePackageName(pkg.package_name, i18n.language);
+    
     return {
       id: pkg.id,
-      name: pkg.package_name,
+      name: translatedName, // Use translated name
+      originalName: pkg.package_name, // Keep original for reference
       minHours: pkg.min_hours,
       maxHours: pkg.max_hours,
       milestone: `${pkg.min_hours} - ${pkg.max_hours} ${t("milestone.hrs")}`,
@@ -5240,7 +5275,7 @@ export default function Milestone() {
       textColor: isActive ? "white" : colors.textColor,
       lockedText: pkg.id > activePackageId ? t("milestone.unlockSoon") : null,
       lockColor: colors.lockColor,
-      rawStatus: isActive ? "Active" : (pkg.id > activePackageId ? "Locked" : "Completed"), // for internal logic
+      rawStatus: isActive ? "Active" : (pkg.id > activePackageId ? "Locked" : "Completed"),
     };
   });
 
@@ -5263,7 +5298,7 @@ export default function Milestone() {
     progressPercent = 100;
   }
 
-  // ── Status Badge (updated to use translations) ─────────────────────────────
+  // ── Status Badge ─────────────────────────────
   const StatusBadge = ({ level, onActiveCard = false }) => {
     if (level.rawStatus === "Active") {
       return (

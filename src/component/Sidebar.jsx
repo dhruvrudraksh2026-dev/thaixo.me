@@ -2078,7 +2078,7 @@ export default function Sidebar({ show, onClose, activeItem }) {
       'My Earnings': 'sidebar.myEarnings',
       'Pay Out History': 'sidebar.payOutHistory',
       'Verify Identity': 'sidebar.verifyIdentity',
-      'Withdrawal': 'sidebar.withdrawal',
+      'Withdraw': 'sidebar.Withdraw',
       'Milestone': 'sidebar.milestone',
       'Video Call History': 'sidebar.videoCallHistory',
       'Help & Support': 'sidebar.helpSupport',

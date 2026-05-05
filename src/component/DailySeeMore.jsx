@@ -8359,6 +8359,7 @@ export default function DailySeeMore() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const handleCloseSidebar = () => setIsSidebarOpen(false);
+  const year = new Date().getFullYear();
 
   useEffect(() => {
     const validType = urlType === "monthly" ? "monthly" : "daily";
@@ -8704,9 +8705,18 @@ export default function DailySeeMore() {
                                       {formatNumber(yearTotalIncome, i18n.language)}
                                     </span>
                                   </div>
-                                  <p className="opacity-75 h5">
-                                    {t("dailySeeMore.yearLabel", { year })}
-                                  </p>
+                                  {/* {view === "monthly" && (
+  <p className="opacity-75 h5">
+    {t("dailySeeMore.yearLabel")}
+  </p>
+)} */}
+
+
+{view === "monthly" && (
+  <p className="opacity-75 h5">
+    {t("dailySeeMore.monthlyIncome")} - {year}
+  </p>
+)}
                                 </div>
                                 <span className="display-6 fw-bold opacity-25">
                                   {year}

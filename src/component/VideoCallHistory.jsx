@@ -1967,7 +1967,6 @@
 
 
 
-
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
@@ -1978,6 +1977,9 @@ import { Menu, X, AlertCircle } from "lucide-react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+// ===== LOCALSTORAGE KEY =====
+const VIDEO_CALL_STORAGE_KEY = "videoCallHistoryData";
+
 const VideoCallHistory = () => {
   const { t, i18n } = useTranslation();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -1987,6 +1989,62 @@ const VideoCallHistory = () => {
   const navigate = useNavigate();
 
   const handleCloseSidebar = () => setIsSidebarOpen(false);
+
+  // ===== LOCALSTORAGE HELPERS =====
+
+  const getFromLocalStorage = (key, defaultValue = null) => {
+    try {
+      const item = localStorage.getItem(key);
+      return item ? JSON.parse(item) : defaultValue;
+    } catch (e) {
+      console.warn(`Error parsing localStorage key "${key}":`, e);
+      return defaultValue;
+    }
+  };
+
+  const saveToLocalStorage = (key, value) => {
+    try {
+      localStorage.setItem(key, JSON.stringify(value));
+    } catch (e) {
+      console.warn(`Error saving to localStorage key "${key}":`, e);
+    }
+  };
+
+  // ===== THAI TRANSLATION MAPS =====
+
+  const packageNameThaiMap = {
+    "Basic": "พื้นฐาน",
+    "Standard": "มาตรฐาน",
+    "Premium": "พรีเมียม",
+    "VIP": "วีไอพี",
+    "Gold": "ทอง",
+    "Silver": "เงิน",
+    "Thai Silver": "ไทย เงิน",
+    "Thai Gold": "ไทย ทอง",
+    "Thai Platinum": "ไทย แพลตินัม",
+    "Platinum": "แพลตินัม",
+    "Bronze": "บรอนซ์",
+    "Diamond": "เพชร",
+    "Free": "ฟรี",
+    "Trial": "ทดลองใช้",
+    "Enterprise": "องค์กร",
+    "Pro": "มืออาชีพ",
+  };
+
+  // SYSTEM caller names - these will be translated
+  const systemCallerNames = ["Guest", "Unknown", "Anonymous", "System", "Admin", "User", "Customer", "Visitor", "Support"];
+
+  const callerNameThaiMap = {
+    "Guest": "ผู้เยี่ยมชม",
+    "Unknown": "ไม่ทราบชื่อ",
+    "Anonymous": "ไม่ระบุชื่อ",
+    "System": "ระบบ",
+    "Admin": "ผู้ดูแลระบบ",
+    "User": "ผู้ใช้",
+    "Customer": "ลูกค้า",
+    "Visitor": "ผู้มาเยือน",
+    "Support": "ฝ่ายสนับสนุน",
+  };
 
   // ===== FORMATTING HELPERS =====
 
@@ -2005,9 +2063,8 @@ const VideoCallHistory = () => {
     const day = parseInt(parts[0]);
     const month = parseInt(parts[1]) - 1;
     const year = parseInt(parts[2]);
-    
+
     if (i18n.language === "th") {
-      // Buddhist year format
       const buddhistYear = year + 543;
       const thaiMonths = [
         "ม.ค.", "ก.พ.", "มี.ค.", "เม.ย.", "พ.ค.", "มิ.ย.",
@@ -2015,7 +2072,7 @@ const VideoCallHistory = () => {
       ];
       return `${day} ${thaiMonths[month]} ${buddhistYear}`;
     }
-    
+
     const date = new Date(year, month, day);
     return date.toLocaleDateString("en-GB", {
       year: "numeric",
@@ -2024,53 +2081,43 @@ const VideoCallHistory = () => {
     });
   };
 
-  // Format time to Thai localized format
   const formatTime = (timeStr) => {
     if (!timeStr || timeStr === "—") return "—";
-    
-    // Try to parse time string (handles "HH:MM", "HH:MM:SS", "HH.MM", etc.)
     const timeMatch = timeStr.match(/(\d{1,2})[:.\s](\d{2})(?::(\d{2}))?/);
     if (!timeMatch) return timeStr;
-    
+
     let hours = parseInt(timeMatch[1]);
     const minutes = timeMatch[2];
     const seconds = timeMatch[3] || "00";
-    
+
     if (i18n.language === "th") {
-      // Thai time format: 24-hour with Thai labels
       return `${hours.toString().padStart(2, "0")}:${minutes}:${seconds} น.`;
     }
-    
-    // English: 12-hour format with AM/PM
+
     const ampm = hours >= 12 ? "PM" : "AM";
     hours = hours % 12;
     hours = hours ? hours : 12;
     return `${hours}:${minutes} ${ampm}`;
   };
 
-  // Parse duration from API string
   const parseDurationString = (str) => {
     if (!str || str === "—") return null;
-    
-    // Pattern: "X min Y sec"
+
     const match = str.match(/(\d+)\s*min\s+(\d+)\s*sec/i);
     if (match) {
       return { minutes: parseInt(match[1]), seconds: parseInt(match[2]) };
     }
-    
-    // Pattern: "X นาที Y วินาที" (Thai format)
+
     const thaiMatch = str.match(/(\d+)\s*นาที\s+(\d+)\s*วินาที/);
     if (thaiMatch) {
       return { minutes: parseInt(thaiMatch[1]), seconds: parseInt(thaiMatch[2]) };
     }
-    
-    // Pattern: "MM:SS"
+
     if (str.includes(":")) {
       const [m, s] = str.split(":");
       return { minutes: parseInt(m) || 0, seconds: parseInt(s) || 0 };
     }
-    
-    // Pure seconds
+
     const totalSecs = parseInt(str);
     if (!isNaN(totalSecs)) {
       return {
@@ -2084,7 +2131,7 @@ const VideoCallHistory = () => {
   const formatDuration = (durationStr) => {
     const parsed = parseDurationString(durationStr);
     if (!parsed) return durationStr;
-    
+
     const { minutes, seconds } = parsed;
     if (i18n.language === "th") {
       return `${minutes} นาที ${seconds} วินาที`;
@@ -2092,30 +2139,65 @@ const VideoCallHistory = () => {
     return `${minutes} min ${seconds} sec`;
   };
 
-  // Translate package name based on language
-  const translatePackageName = (packageName) => {
-    if (!packageName || packageName === "—") return "—";
-    
-    // Map common package names to translation keys
-    const packageKeyMap = {
-      "Basic": "package.basic",
-      "Standard": "package.standard",
-      "Premium": "package.premium",
-      "VIP": "package.vip",
-      "Gold": "package.gold",
-      "Silver": "package.silver",
-      "Platinum": "package.platinum",
-    };
-    
-    // Check if we have a translation key for this package
-    const key = packageKeyMap[packageName];
-    if (key) {
-      const translated = t(key, { defaultValue: packageName });
-      return translated !== key ? translated : packageName;
-    }
-    
-    // Return original if no translation found
-    return packageName;
+  // ===== CONVERT API DATA TO THAI =====
+
+  const convertToThai = (apiData) => {
+    return apiData.map((call, index) => {
+      const rawRate = parseFloat(call.rate_per_minute || 0);
+      const rawIncome = parseFloat(call.income || 0);
+
+      // Get API values
+      let packageName = call.package_name || "—";
+      let callerName = call.customer_from_name || call.customer_name || call.username || "—";
+
+      // DEBUG: Log what we receive
+      console.log("=== DEBUG ===");
+      console.log("API Package Name:", packageName);
+      console.log("API Caller Name:", callerName);
+      console.log("Current Language:", i18n.language);
+      console.log("Is Thai?", i18n.language === "th");
+
+      // Convert to Thai ONLY if Thai language is selected
+      if (i18n.language === "th") {
+        // Convert Package Name to Thai
+        if (packageNameThaiMap[packageName]) {
+          packageName = packageNameThaiMap[packageName];
+          console.log("Package translated to:", packageName);
+        } else {
+          console.warn("No Thai translation for package:", packageName);
+        }
+
+        // Convert Call From (Caller Name) to Thai
+        // Only translate if it's a SYSTEM name (Guest, Unknown, etc.)
+        // Real usernames like "Ronakkk" will stay as-is
+        if (callerNameThaiMap[callerName]) {
+          callerName = callerNameThaiMap[callerName];
+          console.log("Caller translated to:", callerName);
+        } else {
+          console.log("Caller name NOT translated (real username):", callerName);
+        }
+      }
+
+      return {
+        id: index,
+        rawDate: call.date,
+        date: formatDate(call.date),
+        rawPackageName: call.package_name || "—",
+        packageName: packageName,
+        rawCallerName: call.customer_from_name || call.customer_name || call.username || "—",
+        customerFromName: callerName,
+        rawStartTime: call.start_time || "—",
+        startTime: formatTime(call.start_time),
+        rawEndTime: call.end_time || "—",
+        endTime: formatTime(call.end_time),
+        rawDuration: call.duration || "—",
+        duration: formatDuration(call.duration),
+        rawRatePerMinute: rawRate,
+        ratePerMinute: `${formatNumber(rawRate)} ${t("thb")}/min`,
+        rawIncome: rawIncome,
+        income: `${formatNumber(rawIncome)} ${t("thb")}`,
+      };
+    });
   };
 
   // ===== FETCH VIDEO CALL HISTORY =====
@@ -2148,33 +2230,15 @@ const VideoCallHistory = () => {
         return;
       }
 
-      if (data.success && data.data) {
-        const transformedData = data.data.map((call, index) => {
-          const rawRate = parseFloat(call.rate_per_minute || 0);
-          const rawIncome = parseFloat(call.income || 0);
-          const callerName = call.customer_from_name || call.customer_name || call.username || "—";
+      if (data.success && data.data && data.data.length > 0) {
+        // STEP 1: Save raw API response to localStorage
+        saveToLocalStorage(VIDEO_CALL_STORAGE_KEY, data.data);
+        console.log("Saved to localStorage:", data.data);
 
-          return {
-            id: index,
-            rawDate: call.date,
-            date: formatDate(call.date),
-            rawPackageName: call.package_name || "—",
-            packageName: translatePackageName(call.package_name),
-            customerFromName: callerName,
-            rawStartTime: call.start_time || "—",
-            startTime: formatTime(call.start_time),
-            rawEndTime: call.end_time || "—",
-            endTime: formatTime(call.end_time),
-            rawDuration: call.duration || "—",
-            duration: formatDuration(call.duration),
-            rawRatePerMinute: rawRate,
-            ratePerMinute: `${formatNumber(rawRate)} ${t("thb")}/min`,
-            rawIncome: rawIncome,
-            income: `${formatNumber(rawIncome)} ${t("thb")}`,
-          };
-        });
-
-        setVideoCallData(transformedData);
+        // STEP 2: Convert and display data
+        const convertedData = convertToThai(data.data);
+        console.log("Converted Data:", convertedData);
+        setVideoCallData(convertedData);
       } else if (data.success && (!data.data || data.data.length === 0)) {
         setVideoCallData([]);
       } else {
@@ -2182,37 +2246,56 @@ const VideoCallHistory = () => {
       }
     } catch (err) {
       console.error("Error fetching video call history:", err);
-      if (err.response?.status === 401 || err.response?.data?.loginRequired) {
-        setError(t("errorSession"));
-        localStorage.removeItem("token");
-        setTimeout(() => navigate("/"), 2000);
+
+      // If API fails, load from localStorage
+      const cachedData = getFromLocalStorage(VIDEO_CALL_STORAGE_KEY);
+      if (cachedData && cachedData.length > 0) {
+        const convertedData = convertToThai(cachedData);
+        setVideoCallData(convertedData);
+        setError(null);
       } else {
-        setError(err.response?.data?.message || t("errorFetch"));
+        if (err.response?.status === 401 || err.response?.data?.loginRequired) {
+          setError(t("errorSession"));
+          localStorage.removeItem("token");
+          setTimeout(() => navigate("/"), 2000);
+        } else {
+          setError(err.response?.data?.message || t("errorFetch"));
+        }
       }
     } finally {
       setLoading(false);
     }
   };
 
+  // ===== LOAD DATA (localStorage first, then API) =====
+  const loadData = () => {
+    // STEP 1: Check localStorage first
+    const cachedData = getFromLocalStorage(VIDEO_CALL_STORAGE_KEY);
+
+    if (cachedData && cachedData.length > 0) {
+      // STEP 2: Convert cached data and display
+      const convertedData = convertToThai(cachedData);
+      setVideoCallData(convertedData);
+      setLoading(false);
+
+      // STEP 3: Fetch fresh data in background
+      fetchVideoCallHistory();
+    } else {
+      // No cache, fetch from API
+      fetchVideoCallHistory();
+    }
+  };
+
   useEffect(() => {
-    fetchVideoCallHistory();
+    loadData();
   }, []);
 
-  // Re-format when language changes
+  // Re-convert when language changes (read from localStorage key)
   useEffect(() => {
-    if (videoCallData.length > 0) {
-      setVideoCallData((prev) =>
-        prev.map((item) => ({
-          ...item,
-          date: formatDate(item.rawDate),
-          packageName: translatePackageName(item.rawPackageName),
-          startTime: formatTime(item.rawStartTime),
-          endTime: formatTime(item.rawEndTime),
-          duration: formatDuration(item.rawDuration),
-          ratePerMinute: `${formatNumber(item.rawRatePerMinute)} ${t("thb")}/min`,
-          income: `${formatNumber(item.rawIncome)} ${t("thb")}`,
-        }))
-      );
+    const cachedData = getFromLocalStorage(VIDEO_CALL_STORAGE_KEY);
+    if (cachedData && cachedData.length > 0) {
+      const convertedData = convertToThai(cachedData);
+      setVideoCallData(convertedData);
     }
   }, [i18n.language]);
 

@@ -154,19 +154,6 @@
 
 // export default SelfCreator;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 // import React, { useState, useRef } from "react";
 // import { Upload } from "lucide-react";
 // import Sidebar from "./Sidebar";
@@ -382,36 +369,6 @@
 
 // export default SelfCreator;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // import React, { useState, useRef } from "react";
 // import { Upload } from "lucide-react";
 // import Sidebar from "./Sidebar";
@@ -474,12 +431,12 @@
 //       // Validate file type (JPEG, JPG, PNG only)
 //       const validExtensions = [".jpeg", ".jpg", ".png"];
 //       const fileExtension = file.name.substring(file.name.lastIndexOf(".")).toLowerCase();
-      
+
 //       if (!validExtensions.includes(fileExtension)) {
 //         setError("Please upload Legal ID Image as JPEG, JPG or PNG");
 //         return;
 //       }
-      
+
 //       setLegalIdImageFile(file);
 //       setError(null);
 //     }
@@ -491,12 +448,12 @@
 //       // Validate file type (JPEG, JPG, PNG only)
 //       const validExtensions = [".jpeg", ".jpg", ".png"];
 //       const fileExtension = file.name.substring(file.name.lastIndexOf(".")).toLowerCase();
-      
+
 //       if (!validExtensions.includes(fileExtension)) {
 //         setError("Please upload Passbook Image as JPEG, JPG or PNG");
 //         return;
 //       }
-      
+
 //       setPassbookImageFile(file);
 //       setError(null);
 //     }
@@ -618,12 +575,12 @@
 
 //             {/* Error Display */}
 //             {error && (
-//               <div className="error-message" style={{ 
-//                 color: "#dc3545", 
-//                 background: "#f8d7da", 
-//                 padding: "10px", 
-//                 borderRadius: "5px", 
-//                 marginBottom: "15px" 
+//               <div className="error-message" style={{
+//                 color: "#dc3545",
+//                 background: "#f8d7da",
+//                 padding: "10px",
+//                 borderRadius: "5px",
+//                 marginBottom: "15px"
 //               }}>
 //                 {error}
 //               </div>
@@ -669,8 +626,8 @@
 //                 <label className="form-label-custom">
 //                   Upload Photo of Selected ID
 //                 </label>
-//                 <div 
-//                   className="upload-box" 
+//                 <div
+//                   className="upload-box"
 //                   onClick={triggerLegalIdImageUpload}
 //                   style={{ cursor: "pointer" }}
 //                 >
@@ -735,8 +692,8 @@
 //                 <label className="form-label-custom">
 //                   Upload Bank Passbook Photo
 //                 </label>
-//                 <div 
-//                   className="upload-box" 
+//                 <div
+//                   className="upload-box"
 //                   onClick={triggerPassbookImageUpload}
 //                   style={{ cursor: "pointer" }}
 //                 >
@@ -759,8 +716,8 @@
 //                 )}
 //               </div>
 
-//               <button 
-//                 type="submit" 
+//               <button
+//                 type="submit"
 //                 className="submit-btn-custom"
 //                 disabled={isLoading}
 //                 style={{ opacity: isLoading ? 0.7 : 1 }}
@@ -776,27 +733,6 @@
 // };
 
 // export default SelfCreator;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // import React, { useState, useRef } from "react";
 // import { Upload } from "lucide-react";
@@ -855,7 +791,7 @@
 //     if (file) {
 //       const validExtensions = [".jpeg", ".jpg", ".png"];
 //       const fileExtension = file.name.substring(file.name.lastIndexOf(".")).toLowerCase();
-      
+
 //       if (!validExtensions.includes(fileExtension)) {
 //         setError("Please upload Legal ID Image as JPEG, JPG or PNG");
 //         return;
@@ -870,7 +806,7 @@
 //     if (file) {
 //       const validExtensions = [".jpeg", ".jpg", ".png"];
 //       const fileExtension = file.name.substring(file.name.lastIndexOf(".")).toLowerCase();
-      
+
 //       if (!validExtensions.includes(fileExtension)) {
 //         setError("Please upload Passbook Image as JPEG, JPG or PNG");
 //         return;
@@ -1009,8 +945,8 @@
 //               {/* Upload Legal ID Image */}
 //               <div className="form-group-custom">
 //                 <label className="form-label-custom">Upload Photo of Selected ID</label>
-//                 <div 
-//                   className="upload-box" 
+//                 <div
+//                   className="upload-box"
 //                   onClick={triggerLegalIdImageUpload}
 //                   style={{ cursor: "pointer" }}
 //                 >
@@ -1066,8 +1002,8 @@
 //               {/* Upload Passbook Image */}
 //               <div className="form-group-custom">
 //                 <label className="form-label-custom">Upload Bank Passbook Photo</label>
-//                 <div 
-//                   className="upload-box" 
+//                 <div
+//                   className="upload-box"
 //                   onClick={triggerPassbookImageUpload}
 //                   style={{ cursor: "pointer" }}
 //                 >
@@ -1085,8 +1021,8 @@
 //                 />
 //               </div>
 
-//               <button 
-//                 type="submit" 
+//               <button
+//                 type="submit"
 //                 className="submit-btn-custom"
 //                 disabled={isLoading}
 //               >
@@ -1101,25 +1037,6 @@
 // };
 
 // export default SelfCreator;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // import React, { useState, useRef, useEffect } from "react";
 // import { Upload, CheckCircle, Lock } from "lucide-react";
@@ -1162,7 +1079,7 @@
 //     try {
 //       setCheckingStatus(true);
 //       const token = localStorage.getItem("token");
-      
+
 //       if (!token) {
 //         navigate("/");
 //         return;
@@ -1184,7 +1101,7 @@
 //       if (data.success && data.data) {
 //         const status = data.data.status;
 //         setVerificationStatus(status);
-        
+
 //         // If already approved, disable all fields
 //         if (status === "APPROVED") {
 //           setIsVerified(true);
@@ -1238,7 +1155,7 @@
 //     if (file) {
 //       const validExtensions = [".jpeg", ".jpg", ".png"];
 //       const fileExtension = file.name.substring(file.name.lastIndexOf(".")).toLowerCase();
-      
+
 //       if (!validExtensions.includes(fileExtension)) {
 //         setError("Please upload Legal ID Image as JPEG, JPG or PNG");
 //         return;
@@ -1254,7 +1171,7 @@
 //     if (file) {
 //       const validExtensions = [".jpeg", ".jpg", ".png"];
 //       const fileExtension = file.name.substring(file.name.lastIndexOf(".")).toLowerCase();
-      
+
 //       if (!validExtensions.includes(fileExtension)) {
 //         setError("Please upload Passbook Image as JPEG, JPG or PNG");
 //         return;
@@ -1267,14 +1184,14 @@
 //   const triggerLegalIdImageUpload = () => {
 //     if (!isVerified) legalIdImageRef.current.click();
 //   };
-  
+
 //   const triggerPassbookImageUpload = () => {
 //     if (!isVerified) passbookImageRef.current.click();
 //   };
 
 //   const handleSubmit = async (e) => {
 //     e.preventDefault();
-    
+
 //     // Don't submit if already verified
 //     if (isVerified) {
 //       setError("Your identity is already verified. No changes allowed.");
@@ -1403,7 +1320,7 @@
 
 //             {/* Verified Banner */}
 //             {isVerified && (
-//               <div 
+//               <div
 //                 className="verified-banner"
 //                 style={{
 //                   backgroundColor: "#d4edda",
@@ -1472,10 +1389,10 @@
 //               {/* Upload Legal ID Image */}
 //               <div className="form-group-custom">
 //                 <label className="form-label-custom">Upload Photo of Selected ID</label>
-//                 <div 
-//                   className="upload-box" 
+//                 <div
+//                   className="upload-box"
 //                   onClick={triggerLegalIdImageUpload}
-//                   style={{ 
+//                   style={{
 //                     cursor: isVerified ? "not-allowed" : "pointer",
 //                     opacity: isVerified ? 0.6 : 1,
 //                     backgroundColor: isVerified ? "#e9ecef" : undefined
@@ -1483,8 +1400,8 @@
 //                 >
 //                   <UploadIcon />
 //                   <span className="upload-text">
-//                     {legalIdImageFile ? legalIdImageFile.name : 
-//                      isVerified ? "Document already verified" : 
+//                     {legalIdImageFile ? legalIdImageFile.name :
+//                      isVerified ? "Document already verified" :
 //                      "Browse & Upload Photo (JPEG, JPG, PNG)"}
 //                   </span>
 //                 </div>
@@ -1540,10 +1457,10 @@
 //               {/* Upload Passbook Image */}
 //               <div className="form-group-custom">
 //                 <label className="form-label-custom">Upload Bank Passbook Photo</label>
-//                 <div 
-//                   className="upload-box" 
+//                 <div
+//                   className="upload-box"
 //                   onClick={triggerPassbookImageUpload}
-//                   style={{ 
+//                   style={{
 //                     cursor: isVerified ? "not-allowed" : "pointer",
 //                     opacity: isVerified ? 0.6 : 1,
 //                     backgroundColor: isVerified ? "#e9ecef" : undefined
@@ -1551,8 +1468,8 @@
 //                 >
 //                   <UploadIcon />
 //                   <span className="upload-text">
-//                     {passbookImageFile ? passbookImageFile.name : 
-//                      isVerified ? "Document already verified" : 
+//                     {passbookImageFile ? passbookImageFile.name :
+//                      isVerified ? "Document already verified" :
 //                      "Browse & Upload Photo (JPEG, JPG, PNG)"}
 //                   </span>
 //                 </div>
@@ -1568,8 +1485,8 @@
 
 //               {/* Submit Button - Hidden if verified */}
 //               {!isVerified && (
-//                 <button 
-//                   type="submit" 
+//                 <button
+//                   type="submit"
 //                   className="submit-btn-custom"
 //                   disabled={isLoading}
 //                 >
@@ -1599,23 +1516,6 @@
 // };
 
 // export default SelfCreator;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // import React, { useState, useRef, useEffect } from "react";
 // import { Upload, CheckCircle, Lock, Eye } from "lucide-react";
@@ -1663,7 +1563,7 @@
 //     try {
 //       setCheckingStatus(true);
 //       const token = localStorage.getItem("token");
-      
+
 //       if (!token) {
 //         navigate("/");
 //         return;
@@ -1686,7 +1586,7 @@
 //       if (statusData.success && statusData.data) {
 //         const status = statusData.data.status;
 //         setVerificationStatus(status);
-        
+
 //         if (status === "APPROVED") {
 //           setIsVerified(true);
 //           setIsPending(false);
@@ -1714,7 +1614,7 @@
 
 //         if (legalData.success && legalData.data?.legal_details) {
 //           const legal = legalData.data.legal_details;
-          
+
 //           setFormData({
 //             legal_name: legal.legal_name || "",
 //             document_type: legal.document_type || "passport",
@@ -1758,7 +1658,7 @@
 //   // Show popup when clicking anywhere on locked form
 //   const showLockedPopup = () => {
 //     if (!isFormLocked) return;
-    
+
 //     if (isVerified) {
 //       alert(
 //         "Your profile has been verified. You are now eligible to make withdrawals. " +
@@ -1791,7 +1691,7 @@
 //     if (file) {
 //       const validExtensions = [".jpeg", ".jpg", ".png"];
 //       const fileExtension = file.name.substring(file.name.lastIndexOf(".")).toLowerCase();
-      
+
 //       if (!validExtensions.includes(fileExtension)) {
 //         setError("Please upload Legal ID Image as JPEG, JPG or PNG");
 //         return;
@@ -1811,7 +1711,7 @@
 //     if (file) {
 //       const validExtensions = [".jpeg", ".jpg", ".png"];
 //       const fileExtension = file.name.substring(file.name.lastIndexOf(".")).toLowerCase();
-      
+
 //       if (!validExtensions.includes(fileExtension)) {
 //         setError("Please upload Passbook Image as JPEG, JPG or PNG");
 //         return;
@@ -1830,7 +1730,7 @@
 //     }
 //     legalIdImageRef.current.click();
 //   };
-  
+
 //   const triggerPassbookImageUpload = (e) => {
 //     if (isFormLocked) {
 //       e.stopPropagation();
@@ -1842,7 +1742,7 @@
 
 //   const handleSubmit = async (e) => {
 //     e.preventDefault();
-    
+
 //     if (isFormLocked) {
 //       showLockedPopup();
 //       return;
@@ -1912,11 +1812,11 @@
 //   const renderUploadArea = (type, existingUrl, file, onTrigger, isLocked) => {
 //     const hasPreview = existingUrl && !file;
 //     const displayImage = file ? URL.createObjectURL(file) : (existingUrl || null);
-    
+
 //     if (hasPreview && displayImage) {
 //       return (
-//         <div 
-//           className="upload-box preview-mode" 
+//         <div
+//           className="upload-box preview-mode"
 //           style={{ cursor: isLocked ? "pointer" : "default", padding: "8px" }}
 //           onClick={(e) => {
 //             if (isLocked) {
@@ -1933,12 +1833,12 @@
 //         </div>
 //       );
 //     }
-    
+
 //     return (
-//       <div 
-//         className="upload-box" 
+//       <div
+//         className="upload-box"
 //         onClick={onTrigger}
-//         style={{ 
+//         style={{
 //           cursor: isLocked ? "not-allowed" : "pointer",
 //           opacity: isLocked ? 0.6 : 1,
 //           backgroundColor: isLocked ? "transparent" : undefined
@@ -1946,8 +1846,8 @@
 //       >
 //         <UploadIcon />
 //         <span className="upload-text">
-//           {file ? file.name : 
-//            isLocked ? "Document locked" : 
+//           {file ? file.name :
+//            isLocked ? "Document locked" :
 //            "Browse & Upload Photo (JPEG, JPG, PNG)"}
 //         </span>
 //       </div>
@@ -2021,7 +1921,7 @@
 
 //             {/* Banners */}
 //             {isPending && (
-//               <div 
+//               <div
 //                 className="pending-banner"
 //                 style={{
 //                   backgroundColor: "#fff3e0",
@@ -2043,7 +1943,7 @@
 //             )}
 
 //             {isVerified && (
-//               <div 
+//               <div
 //                 className="verified-banner"
 //                 style={{
 //                   backgroundColor: "#d4edda",
@@ -2191,8 +2091,8 @@
 
 //               {/* Submit Button (only when not locked) */}
 //               {!isFormLocked && (
-//                 <button 
-//                   type="submit" 
+//                 <button
+//                   type="submit"
 //                   className="submit-btn-custom"
 //                   disabled={isLoading}
 //                 >
@@ -2225,27 +2125,6 @@
 // };
 
 // export default SelfCreator;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // import React, { useState, useRef, useEffect } from "react";
 // import { Upload, CheckCircle, Lock, Eye } from "lucide-react";
@@ -2294,7 +2173,7 @@
 //     try {
 //       setCheckingStatus(true);
 //       const token = localStorage.getItem("token");
-      
+
 //       if (!token) {
 //         navigate("/");
 //         return;
@@ -2317,7 +2196,7 @@
 //       if (statusData.success && statusData.data) {
 //         const status = statusData.data.status;
 //         setVerificationStatus(status);
-        
+
 //         if (status === "APPROVED") {
 //           setIsVerified(true);
 //           setIsPending(false);
@@ -2345,7 +2224,7 @@
 
 //         if (legalData.success && legalData.data?.legal_details) {
 //           const legal = legalData.data.legal_details;
-          
+
 //           setFormData({
 //             legal_name: legal.legal_name || "",
 //             document_type: legal.document_type || "passport",
@@ -2389,7 +2268,7 @@
 //   // Show popup when clicking anywhere on locked form
 //   const showLockedPopup = () => {
 //     if (!isFormLocked) return;
-    
+
 //     if (isVerified) {
 //       alert(
 //         "Your profile has been verified. You are now eligible to make withdrawals. " +
@@ -2422,7 +2301,7 @@
 //     if (file) {
 //       const validExtensions = [".jpeg", ".jpg", ".png"];
 //       const fileExtension = file.name.substring(file.name.lastIndexOf(".")).toLowerCase();
-      
+
 //       if (!validExtensions.includes(fileExtension)) {
 //         setError("Please upload Legal ID Image as JPEG, JPG or PNG");
 //         return;
@@ -2442,7 +2321,7 @@
 //     if (file) {
 //       const validExtensions = [".jpeg", ".jpg", ".png"];
 //       const fileExtension = file.name.substring(file.name.lastIndexOf(".")).toLowerCase();
-      
+
 //       if (!validExtensions.includes(fileExtension)) {
 //         setError("Please upload Passbook Image as JPEG, JPG or PNG");
 //         return;
@@ -2461,7 +2340,7 @@
 //     }
 //     legalIdImageRef.current.click();
 //   };
-  
+
 //   const triggerPassbookImageUpload = (e) => {
 //     if (isFormLocked) {
 //       e.stopPropagation();
@@ -2473,7 +2352,7 @@
 
 //   const handleSubmit = async (e) => {
 //     e.preventDefault();
-    
+
 //     if (isFormLocked) {
 //       showLockedPopup();
 //       return;
@@ -2543,11 +2422,11 @@
 //   const renderUploadArea = (type, existingUrl, file, onTrigger, isLocked) => {
 //     const hasPreview = existingUrl && !file;
 //     const displayImage = file ? URL.createObjectURL(file) : (existingUrl || null);
-    
+
 //     if (hasPreview && displayImage) {
 //       return (
-//         <div 
-//           className="upload-box preview-mode" 
+//         <div
+//           className="upload-box preview-mode"
 //           style={{ cursor: isLocked ? "pointer" : "default", padding: "8px" }}
 //           onClick={(e) => {
 //             if (isLocked) {
@@ -2564,12 +2443,12 @@
 //         </div>
 //       );
 //     }
-    
+
 //     return (
-//       <div 
-//         className="upload-box" 
+//       <div
+//         className="upload-box"
 //         onClick={onTrigger}
-//         style={{ 
+//         style={{
 //           cursor: isLocked ? "not-allowed" : "pointer",
 //           opacity: isLocked ? 0.6 : 1,
 //           backgroundColor: isLocked ? "transparent" : undefined
@@ -2577,8 +2456,8 @@
 //       >
 //         <UploadIcon />
 //         <span className="upload-text">
-//           {file ? file.name : 
-//            isLocked ? "Document locked" : 
+//           {file ? file.name :
+//            isLocked ? "Document locked" :
 //            "Browse & Upload Photo (JPEG, JPG, PNG)"}
 //         </span>
 //       </div>
@@ -2652,7 +2531,7 @@
 
 //             {/* Banners */}
 //             {isPending && (
-//               <div 
+//               <div
 //                 className="pending-banner"
 //                 style={{
 //                   backgroundColor: "#fff3e0",
@@ -2674,7 +2553,7 @@
 //             )}
 
 //             {/* {isVerified && (
-//               <div 
+//               <div
 //                 className="verified-banner"
 //                 style={{
 //                   backgroundColor: "#d4edda",
@@ -2761,8 +2640,6 @@
 //                   </div>
 //                 </div> */}
 
-
-
 //                   <div className="form-group-custom">
 //   <label className="form-label-custom">Choose an ID type</label>
 
@@ -2835,7 +2712,6 @@
 //                   </div>
 //                 </div> */}
 
-
 //                 <div className="form-group-custom">
 //   <label className="form-label-custom">Choose Your Bank</label>
 
@@ -2904,8 +2780,8 @@
 
 //               {/* Submit Button (only when not locked) */}
 //               {!isFormLocked && (
-//                 <button 
-//                   type="submit" 
+//                 <button
+//                   type="submit"
 //                   className="submit-btn-custom"
 //                   disabled={isLoading}
 //                 >
@@ -2938,24 +2814,6 @@
 // };
 
 // export default SelfCreator;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // import React, { useState, useRef, useEffect } from "react";
 // import { Upload, CheckCircle, Lock, Eye } from "lucide-react";
@@ -3003,7 +2861,7 @@
 //     try {
 //       setCheckingStatus(true);
 //       const token = localStorage.getItem("token");
-      
+
 //       if (!token) {
 //         navigate("/");
 //         return;
@@ -3026,7 +2884,7 @@
 //       if (statusData.success && statusData.data) {
 //         const status = statusData.data.status;
 //         setVerificationStatus(status);
-        
+
 //         if (status === "APPROVED") {
 //           setIsVerified(true);
 //           setIsPending(false);
@@ -3054,7 +2912,7 @@
 
 //         if (legalData.success && legalData.data?.legal_details) {
 //           const legal = legalData.data.legal_details;
-          
+
 //           setFormData({
 //             legal_name: legal.legal_name || "",
 //             document_type: legal.document_type || "passport",
@@ -3098,7 +2956,7 @@
 //   // Show popup when clicking anywhere on locked form
 //   const showLockedPopup = () => {
 //     if (!isFormLocked) return;
-    
+
 //     if (isVerified) {
 //       alert(
 //         "Your profile has been verified. You are now eligible to make withdrawals. " +
@@ -3131,7 +2989,7 @@
 //     if (file) {
 //       const validExtensions = [".jpeg", ".jpg", ".png"];
 //       const fileExtension = file.name.substring(file.name.lastIndexOf(".")).toLowerCase();
-      
+
 //       if (!validExtensions.includes(fileExtension)) {
 //         setError("Please upload Legal ID Image as JPEG, JPG or PNG");
 //         return;
@@ -3151,7 +3009,7 @@
 //     if (file) {
 //       const validExtensions = [".jpeg", ".jpg", ".png"];
 //       const fileExtension = file.name.substring(file.name.lastIndexOf(".")).toLowerCase();
-      
+
 //       if (!validExtensions.includes(fileExtension)) {
 //         setError("Please upload Passbook Image as JPEG, JPG or PNG");
 //         return;
@@ -3170,7 +3028,7 @@
 //     }
 //     legalIdImageRef.current.click();
 //   };
-  
+
 //   const triggerPassbookImageUpload = (e) => {
 //     if (isFormLocked) {
 //       e.stopPropagation();
@@ -3182,7 +3040,7 @@
 
 //   const handleSubmit = async (e) => {
 //     e.preventDefault();
-    
+
 //     if (isFormLocked) {
 //       showLockedPopup();
 //       return;
@@ -3252,11 +3110,11 @@
 //   const renderUploadArea = (type, existingUrl, file, onTrigger, isLocked) => {
 //     const hasPreview = existingUrl && !file;
 //     const displayImage = file ? URL.createObjectURL(file) : (existingUrl || null);
-    
+
 //     if (hasPreview && displayImage) {
 //       return (
-//         <div 
-//           className="upload-box preview-mode" 
+//         <div
+//           className="upload-box preview-mode"
 //           style={{ cursor: isLocked ? "pointer" : "default", padding: "8px" }}
 //           onClick={(e) => {
 //             if (isLocked) {
@@ -3273,12 +3131,12 @@
 //         </div>
 //       );
 //     }
-    
+
 //     return (
-//       <div 
-//         className="upload-box" 
+//       <div
+//         className="upload-box"
 //         onClick={onTrigger}
-//         style={{ 
+//         style={{
 //           cursor: isLocked ? "not-allowed" : "pointer",
 //           opacity: isLocked ? 0.6 : 1,
 //           backgroundColor: isLocked ? "transparent" : undefined
@@ -3286,8 +3144,8 @@
 //       >
 //         <UploadIcon />
 //         <span className="upload-text">
-//           {file ? file.name : 
-//            isLocked ? "Document locked" : 
+//           {file ? file.name :
+//            isLocked ? "Document locked" :
 //            "Browse & Upload Photo (JPEG, JPG, PNG)"}
 //         </span>
 //       </div>
@@ -3361,7 +3219,7 @@
 
 //             {/* Banners */}
 //             {isPending && (
-//               <div 
+//               <div
 //                 className="pending-banner"
 //                 style={{
 //                   backgroundColor: "#fff3e0",
@@ -3543,8 +3401,8 @@
 
 //               {/* Submit Button (only when not locked) */}
 //               {!isFormLocked && (
-//                 <button 
-//                   type="submit" 
+//                 <button
+//                   type="submit"
 //                   className="submit-btn-custom"
 //                   disabled={isLoading}
 //                 >
@@ -3577,25 +3435,6 @@
 // };
 
 // export default SelfCreator;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // import React, { useState, useRef, useEffect } from "react";
 // import { Upload, CheckCircle, Lock, Eye } from "lucide-react";
@@ -4186,35 +4025,6 @@
 // };
 
 // export default SelfCreator;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // import React, { useState, useRef, useEffect } from "react";
 // import { Upload, CheckCircle, Lock, Eye } from "lucide-react";
@@ -4823,25 +4633,6 @@
 
 // export default SelfCreator;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import React, { useState, useRef, useEffect } from "react";
 import { Upload, CheckCircle, Lock, Eye } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -4911,7 +4702,7 @@ const SelfCreator = () => {
             Authorization: token,
             "Content-Type": "application/json",
           },
-        }
+        },
       );
 
       const statusData = await statusResponse.json();
@@ -4939,7 +4730,7 @@ const SelfCreator = () => {
               Authorization: token,
               "Content-Type": "application/json",
             },
-          }
+          },
         );
 
         const legalData = await legalResponse.json();
@@ -4992,12 +4783,12 @@ const SelfCreator = () => {
     if (isVerified) {
       showMessage(
         t("selfCreator.verifiedPopupTitle"),
-        t("selfCreator.verifiedPopupMessage")
+        t("selfCreator.verifiedPopupMessage"),
       );
     } else if (isPending) {
       showMessage(
         t("selfCreator.pendingPopupTitle"),
-        t("selfCreator.pendingPopupMessage")
+        t("selfCreator.pendingPopupMessage"),
       );
     }
   };
@@ -5020,7 +4811,9 @@ const SelfCreator = () => {
     const file = e.target.files[0];
     if (file) {
       const validExtensions = [".jpeg", ".jpg", ".png"];
-      const fileExtension = file.name.substring(file.name.lastIndexOf(".")).toLowerCase();
+      const fileExtension = file.name
+        .substring(file.name.lastIndexOf("."))
+        .toLowerCase();
 
       if (!validExtensions.includes(fileExtension)) {
         setError(t("selfCreator.errorImageFormat"));
@@ -5040,7 +4833,9 @@ const SelfCreator = () => {
     const file = e.target.files[0];
     if (file) {
       const validExtensions = [".jpeg", ".jpg", ".png"];
-      const fileExtension = file.name.substring(file.name.lastIndexOf(".")).toLowerCase();
+      const fileExtension = file.name
+        .substring(file.name.lastIndexOf("."))
+        .toLowerCase();
 
       if (!validExtensions.includes(fileExtension)) {
         setError(t("selfCreator.errorImageFormat"));
@@ -5082,12 +4877,17 @@ const SelfCreator = () => {
     setIsLoading(true);
 
     try {
-      if (!formData.legal_name.trim()) throw new Error(t("selfCreator.errorLegalName"));
+      if (!formData.legal_name.trim())
+        throw new Error(t("selfCreator.errorLegalName"));
       if (!formData.bank_name) throw new Error(t("selfCreator.errorBankName"));
-      if (!formData.bank_account_no.trim()) throw new Error(t("selfCreator.errorAccountNumber"));
-      if (!passbookImageFile) throw new Error(t("selfCreator.errorPassbookImage"));
-      if (!legalIdImageFile) throw new Error(t("selfCreator.errorLegalIdImage"));
-      if (!formData.document_type) throw new Error(t("selfCreator.errorDocumentType"));
+      if (!formData.bank_account_no.trim())
+        throw new Error(t("selfCreator.errorAccountNumber"));
+      if (!passbookImageFile)
+        throw new Error(t("selfCreator.errorPassbookImage"));
+      if (!legalIdImageFile)
+        throw new Error(t("selfCreator.errorLegalIdImage"));
+      if (!formData.document_type)
+        throw new Error(t("selfCreator.errorDocumentType"));
 
       const submitData = new FormData();
       submitData.append("legal_name", formData.legal_name);
@@ -5097,20 +4897,23 @@ const SelfCreator = () => {
       submitData.append("passbook_image", passbookImageFile);
       submitData.append("legal_id_image", legalIdImageFile);
 
-      const response = await fetch("https://sagarxo.app/web-api/customer/legal-details", {
-        method: "POST",
-        headers: {
-          Authorization: localStorage.getItem("token") || "",
+      const response = await fetch(
+        "https://sagarxo.app/web-api/customer/legal-details",
+        {
+          method: "POST",
+          headers: {
+            Authorization: localStorage.getItem("token") || "",
+          },
+          body: submitData,
         },
-        body: submitData,
-      });
+      );
 
       const result = await response.json();
 
       if (result.success) {
         showMessage(
           t("selfCreator.successTitle"),
-          result.message || t("selfCreator.successMessage")
+          result.message || t("selfCreator.successMessage"),
         );
         setFormData({
           legal_name: "",
@@ -5157,7 +4960,15 @@ const SelfCreator = () => {
             }
           }}
         >
-          <img src={displayImage} alt="Preview" style={{ maxWidth: "100%", maxHeight: "120px", borderRadius: "8px" }} />
+          <img
+            src={displayImage}
+            alt="Preview"
+            style={{
+              maxWidth: "100%",
+              maxHeight: "120px",
+              borderRadius: "8px",
+            }}
+          />
           <div style={{ marginTop: "8px", fontSize: "12px", color: "#666" }}>
             <Eye size={16} style={{ display: "inline", marginRight: "4px" }} />
             {t("selfCreator.alreadyUploaded")}
@@ -5173,12 +4984,16 @@ const SelfCreator = () => {
         style={{
           cursor: isLocked ? "not-allowed" : "pointer",
           opacity: isLocked ? 0.6 : 1,
-          backgroundColor: isLocked ? "transparent" : undefined
+          backgroundColor: isLocked ? "transparent" : undefined,
         }}
       >
         <UploadIcon />
         <span className="upload-text">
-          {file ? file.name : isLocked ? t("selfCreator.documentLocked") : t("selfCreator.browseUpload")}
+          {file
+            ? file.name
+            : isLocked
+              ? t("selfCreator.documentLocked")
+              : t("selfCreator.browseUpload")}
         </span>
       </div>
     );
@@ -5191,17 +5006,35 @@ const SelfCreator = () => {
           {isSidebarOpen ? <X /> : <Menu />}
         </button>
         {isSidebarOpen && (
-          <div className="sidebar-overlay d-lg-none" onClick={() => setIsSidebarOpen(false)} />
+          <div
+            className="sidebar-overlay d-lg-none"
+            onClick={() => setIsSidebarOpen(false)}
+          />
         )}
-        <Sidebar show={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} activeItem="verify" />
+        <Sidebar
+          show={isSidebarOpen}
+          onClose={() => setIsSidebarOpen(false)}
+          activeItem="verify"
+        />
         <main className="main-content">
           <Header toggleSidebar={toggleSidebar} />
-          <div className="d-flex justify-content-center align-items-center" style={{ height: "60vh" }}>
+          <div
+            className="d-flex justify-content-center align-items-center"
+            style={{ height: "60vh" }}
+          >
             <div className="text-center">
-              <div className="spinner-border" role="status" style={{ color: "#e9527a" }}>
-                <span className="visually-hidden">{t("selfCreator.checkingStatus")}</span>
+              <div
+                className="spinner-border"
+                role="status"
+                style={{ color: "#e9527a" }}
+              >
+                <span className="visually-hidden">
+                  {t("selfCreator.checkingStatus")}
+                </span>
               </div>
-              <p className="mt-3 text-muted">{t("selfCreator.checkingStatus")}</p>
+              <p className="mt-3 text-muted">
+                {t("selfCreator.checkingStatus")}
+              </p>
             </div>
           </div>
         </main>
@@ -5212,10 +5045,17 @@ const SelfCreator = () => {
   return (
     <div className="dashboard-container">
       {isSidebarOpen && (
-        <div className="sidebar-overlay d-lg-none" onClick={() => setIsSidebarOpen(false)} />
+        <div
+          className="sidebar-overlay d-lg-none"
+          onClick={() => setIsSidebarOpen(false)}
+        />
       )}
 
-      <Sidebar show={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} activeItem="verify" />
+      <Sidebar
+        show={isSidebarOpen}
+        onClose={() => setIsSidebarOpen(false)}
+        activeItem="verify"
+      />
 
       <main className="main-content">
         <Header toggleSidebar={toggleSidebar} />
@@ -5225,12 +5065,18 @@ const SelfCreator = () => {
             <h2 className="self-creator-title">
               {isVerified ? (
                 <>
-                  <CheckCircle size={28} style={{ color: "#28a745", marginRight: "10px" }} />
+                  <CheckCircle
+                    size={28}
+                    style={{ color: "#28a745", marginRight: "10px" }}
+                  />
                   {t("selfCreator.identityVerified")}
                 </>
               ) : isPending ? (
                 <>
-                  <Lock size={28} style={{ color: "#ff9800", marginRight: "10px" }} />
+                  <Lock
+                    size={28}
+                    style={{ color: "#ff9800", marginRight: "10px" }}
+                  />
                   {t("selfCreator.verificationPending")}
                 </>
               ) : (
@@ -5238,13 +5084,14 @@ const SelfCreator = () => {
               )}
             </h2>
 
-            {error && (
-              <div className="error-message">
-                {error}
-              </div>
-            )}
+            {error && <div className="error-message">{error}</div>}
 
-            <form style={{ position: "relative" }} className="form-wrapper" onSubmit={handleSubmit} onClick={isFormLocked ? showLockedPopup : undefined}>
+            <form
+              style={{ position: "relative" }}
+              className="form-wrapper"
+              onSubmit={handleSubmit}
+              onClick={isFormLocked ? showLockedPopup : undefined}
+            >
               <div>
                 {isFormLocked && (
                   <div
@@ -5258,13 +5105,15 @@ const SelfCreator = () => {
                       backdropFilter: "blur(0px)",
                       zIndex: 10,
                       borderRadius: "12px",
-                      pointerEvents: "none",
+                      pointerEvents: "auto",
                     }}
                   />
                 )}
 
                 <div className="form-group-custom">
-                  <label className="form-label-custom">{t("selfCreator.legalName")}</label>
+                  <label className="form-label-custom">
+                    {t("selfCreator.legalName")}
+                  </label>
                   <input
                     type="text"
                     name="legal_name"
@@ -5274,19 +5123,34 @@ const SelfCreator = () => {
                     placeholder={t("selfCreator.legalNamePlaceholder")}
                     required
                     disabled={isFormLocked}
-                    style={isFormLocked ? { backgroundColor: "transparent", cursor: "not-allowed" } : {}}
+                    style={
+                      isFormLocked
+                        ? {
+                            backgroundColor: "transparent",
+                            cursor: "not-allowed",
+                          }
+                        : {}
+                    }
                   />
-                  <span className="helper-text">{t("selfCreator.legalNameHelper")}</span>
+                  <span className="helper-text">
+                    {t("selfCreator.legalNameHelper")}
+                  </span>
                 </div>
 
+                
+
                 <div className="form-group-custom">
-                  <label className="form-label-custom">{t("selfCreator.chooseIdType")}</label>
+                  <label className="form-label-custom">
+                    {t("selfCreator.chooseIdType")}
+                  </label>
                   <Dropdown>
                     <Dropdown.Toggle
                       className="form-select-custom w-100 text-start bg-transparent border-0 d-flex align-items-center justify-content-between"
                       disabled={isFormLocked}
                     >
-                      {documentTypeOptions.find(opt => opt.value === formData.document_type)?.label || t("selfCreator.chooseIdType")}
+                      {documentTypeOptions.find(
+                        (opt) => opt.value === formData.document_type,
+                      )?.label || t("selfCreator.chooseIdType")}
                     </Dropdown.Toggle>
                     <Dropdown.Menu className="w-100">
                       {documentTypeOptions.map((option) => (
@@ -5295,7 +5159,10 @@ const SelfCreator = () => {
                           onClick={() =>
                             !isFormLocked &&
                             handleChange({
-                              target: { name: "document_type", value: option.value }
+                              target: {
+                                name: "document_type",
+                                value: option.value,
+                              },
                             })
                           }
                         >
@@ -5307,13 +5174,15 @@ const SelfCreator = () => {
                 </div>
 
                 <div className="form-group-custom">
-                  <label className="form-label-custom">{t("selfCreator.uploadIdPhoto")}</label>
+                  <label className="form-label-custom">
+                    {t("selfCreator.uploadIdPhoto")}
+                  </label>
                   {renderUploadArea(
                     "legal",
                     existingLegalIdUrl,
                     legalIdImageFile,
                     triggerLegalIdImageUpload,
-                    isFormLocked
+                    isFormLocked,
                   )}
                   <input
                     type="file"
@@ -5326,22 +5195,28 @@ const SelfCreator = () => {
                 </div>
 
                 <div className="form-group-custom">
-                  <label className="form-label-custom">{t("selfCreator.chooseBank")}</label>
+                  <label className="form-label-custom">
+                    {t("selfCreator.chooseBank")}
+                  </label>
                   <Dropdown>
+                    {/* style={{overflow:'hidden' , textOverflow:'ellipsis'}} */}
                     <Dropdown.Toggle
                       className="form-select-custom w-100 text-start bg-transparent border-0 d-flex align-items-center justify-content-between"
                       disabled={isFormLocked}
                     >
-                      {formData.bank_name || t("selfCreator.selectBank")}
+                      <span className="dropdown-text-ellipsis">
+                        {formData.bank_name || t("selfCreator.selectBank")}
+                      </span>
+                      {/* {formData.bank_name || t("selfCreator.selectBank")} */}
                     </Dropdown.Toggle>
-                    <Dropdown.Menu className="w-100">
+                    <Dropdown.Menu className="w-100 dropdown-text-ellipsis">
                       {bankOptions.map((bank) => (
                         <Dropdown.Item
                           key={bank}
                           onClick={() =>
                             !isFormLocked &&
                             handleChange({
-                              target: { name: "bank_name", value: bank }
+                              target: { name: "bank_name", value: bank },
                             })
                           }
                         >
@@ -5353,7 +5228,9 @@ const SelfCreator = () => {
                 </div>
 
                 <div className="form-group-custom">
-                  <label className="form-label-custom">{t("selfCreator.accountNumber")}</label>
+                  <label className="form-label-custom">
+                    {t("selfCreator.accountNumber")}
+                  </label>
                   <input
                     type="text"
                     name="bank_account_no"
@@ -5363,18 +5240,27 @@ const SelfCreator = () => {
                     onChange={handleChange}
                     required
                     disabled={isFormLocked}
-                    style={isFormLocked ? { backgroundColor: "transparent", cursor: "not-allowed" } : {}}
+                    style={
+                      isFormLocked
+                        ? {
+                            backgroundColor: "transparent",
+                            cursor: "not-allowed",
+                          }
+                        : {}
+                    }
                   />
                 </div>
 
                 <div className="form-group-custom">
-                  <label className="form-label-custom">{t("selfCreator.uploadPassbook")}</label>
+                  <label className="form-label-custom">
+                    {t("selfCreator.uploadPassbook")}
+                  </label>
                   {renderUploadArea(
                     "passbook",
                     existingPassbookUrl,
                     passbookImageFile,
                     triggerPassbookImageUpload,
-                    isFormLocked
+                    isFormLocked,
                   )}
                   <input
                     type="file"
@@ -5393,7 +5279,9 @@ const SelfCreator = () => {
                   className="submit-btn-custom"
                   disabled={isLoading}
                 >
-                  {isLoading ? t("selfCreator.submitting") : t("selfCreator.submitVerification")}
+                  {isLoading
+                    ? t("selfCreator.submitting")
+                    : t("selfCreator.submitVerification")}
                 </button>
               )}
 

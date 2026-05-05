@@ -5621,7 +5621,7 @@ export default function Withdrawal() {
         if (legal_details) {
           setBankDetails({
             name: legal_details.legal_name || "",
-            bank: legal_details.bank_name || "Bangkok Bank",
+            bank: legal_details.bank_name || "",
             accountNumber: legal_details.bank_account_no || "",
           });
         }
@@ -5796,7 +5796,8 @@ export default function Withdrawal() {
               <div className="notice-banner">
                 <div className="d-flex gap-2">
                   {/* <span className="notice-icon">&#9432;</span> */}
-                  <i className="bi bi-info-circle" style={{color:'red'}}></i>
+                  <span class="notice-icon text-colors"><i class="bi bi-info-circle"></i></span>
+                  {/* <i className="bi bi-info-circle" style={{color:'red'}}></i> */}
                   <p className="text-colors" style={{ fontSize: "13px" }}>
                     {t("withdrawal.noticeMessage")}
                   </p>
@@ -5824,7 +5825,7 @@ export default function Withdrawal() {
               <div className="credit-badge">
                 {t("withdrawal.credit")}{" "}
                 {formatNumber(credit, i18n.language)}{" "}
-                {/* {t("thb")} */}
+                {t("thb")}
               </div>
 
               {/* Form wrapper */}
@@ -5952,9 +5953,13 @@ export default function Withdrawal() {
                     </span>
                   </div>
                   <div className="summary-row">
-                    <span className="summary-label">
+                    {/* <span className="summary-label">
                       {t("withdrawal.legalFeeLabel", { fee: platformFeePercent })}
-                    </span>
+                    </span> */}
+
+                    <span className="summary-label">
+  {t("Legal Fee")}
+</span>
                     <span className="summary-value">
                       {parsedAmount > 0
                         ? `${formatNumber(platformFee, i18n.language)} ${t("thb")}`

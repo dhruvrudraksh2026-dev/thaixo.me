@@ -758,7 +758,10 @@ const resources = {
         locked: "Locked",
         unlockSoon: "(Unlock soon)",
         milestoneLabel: "Milestones",
-        earningsLabel: "Earnings"
+        earningsLabel: "Earnings",
+        silver: "Silver",
+        gold: "Gold",
+        diamond: "Diamond"
       },
 
       withdrawalHistory: {
@@ -912,7 +915,8 @@ const resources = {
         networkErrorTitle: "Network Error",
         networkErrorMessage: "Network error. Please check your connection.",
         verificationStatusTitle: "Verification Status",
-        ok: "OK"
+        ok: "OK",
+        legalfeeLabel: "Legal Fee"
       },
 
 
@@ -923,7 +927,7 @@ const resources = {
         myEarnings: "My Earnings",
         payOutHistory: "Pay Out History",
         verifyIdentity: "Verify Identity",
-        withdrawal: "Withdrawal",
+        Withdraw: "Withdraw",
         milestone: "Milestone",
         videoCallHistory: "Video Call History",
         helpSupport: "Help & Support",
@@ -960,38 +964,38 @@ const resources = {
         "TMBThanachart Bank": "TMBThanachart Bank"
       },
 
-       "login": {
-    "title": "Log In",
-    "subtitle": "Hey there! Welcome back",
-    "description": "Enter your registered mobile number to access your account. We'll send you a quick OTP for secure login.",
-    "countryCodeLabel": "Country Code",
-    "phoneLabel": "Enter Contact Number*",
-    "phonePlaceholder": "12345-6789",
-    "button": "Send OTP",
-    "buttonLoading": "Sending OTP...",
-    "error": {
-      "invalidPhone": "Please enter a valid phone number",
-      "loginFailed": "Login failed",
-      "genericError": "An error occurred during login"
-    }
-  },
-  "otp": {
-    "titles": "Get OTP via WhatsApp",
-    "instruction": "Open Your WhatsApp → Copy Your secure OTP.",
-    "verifyButton": "Verify OTP",
-    "verifying": "Verifying...",
-    "didntReceive": "Didn't receive code?",
-    "resend": "Resend",
-    "sending": "Sending...",
-    "timer": " - ",
-    "resendSuccess": "OTP resent successfully!",
-    "error": {
-      "invalidOtp": "Please enter a valid 6-digit OTP",
-      "verificationFailed": "Verification failed",
-      "genericError": "An error occurred during OTP verification",
-      "resendFailed": "Failed to resend OTP"
-    }
-  }
+      "login": {
+        "title": "Log In",
+        "subtitle": "Hey there! Welcome back",
+        "description": "Enter your registered mobile number to access your account. We'll send you a quick OTP for secure login.",
+        "countryCodeLabel": "Country Code",
+        "phoneLabel": "Enter Contact Number*",
+        "phonePlaceholder": "12345-6789",
+        "button": "Send OTP",
+        "buttonLoading": "Sending OTP...",
+        "error": {
+          "invalidPhone": "Please enter a valid phone number",
+          "loginFailed": "Login failed",
+          "genericError": "An error occurred during login"
+        }
+      },
+      "otp": {
+        "titles": "Get OTP via WhatsApp",
+        "instruction": "Open Your WhatsApp → Copy Your secure OTP.",
+        "verifyButton": "Verify OTP",
+        "verifying": "Verifying...",
+        "didntReceive": "Didn't receive code?",
+        "resend": "Resend",
+        "sending": "Sending...",
+        "timer": " - ",
+        "resendSuccess": "OTP resent successfully!",
+        "error": {
+          "invalidOtp": "Please enter a valid 6-digit OTP",
+          "verificationFailed": "Verification failed",
+          "genericError": "An error occurred during OTP verification",
+          "resendFailed": "Failed to resend OTP"
+        }
+      }
 
 
     }
@@ -1066,7 +1070,10 @@ const resources = {
         locked: "ล็อคอยู่",
         unlockSoon: "(จะปลดล็อคเร็วๆนี้)",
         milestoneLabel: "เป้าหมาย",
-        earningsLabel: "รายได้"
+        earningsLabel: "รายได้",
+        silver: "ซิลเวอร์",
+        gold: "โกลด์",
+        diamond: "ไดมอนด์"
       },
 
       withdrawalHistory: {
@@ -1218,7 +1225,8 @@ const resources = {
         networkErrorTitle: "ข้อผิดพลาดเครือข่าย",
         networkErrorMessage: "เกิดข้อผิดพลาดเครือข่าย กรุณาตรวจสอบการเชื่อมต่อของคุณ",
         verificationStatusTitle: "สถานะการยืนยันตัวตน",
-        ok: "ตกลง"
+        ok: "ตกลง",
+        "legalfeeLabel": "ค่าธรรมเนียมทางกฎหมาย"
       },
 
       // Inside th.translation
@@ -1228,7 +1236,7 @@ const resources = {
         myEarnings: "รายได้ของฉัน",
         payOutHistory: "ประวัติการจ่ายเงิน",
         verifyIdentity: "ยืนยันตัวตน",
-        withdrawal: "ถอนเงิน",
+        Withdraw: "ถอน",
         milestone: "เป้าหมาย",
         videoCallHistory: "ประวัติการสนทนาวิดีโอ",
         helpSupport: "ช่วยเหลือและสนับสนุน",
@@ -1258,50 +1266,50 @@ const resources = {
       },
 
       // Thai (display Thai script)
-bankNames: {
-  "Bangkok Bank": "ธนาคารกรุงเทพ",
-  "Kasikorn Bank": "ธนาคารกสิกรไทย",
-  "Siam Commercial Bank": "ธนาคารไทยพาณิชย์",
-  "Krungthai Bank": "ธนาคารกรุงไทย",
-  "Bank of Ayudhya": "ธนาคารกรุงศรีอยุธยา",
-  "TMBThanachart Bank": "ธนาคารทหารไทยธนชาต"
-},
-// th.json
-  "login": {
-    "title": "เข้าสู่ระบบ",
-    "subtitle": "สวัสดี! ยินดีต้อนรับกลับ",
-    "description": "กรุณากรอกหมายเลขโทรศัพท์ที่ลงทะเบียนไว้เพื่อเข้าสู่ระบบ เราจะส่ง OTP เพื่อยืนยันตัวตนของคุณ",
-    "countryCodeLabel": "รหัสประเทศ",
-    "phoneLabel": "กรอกหมายเลขติดต่อ*",
-    "phonePlaceholder": "12345-6789",
-    "button": "ส่ง OTP",
-    "buttonLoading": "กำลังส่ง OTP...",
-    "error": {
-      "invalidPhone": "กรุณากรอกหมายเลขโทรศัพท์ที่ถูกต้อง",
-      "loginFailed": "เข้าสู่ระบบไม่สำเร็จ",
-      "genericError": "เกิดข้อผิดพลาดระหว่างการเข้าสู่ระบบ"
-    }
-  },
+      bankNames: {
+        "Bangkok Bank": "ธนาคารกรุงเทพ",
+        "Kasikorn Bank": "ธนาคารกสิกรไทย",
+        "Siam Commercial Bank": "ธนาคารไทยพาณิชย์",
+        "Krungthai Bank": "ธนาคารกรุงไทย",
+        "Bank of Ayudhya": "ธนาคารกรุงศรีอยุธยา",
+        "TMBThanachart Bank": "ธนาคารทหารไทยธนชาต"
+      },
+      // th.json
+      "login": {
+        "title": "เข้าสู่ระบบ",
+        "subtitle": "สวัสดี! ยินดีต้อนรับกลับ",
+        "description": "กรุณากรอกหมายเลขโทรศัพท์ที่ลงทะเบียนไว้เพื่อเข้าสู่ระบบ เราจะส่ง OTP เพื่อยืนยันตัวตนของคุณ",
+        "countryCodeLabel": "รหัสประเทศ",
+        "phoneLabel": "กรอกหมายเลขติดต่อ*",
+        "phonePlaceholder": "12345-6789",
+        "button": "ส่ง OTP",
+        "buttonLoading": "กำลังส่ง OTP...",
+        "error": {
+          "invalidPhone": "กรุณากรอกหมายเลขโทรศัพท์ที่ถูกต้อง",
+          "loginFailed": "เข้าสู่ระบบไม่สำเร็จ",
+          "genericError": "เกิดข้อผิดพลาดระหว่างการเข้าสู่ระบบ"
+        }
+      },
 
-  "otp": {
-    "titles": "รับ สนข จาก วอทส์แอพพ์",
-    "instruction": "เปิด วอทส์แอพพ์ ของคุณ → คัดลอก OTP ที่ปลอดภัย",
-    "verifyButton": "ยืนยัน สนข",
-    "verifying": "กำลังยืนยัน...",
-    "didntReceive": "ไม่ได้รับโค้ด?",
-    "resend": "ส่งใหม่",
-    "sending": "กำลังส่ง...",
-    "timer": " - ",
-    "resendSuccess": "ส่ง สนข ใหม่สำเร็จ!",
-    "error": {
-      "invalidOtp": "กรุณากรอก สนข 6 หลักที่ถูกต้อง",
-      "verificationFailed": "การยืนยันล้มเหลว",
-      "genericError": "เกิดข้อผิดพลาดระหว่างการยืนยัน สนข",
-      "resendFailed": "ไม่สามารถส่ง สนข ใหม่ได้"
-    }
-  }
-  
-  
+      "otp": {
+        "titles": "รับ สนข จาก วอทส์แอพพ์",
+        "instruction": "เปิด วอทส์แอพพ์ ของคุณ → คัดลอก OTP ที่ปลอดภัย",
+        "verifyButton": "ยืนยัน สนข",
+        "verifying": "กำลังยืนยัน...",
+        "didntReceive": "ไม่ได้รับโค้ด?",
+        "resend": "ส่งใหม่",
+        "sending": "กำลังส่ง...",
+        "timer": " - ",
+        "resendSuccess": "ส่ง สนข ใหม่สำเร็จ!",
+        "error": {
+          "invalidOtp": "กรุณากรอก สนข 6 หลักที่ถูกต้อง",
+          "verificationFailed": "การยืนยันล้มเหลว",
+          "genericError": "เกิดข้อผิดพลาดระหว่างการยืนยัน สนข",
+          "resendFailed": "ไม่สามารถส่ง สนข ใหม่ได้"
+        }
+      }
+
+
 
     }
   }
@@ -1325,7 +1333,7 @@ bankNames: {
 //       caches: [] // IMPORTANT: disables cookies/localStorage/sessionStorage
 //     },
 
-    
+
 //   });
 
 
