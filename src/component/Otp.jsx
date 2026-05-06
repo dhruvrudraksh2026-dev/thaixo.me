@@ -3567,11 +3567,6 @@ export default function VerifyOtp() {
           </div>
 
           {/* Error Message */ }
-          {error && (
-            <div className="error-message">
-              {error}
-            </div>
-          )}
 
           <form onSubmit={handleVerify}>
             <div className="otp-input-container">
@@ -3598,6 +3593,14 @@ export default function VerifyOtp() {
                 />
               ))}
             </div>
+
+
+              {error && (
+            <div className="error-message mb-4 text-center">
+              {error}
+            </div>
+          )}
+
 
             <button
               type="submit"

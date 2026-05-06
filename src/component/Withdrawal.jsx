@@ -6026,7 +6026,8 @@
 
 
 
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useMemo  } from "react";
+import { useNavigate } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { Modal, Button } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
@@ -6082,6 +6083,7 @@ export default function Withdrawal() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [credit, setCredit] = useState(0);
   const [requestedAmount, setRequestedAmount] = useState("");
+  const navigate = useNavigate();
 
   const [bankDetails, setBankDetails] = useState({
     name: "",
@@ -6455,7 +6457,7 @@ export default function Withdrawal() {
                           }
                         ></i>
                       </span>
-                      <p className="notice-text">{legalMessage}</p>
+                      <p className="notice-text ms-1">{legalMessage}</p>
                     </div>
                   )}
                 </div>
@@ -6574,7 +6576,7 @@ export default function Withdrawal() {
                     </label>
                     <input
                       type="text"
-                      className="field-input text-white"
+                      className="field-input text-overflow text-white"
                       value={translatedBankName}
                       disabled={true}
                       placeholder=""
@@ -6658,13 +6660,24 @@ export default function Withdrawal() {
           <p className="mb-0">{modalMessage}</p>
         </Modal.Body>
         <Modal.Footer>
-          <Button
+          {/* <Button
             variant="primary"
             onClick={() => setShowMessageModal(false)}
             style={{ backgroundColor: "#e9527a", border: "none" }}
           >
             {t("withdrawal.ok")}
-          </Button>
+          </Button> */}
+
+          <Button
+    variant="primary"
+    onClick={() => {
+      setShowMessageModal(false);
+      navigate("/withdrawalhistory");
+    }}
+    style={{ backgroundColor: "#e9527a", border: "none" }}
+  >
+    {t("withdrawal.ok")}
+  </Button>
         </Modal.Footer>
       </Modal>
 

@@ -225,6 +225,10 @@ html, body {
   margin-bottom: 8px;
 }
 
+.error-message{
+  background-color:#C85269;
+}
+
 .required-star {
   color: #e74c3c;
   margin-left: 2px;

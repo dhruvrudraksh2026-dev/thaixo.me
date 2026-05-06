@@ -201,3 +201,8 @@
 .field-input:disabled::placeholder {
   color: rgba(255, 255, 255, 1);
 }
+
+.text-overflow{
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

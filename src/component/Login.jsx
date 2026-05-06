@@ -1789,6 +1789,7 @@
 //       );
 
 //       if (response.data.success) {
+//           localStorage.setItem("userId", response.data.data.userId); // ✅ store login state
 //         navigate("/otp", {
 //           state: {
 //             userId: response.data.data.userId,
@@ -1979,6 +1980,7 @@ export default function Login() {
       );
 
       if (response.data.success) {
+          localStorage.setItem("userId", response.data.data.userId); // ✅ store login state
         navigate("/otp", {
           state: {
             userId: response.data.data.userId,
