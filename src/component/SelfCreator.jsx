@@ -4633,6 +4633,733 @@
 
 // export default SelfCreator;
 
+// import React, { useState, useRef, useEffect } from "react";
+// import { Upload, CheckCircle, Lock, Eye } from "lucide-react";
+// import { useNavigate } from "react-router-dom";
+// import { useTranslation } from "react-i18next";
+// import { Dropdown, Modal, Button } from "react-bootstrap";
+// import Sidebar from "./Sidebar";
+// import Header from "./Header";
+// import "../css/SelfCreator.css";
+// import { Menu, X } from "lucide-react";
+
+// const SelfCreator = () => {
+//   const { t } = useTranslation();
+//   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+//   const [isLoading, setIsLoading] = useState(false);
+//   const [error, setError] = useState(null);
+//   const [verificationStatus, setVerificationStatus] = useState(null);
+//   const [isVerified, setIsVerified] = useState(false);
+//   const [isPending, setIsPending] = useState(false);
+//   const [checkingStatus, setCheckingStatus] = useState(true);
+//   const navigate = useNavigate();
+
+//   // Modal state for popup messages
+//   const [showMessageModal, setShowMessageModal] = useState(false);
+//   const [modalTitle, setModalTitle] = useState("");
+//   const [modalMessage, setModalMessage] = useState("");
+
+//   const [formData, setFormData] = useState({
+//     legal_name: "",
+//     document_type: "passport",
+//     bank_name: "",
+//     bank_account_no: "",
+//   });
+
+//   const legalIdImageRef = useRef(null);
+//   const passbookImageRef = useRef(null);
+//   const [legalIdImageFile, setLegalIdImageFile] = useState(null);
+//   const [passbookImageFile, setPassbookImageFile] = useState(null);
+
+//   const [existingLegalIdUrl, setExistingLegalIdUrl] = useState(null);
+//   const [existingPassbookUrl, setExistingPassbookUrl] = useState(null);
+
+//   useEffect(() => {
+//     checkVerificationStatus();
+//   }, []);
+
+//   const showMessage = (title, message) => {
+//     setModalTitle(title);
+//     setModalMessage(message);
+//     setShowMessageModal(true);
+//   };
+
+//   const checkVerificationStatus = async () => {
+//     try {
+//       setCheckingStatus(true);
+//       const token = localStorage.getItem("token");
+
+//       if (!token) {
+//         navigate("/");
+//         return;
+//       }
+
+//       const statusResponse = await fetch(
+//         "https://sagarxo.app/web-api/customer/legal-details-verification-status",
+//         {
+//           method: "GET",
+//           headers: {
+//             Authorization: token,
+//             "Content-Type": "application/json",
+//           },
+//         },
+//       );
+
+//       const statusData = await statusResponse.json();
+
+//       if (statusData.success && statusData.data) {
+//         const status = statusData.data.status;
+//         setVerificationStatus(status);
+
+//         if (status === "APPROVED") {
+//           setIsVerified(true);
+//           setIsPending(false);
+//         } else if (status === "PENDING") {
+//           setIsVerified(false);
+//           setIsPending(true);
+//         } else {
+//           setIsVerified(false);
+//           setIsPending(false);
+//         }
+
+//         const legalResponse = await fetch(
+//           "https://sagarxo.app/web-api/customer/legal-details",
+//           {
+//             method: "GET",
+//             headers: {
+//               Authorization: token,
+//               "Content-Type": "application/json",
+//             },
+//           },
+//         );
+
+//         const legalData = await legalResponse.json();
+
+//         if (legalData.success && legalData.data?.legal_details) {
+//           const legal = legalData.data.legal_details;
+
+//           setFormData({
+//             legal_name: legal.legal_name || "",
+//             document_type: legal.document_type || "passport",
+//             bank_name: legal.bank_name || "",
+//             bank_account_no: legal.bank_account_no || "",
+//           });
+
+//           setExistingLegalIdUrl(legal.legal_id_image || null);
+//           setExistingPassbookUrl(legal.passbook_image || null);
+//         }
+//       }
+//     } catch (err) {
+//       console.error("Error checking verification status:", err);
+//     } finally {
+//       setCheckingStatus(false);
+//     }
+//   };
+
+//   const documentTypeOptions = [
+//     { label: t("selfCreator.docPassport"), value: "passport" },
+//     { label: t("selfCreator.docThaiNationalId"), value: "thai_national_id" },
+//     { label: t("selfCreator.docDrivingLicense"), value: "driving_licence" },
+//   ];
+
+//   const bankOptions = [
+//     "Bangkok Bank",
+//     "Kasikorn Bank",
+//     "Siam Commercial Bank",
+//     "Krung Thai Bank",
+//     "Bank of Ayudhya",
+//     "Thanachart Bank",
+//     "TMB Bank",
+//     "CIMB Thai Bank",
+//     "Standard Chartered Bank",
+//     "Hongkong and Shanghai Banking Corporation",
+//   ];
+
+//   const isFormLocked = isVerified || isPending;
+
+//   const showLockedPopup = () => {
+//     if (!isFormLocked) return;
+
+//     if (isVerified) {
+//       showMessage(
+//         t("selfCreator.verifiedPopupTitle"),
+//         t("selfCreator.verifiedPopupMessage"),
+//       );
+//     } else if (isPending) {
+//       showMessage(
+//         t("selfCreator.pendingPopupTitle"),
+//         t("selfCreator.pendingPopupMessage"),
+//       );
+//     }
+//   };
+
+//   const handleChange = (e) => {
+//     if (isFormLocked) {
+//       showLockedPopup();
+//       return;
+//     }
+//     const { name, value } = e.target;
+//     setFormData((prev) => ({ ...prev, [name]: value }));
+//     setError(null);
+//   };
+
+//   const handleLegalIdImageChange = (e) => {
+//     if (isFormLocked) {
+//       showLockedPopup();
+//       return;
+//     }
+//     const file = e.target.files[0];
+//     if (file) {
+//       const validExtensions = [".jpeg", ".jpg", ".png"];
+//       const fileExtension = file.name
+//         .substring(file.name.lastIndexOf("."))
+//         .toLowerCase();
+
+//       if (!validExtensions.includes(fileExtension)) {
+//         setError(t("selfCreator.errorImageFormat"));
+//         return;
+//       }
+//       setLegalIdImageFile(file);
+//       setExistingLegalIdUrl(null);
+//       setError(null);
+//     }
+//   };
+
+//   const handlePassbookImageChange = (e) => {
+//     if (isFormLocked) {
+//       showLockedPopup();
+//       return;
+//     }
+//     const file = e.target.files[0];
+//     if (file) {
+//       const validExtensions = [".jpeg", ".jpg", ".png"];
+//       const fileExtension = file.name
+//         .substring(file.name.lastIndexOf("."))
+//         .toLowerCase();
+
+//       if (!validExtensions.includes(fileExtension)) {
+//         setError(t("selfCreator.errorImageFormat"));
+//         return;
+//       }
+//       setPassbookImageFile(file);
+//       setExistingPassbookUrl(null);
+//       setError(null);
+//     }
+//   };
+
+//   const triggerLegalIdImageUpload = (e) => {
+//     if (isFormLocked) {
+//       e.stopPropagation();
+//       showLockedPopup();
+//       return;
+//     }
+//     legalIdImageRef.current.click();
+//   };
+
+//   const triggerPassbookImageUpload = (e) => {
+//     if (isFormLocked) {
+//       e.stopPropagation();
+//       showLockedPopup();
+//       return;
+//     }
+//     passbookImageRef.current.click();
+//   };
+
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+
+//     if (isFormLocked) {
+//       showLockedPopup();
+//       return;
+//     }
+
+//     setError(null);
+//     setIsLoading(true);
+
+//     try {
+//       if (!formData.legal_name.trim())
+//         throw new Error(t("selfCreator.errorLegalName"));
+//       if (!formData.bank_name) throw new Error(t("selfCreator.errorBankName"));
+//       if (!formData.bank_account_no.trim())
+//         throw new Error(t("selfCreator.errorAccountNumber"));
+//       if (!passbookImageFile)
+//         throw new Error(t("selfCreator.errorPassbookImage"));
+//       if (!legalIdImageFile)
+//         throw new Error(t("selfCreator.errorLegalIdImage"));
+//       if (!formData.document_type)
+//         throw new Error(t("selfCreator.errorDocumentType"));
+
+//       const submitData = new FormData();
+//       submitData.append("legal_name", formData.legal_name);
+//       submitData.append("bank_name", formData.bank_name);
+//       submitData.append("bank_account_no", formData.bank_account_no);
+//       submitData.append("document_type", formData.document_type);
+//       submitData.append("passbook_image", passbookImageFile);
+//       submitData.append("legal_id_image", legalIdImageFile);
+
+//       const response = await fetch(
+//         "https://sagarxo.app/web-api/customer/legal-details",
+//         {
+//           method: "POST",
+//           headers: {
+//             Authorization: localStorage.getItem("token") || "",
+//           },
+//           body: submitData,
+//         },
+//       );
+
+//       const result = await response.json();
+
+//       if (result.success) {
+//         showMessage(
+//           t("selfCreator.successTitle"),
+//           result.message || t("selfCreator.successMessage"),
+//         );
+//         setFormData({
+//           legal_name: "",
+//           document_type: "passport",
+//           bank_name: "",
+//           bank_account_no: "",
+//         });
+//         setLegalIdImageFile(null);
+//         setPassbookImageFile(null);
+//         setExistingLegalIdUrl(null);
+//         setExistingPassbookUrl(null);
+//         checkVerificationStatus();
+//       } else {
+//         throw new Error(result.message || t("selfCreator.successMessage"));
+//       }
+//     } catch (err) {
+//       setError(err.message);
+//     } finally {
+//       setIsLoading(false);
+//     }
+//   };
+
+//   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
+
+//   const UploadIcon = () => (
+//     <div className="upload-icon-container">
+//       <Upload size={24} />
+//     </div>
+//   );
+
+//   const renderUploadArea = (type, existingUrl, file, onTrigger, isLocked) => {
+//     const hasPreview = existingUrl && !file;
+//     const displayImage = file ? URL.createObjectURL(file) : existingUrl || null;
+
+//     if (hasPreview && displayImage) {
+//       return (
+//         <div
+//           className="upload-box preview-mode"
+//           style={{ cursor: isLocked ? "pointer" : "default", padding: "8px" }}
+//           onClick={(e) => {
+//             if (isLocked) {
+//               e.stopPropagation();
+//               showLockedPopup();
+//             }
+//           }}
+//         >
+//           <img
+//             src={displayImage}
+//             alt="Preview"
+//             style={{
+//               maxWidth: "100%",
+//               maxHeight: "120px",
+//               borderRadius: "8px",
+//             }}
+//           />
+//           <div style={{ marginTop: "8px", fontSize: "12px", color: "#666" }}>
+//             <Eye size={16} style={{ display: "inline", marginRight: "4px" }} />
+//             {t("selfCreator.alreadyUploaded")}
+//           </div>
+//         </div>
+//       );
+//     }
+
+//     return (
+//       <div
+//         className="upload-box"
+//         onClick={onTrigger}
+//         style={{
+//           cursor: isLocked ? "not-allowed" : "pointer",
+//           opacity: isLocked ? 0.6 : 1,
+//           backgroundColor: isLocked ? "transparent" : undefined,
+//         }}
+//       >
+//         <UploadIcon />
+//         <span className="upload-text">
+//           {file
+//             ? file.name
+//             : isLocked
+//               ? t("selfCreator.documentLocked")
+//               : t("selfCreator.browseUpload")}
+//         </span>
+//       </div>
+//     );
+//   };
+
+//   if (checkingStatus) {
+//     return (
+//       <div className="dashboard-container">
+//         <button className="mobile-toggle d-lg-none" onClick={toggleSidebar}>
+//           {isSidebarOpen ? <X /> : <Menu />}
+//         </button>
+//         {isSidebarOpen && (
+//           <div
+//             className="sidebar-overlay d-lg-none"
+//             onClick={() => setIsSidebarOpen(false)}
+//           />
+//         )}
+//         <Sidebar
+//           show={isSidebarOpen}
+//           onClose={() => setIsSidebarOpen(false)}
+//           activeItem="verify"
+//         />
+//         <main className="main-content">
+//           <Header toggleSidebar={toggleSidebar} />
+//           <div
+//             className="d-flex justify-content-center align-items-center"
+//             style={{ height: "60vh" }}
+//           >
+//             <div className="text-center">
+//               <div
+//                 className="spinner-border"
+//                 role="status"
+//                 style={{ color: "#e9527a" }}
+//               >
+//                 <span className="visually-hidden">
+//                   {t("selfCreator.checkingStatus")}
+//                 </span>
+//               </div>
+//               <p className="mt-3 text-muted">
+//                 {t("selfCreator.checkingStatus")}
+//               </p>
+//             </div>
+//           </div>
+//         </main>
+//       </div>
+//     );
+//   }
+
+//   return (
+//     <div className="dashboard-container">
+//       {isSidebarOpen && (
+//         <div
+//           className="sidebar-overlay d-lg-none"
+//           onClick={() => setIsSidebarOpen(false)}
+//         />
+//       )}
+
+//       <Sidebar
+//         show={isSidebarOpen}
+//         onClose={() => setIsSidebarOpen(false)}
+//         activeItem="verify"
+//       />
+
+//       <main className="main-content">
+//         <Header toggleSidebar={toggleSidebar} />
+
+//         <div className="content-area">
+//           <div className="self-creator-container">
+//             <h2 className="self-creator-title">
+//               {isVerified ? (
+//                 <>
+//                   <CheckCircle
+//                     size={28}
+//                     style={{ color: "#28a745", marginRight: "10px" }}
+//                   />
+//                   {t("selfCreator.identityVerified")}
+//                 </>
+//               ) : isPending ? (
+//                 <>
+//                   <Lock
+//                     size={28}
+//                     style={{ color: "#ff9800", marginRight: "10px" }}
+//                   />
+//                   {t("selfCreator.verificationPending")}
+//                 </>
+//               ) : (
+//                 t("selfCreator.verifyIdentity")
+//               )}
+//             </h2>
+
+//             {error && <div className="error-message">{error}</div>}
+
+//             <form
+//               style={{ position: "relative" }}
+//               className="form-wrapper"
+//               onSubmit={handleSubmit}
+//               onClick={isFormLocked ? showLockedPopup : undefined}
+//             >
+//               <div>
+//                 {isFormLocked && (
+//                   <div
+//                     style={{
+//                       position: "absolute",
+//                       top: 0,
+//                       left: 0,
+//                       right: 0,
+//                       bottom: 0,
+//                       backgroundColor: "rgb(255 255 255 / 34%)",
+//                       backdropFilter: "blur(0px)",
+//                       zIndex: 10,
+//                       borderRadius: "12px",
+//                       pointerEvents: "auto",
+//                     }}
+//                   />
+//                 )}
+
+//                 <div className="form-group-custom">
+//                   <label className="form-label-custom">
+//                     {t("selfCreator.legalName")}
+//                   </label>
+//                   <input
+//                     type="text"
+//                     name="legal_name"
+//                     className="form-input-custom"
+//                     value={formData.legal_name}
+//                     onChange={handleChange}
+//                     placeholder={t("selfCreator.legalNamePlaceholder")}
+//                     required
+//                     disabled={isFormLocked}
+//                     style={
+//                       isFormLocked
+//                         ? {
+//                             backgroundColor: "transparent",
+//                             cursor: "not-allowed",
+//                           }
+//                         : {}
+//                     }
+//                   />
+//                   <span className="helper-text">
+//                     {t("selfCreator.legalNameHelper")}
+//                   </span>
+//                 </div>
+
+                
+
+//                 <div className="form-group-custom">
+//                   <label className="form-label-custom">
+//                     {t("selfCreator.chooseIdType")}
+//                   </label>
+//                   <Dropdown>
+//                     <Dropdown.Toggle
+//                       className="form-select-custom w-100 text-start bg-transparent border-0 d-flex align-items-center justify-content-between"
+//                       disabled={isFormLocked}
+//                     >
+//                       {documentTypeOptions.find(
+//                         (opt) => opt.value === formData.document_type,
+//                       )?.label || t("selfCreator.chooseIdType")}
+//                     </Dropdown.Toggle>
+//                     <Dropdown.Menu className="w-100">
+//                       {documentTypeOptions.map((option) => (
+//                         <Dropdown.Item
+//                           key={option.value}
+//                           onClick={() =>
+//                             !isFormLocked &&
+//                             handleChange({
+//                               target: {
+//                                 name: "document_type",
+//                                 value: option.value,
+//                               },
+//                             })
+//                           }
+//                         >
+//                           {option.label}
+//                         </Dropdown.Item>
+//                       ))}
+//                     </Dropdown.Menu>
+//                   </Dropdown>
+//                 </div>
+
+//                 <div className="form-group-custom">
+//                   <label className="form-label-custom">
+//                     {t("selfCreator.uploadIdPhoto")}
+//                   </label>
+//                   {renderUploadArea(
+//                     "legal",
+//                     existingLegalIdUrl,
+//                     legalIdImageFile,
+//                     triggerLegalIdImageUpload,
+//                     isFormLocked,
+//                   )}
+//                   <input
+//                     type="file"
+//                     ref={legalIdImageRef}
+//                     onChange={handleLegalIdImageChange}
+//                     style={{ display: "none" }}
+//                     accept=".jpeg,.jpg,.png"
+//                     disabled={isFormLocked}
+//                   />
+//                 </div>
+
+//                 <div className="form-group-custom">
+//                   <label className="form-label-custom">
+//                     {t("selfCreator.chooseBank")}
+//                   </label>
+//                   <Dropdown>
+//                     {/* style={{overflow:'hidden' , textOverflow:'ellipsis'}} */}
+//                     <Dropdown.Toggle
+//                       className="form-select-custom w-100 text-start bg-transparent border-0 d-flex align-items-center justify-content-between"
+//                       disabled={isFormLocked}
+//                     >
+//                       <span className="dropdown-text-ellipsis">
+//                         {formData.bank_name || t("selfCreator.selectBank")}
+//                       </span>
+//                       {/* {formData.bank_name || t("selfCreator.selectBank")} */}
+//                     </Dropdown.Toggle>
+//                     <Dropdown.Menu className="w-100 dropdown-text-ellipsis">
+//                       {bankOptions.map((bank) => (
+//                         <Dropdown.Item
+//                           key={bank}
+//                           onClick={() =>
+//                             !isFormLocked &&
+//                             handleChange({
+//                               target: { name: "bank_name", value: bank },
+//                             })
+//                           }
+//                         >
+//                           {bank}
+//                         </Dropdown.Item>
+//                       ))}
+//                     </Dropdown.Menu>
+//                   </Dropdown>
+//                 </div>
+
+//                 <div className="form-group-custom">
+//                   <label className="form-label-custom">
+//                     {t("selfCreator.accountNumber")}
+//                   </label>
+//                   <input
+//                     type="text"
+//                     name="bank_account_no"
+//                     className="form-input-custom"
+//                     placeholder={t("selfCreator.accountPlaceholder")}
+//                     value={formData.bank_account_no}
+//                     onChange={handleChange}
+//                     required
+//                     disabled={isFormLocked}
+//                     style={
+//                       isFormLocked
+//                         ? {
+//                             backgroundColor: "transparent",
+//                             cursor: "not-allowed",
+//                           }
+//                         : {}
+//                     }
+//                   />
+//                 </div>
+
+//                 <div className="form-group-custom">
+//                   <label className="form-label-custom">
+//                     {t("selfCreator.uploadPassbook")}
+//                   </label>
+//                   {renderUploadArea(
+//                     "passbook",
+//                     existingPassbookUrl,
+//                     passbookImageFile,
+//                     triggerPassbookImageUpload,
+//                     isFormLocked,
+//                   )}
+//                   <input
+//                     type="file"
+//                     ref={passbookImageRef}
+//                     onChange={handlePassbookImageChange}
+//                     style={{ display: "none" }}
+//                     accept=".jpeg,.jpg,.png"
+//                     disabled={isFormLocked}
+//                   />
+//                 </div>
+//               </div>
+
+//               {!isFormLocked && (
+//                 <button
+//                   type="submit"
+//                   className="submit-btn-custom"
+//                   disabled={isLoading}
+//                 >
+//                   {isLoading
+//                     ? t("selfCreator.submitting")
+//                     : t("selfCreator.submitVerification")}
+//                 </button>
+//               )}
+
+//               {isFormLocked && (
+//                 <div style={{ textAlign: "center", marginTop: "20px" }}>
+//                   <button
+//                     type="button"
+//                     onClick={(e) => {
+//                       e.stopPropagation();
+//                     }}
+//                     className="submit-btn-custom"
+//                     style={{ backgroundColor: "#fff" }}
+//                   >
+//                     {t("selfCreator.legalDetailsSubmitted")}
+//                   </button>
+//                 </div>
+//               )}
+//             </form>
+//           </div>
+//         </div>
+//       </main>
+
+//       {/* Message Modal Popup */}
+//       <Modal
+//         show={showMessageModal}
+//         onHide={() => setShowMessageModal(false)}
+//         centered
+//       >
+//         <Modal.Header closeButton>
+//           <Modal.Title>{modalTitle}</Modal.Title>
+//         </Modal.Header>
+//         <Modal.Body>
+//           <p className="mb-0">{modalMessage}</p>
+//         </Modal.Body>
+//         <Modal.Footer>
+//           <Button
+//             variant="primary"
+//             onClick={() => setShowMessageModal(false)}
+//             style={{ backgroundColor: "#e9527a", border: "none" }}
+//           >
+//             OK
+//           </Button>
+//         </Modal.Footer>
+//       </Modal>
+//     </div>
+//   );
+// };
+
+// export default SelfCreator;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 import React, { useState, useRef, useEffect } from "react";
 import { Upload, CheckCircle, Lock, Eye } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -4762,18 +5489,39 @@ const SelfCreator = () => {
     { label: t("selfCreator.docDrivingLicense"), value: "driving_licence" },
   ];
 
+  // ✅ UPDATED: Bank options using i18n translation keys
   const bankOptions = [
-    "Bangkok Bank",
-    "Kasikorn Bank",
-    "Siam Commercial Bank",
-    "Krung Thai Bank",
-    "Bank of Ayudhya",
-    "Thanachart Bank",
-    "TMB Bank",
-    "CIMB Thai Bank",
-    "Standard Chartered Bank",
-    "Hongkong and Shanghai Banking Corporation",
+    { key: "Bangkok_Bank", value: "Bangkok Bank" },
+    { key: "Kasikorn_Bank", value: "Kasikorn Bank" },
+    { key: "Siam_Commercial_Bank", value: "Siam Commercial Bank" },
+    { key: "SCB", value: "SCB" },
+    { key: "Krung_Thai_Bank", value: "Krung Thai Bank" },
+    { key: "Krungthai_Bank", value: "Krungthai Bank" },
+    { key: "Bank_of_Ayudhya", value: "Bank of Ayudhya" },
+    { key: "Krungsri", value: "Krungsri" },
+    { key: "Thanachart_Bank", value: "Thanachart Bank" },
+    { key: "TMB_Bank", value: "TMB Bank" },
+    { key: "TMBThanachart_Bank", value: "TMBThanachart Bank" },
+    { key: "ttb", value: "ttb" },
+    { key: "CIMB_Thai_Bank", value: "CIMB Thai Bank" },
+    { key: "Standard_Chartered_Bank", value: "Standard Chartered Bank" },
+    { key: "Hongkong_and_Shanghai_Banking_Corporation", value: "Hongkong and Shanghai Banking Corporation" },
+    { key: "HSBC", value: "HSBC" },
   ];
+
+  // Helper to get display name from bank value
+  const getBankDisplayName = (bankValue) => {
+    const bank = bankOptions.find((b) => b.value === bankValue);
+    if (bank) {
+      return t(`bankNames.${bank.key}`);
+    }
+    return bankValue || t("selfCreator.selectBank");
+  };
+
+  // Helper to get translated name for dropdown items
+  const getBankItemDisplay = (bankKey) => {
+    return t(`bankNames.${bankKey}`);
+  };
 
   const isFormLocked = isVerified || isPending;
 
@@ -5194,33 +5942,32 @@ const SelfCreator = () => {
                   />
                 </div>
 
+                {/* ✅ UPDATED: Bank dropdown with i18n translations */}
                 <div className="form-group-custom">
                   <label className="form-label-custom">
                     {t("selfCreator.chooseBank")}
                   </label>
                   <Dropdown>
-                    {/* style={{overflow:'hidden' , textOverflow:'ellipsis'}} */}
                     <Dropdown.Toggle
                       className="form-select-custom w-100 text-start bg-transparent border-0 d-flex align-items-center justify-content-between"
                       disabled={isFormLocked}
                     >
                       <span className="dropdown-text-ellipsis">
-                        {formData.bank_name || t("selfCreator.selectBank")}
+                        {getBankDisplayName(formData.bank_name)}
                       </span>
-                      {/* {formData.bank_name || t("selfCreator.selectBank")} */}
                     </Dropdown.Toggle>
                     <Dropdown.Menu className="w-100 dropdown-text-ellipsis">
                       {bankOptions.map((bank) => (
                         <Dropdown.Item
-                          key={bank}
+                          key={bank.key}
                           onClick={() =>
                             !isFormLocked &&
                             handleChange({
-                              target: { name: "bank_name", value: bank },
+                              target: { name: "bank_name", value: bank.value },
                             })
                           }
                         >
-                          {bank}
+                          {getBankItemDisplay(bank.key)}
                         </Dropdown.Item>
                       ))}
                     </Dropdown.Menu>

@@ -5492,6 +5492,540 @@
 
 
 
+// import React, { useState, useEffect, useMemo } from "react";
+// import { Menu, X } from "lucide-react";
+// import { Modal, Button } from "react-bootstrap";
+// import { useTranslation } from "react-i18next";
+// import Sidebar from "./Sidebar";
+// import Header from "./Header";
+// import "../css/Withdrawal.css";
+// import 'bootstrap-icons/font/bootstrap-icons.css';
+
+// const BANKS = [
+//   "Bangkok Bank",
+//   "Kasikorn Bank",
+//   "Siam Commercial Bank",
+//   "Krungthai Bank",
+//   "Bank of Ayudhya",
+//   "TMBThanachart Bank",
+// ];
+
+// // Helper: format number with locale
+// const formatNumber = (value, locale) => {
+//   if (value === null || value === undefined || isNaN(value)) return "—";
+//   return value.toLocaleString(locale === "th" ? "th-TH" : "en-US", {
+//     minimumFractionDigits: 2,
+//     maximumFractionDigits: 2,
+//   });
+// };
+
+// export default function Withdrawal() {
+//   const { t, i18n } = useTranslation();
+//   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+//   const [credit, setCredit] = useState(0);
+//   const [requestedAmount, setRequestedAmount] = useState("");
+
+//   const [bankDetails, setBankDetails] = useState({
+//     name: "",
+//     bank: "",
+//     accountNumber: "",
+//   });
+
+//   const [loading, setLoading] = useState(false);
+//   const [platformFeePercent, setPlatformFeePercent] = useState(3);
+
+//   const [legalStatus, setLegalStatus] = useState(null);
+//   const [legalMessageOriginal, setLegalMessageOriginal] = useState("");
+//   const [legalMessage, setLegalMessage] = useState("");
+//   const [isLegalVerified, setIsLegalVerified] = useState(false);
+//   const [legalLoading, setLegalLoading] = useState(true);
+
+//   const [showMessageModal, setShowMessageModal] = useState(false);
+//   const [modalTitle, setModalTitle] = useState("");
+//   const [modalMessage, setModalMessage] = useState("");
+
+//   // Translated bank list
+//   const bankList = useMemo(() => {
+//     return BANKS.map(bank => ({
+//       value: bank,
+//       label: t(`bankNames.${bank}`, { defaultValue: bank })
+//     }));
+//   }, [t]);
+
+//   // Helper to translate legal messages from API
+//   const translateLegalMessage = (message, status) => {
+//     if (i18n.language !== 'th') return message;
+
+//     const translations = {
+//       "Your identity verification is complete.": "การยืนยันตัวตนของคุณเสร็จสมบูรณ์แล้ว",
+//       "Your identity verification is pending.": "การยืนยันตัวตนของคุณอยู่ระหว่างดำเนินการ",
+//       "Your identity verification has been rejected.": "การยืนยันตัวตนของคุณถูกปฏิเสธ",
+//       "Please complete your legal details.": "กรุณากรอกรายละเอียดทางกฎหมายของคุณ",
+//       "Your legal details are under review.": "รายละเอียดทางกฎหมายของคุณอยู่ระหว่างการตรวจสอบ",
+//       "Your legal details have been approved.": "รายละเอียดทางกฎหมายของคุณได้รับการอนุมัติแล้ว",
+//       "Your legal details have been rejected.": "รายละเอียดทางกฎหมายของคุณถูกปฏิเสธ",
+//     };
+
+//     if (translations[message]) return translations[message];
+//     switch (status) {
+//       case "APPROVED": return "รายละเอียดทางกฎหมายของคุณได้รับการอนุมัติแล้ว";
+//       case "PENDING": return "รายละเอียดทางกฎหมายของคุณอยู่ระหว่างการตรวจสอบ";
+//       case "REJECTED": return "รายละเอียดทางกฎหมายของคุณถูกปฏิเสธ";
+//       default: return message;
+//     }
+//   };
+
+//   // Re‑translate legal message when language changes
+//   useEffect(() => {
+//     if (legalMessageOriginal) {
+//       setLegalMessage(translateLegalMessage(legalMessageOriginal, legalStatus));
+//     }
+//   }, [i18n.language]);
+
+//   useEffect(() => {
+//     fetchCustomerLegalDetails();
+//     fetchLegalVerificationStatus();
+//   }, []);
+
+//   const showMessage = (title, message) => {
+//     setModalTitle(title);
+//     setModalMessage(message);
+//     setShowMessageModal(true);
+//   };
+
+//   const fetchCustomerLegalDetails = async () => {
+//     try {
+//       const token = localStorage.getItem("token");
+//       if (!token) return;
+
+//       const response = await fetch(
+//         "https://sagarxo.app/web-api/customer/legal-details",
+//         {
+//           method: "GET",
+//           headers: {
+//             Authorization: token,
+//             "Content-Type": "application/json",
+//           },
+//         }
+//       );
+
+//       const result = await response.json();
+
+//       if (result.success && result.data) {
+//         const { legal_details, platform_fees_percentage, customer_credit } = result.data;
+
+//         setCredit(parseFloat(customer_credit) || 0);
+//         if (platform_fees_percentage) {
+//           setPlatformFeePercent(parseFloat(platform_fees_percentage));
+//         }
+//         if (legal_details) {
+//           setBankDetails({
+//             name: legal_details.legal_name || "",
+//             bank: legal_details.bank_name || "",
+//             accountNumber: legal_details.bank_account_no || "",
+//           });
+//         }
+//       }
+//     } catch (err) {
+//       console.error("Error fetching customer legal details:", err);
+//       showMessage(t("withdrawal.errorLoadDetails"), t("withdrawal.errorLoadDetails"));
+//     }
+//   };
+
+//   const fetchLegalVerificationStatus = async () => {
+//     try {
+//       const token = localStorage.getItem("token");
+//       if (!token) {
+//         setLegalMessage(t("withdrawal.authErrorMessage"));
+//         setLegalLoading(false);
+//         return;
+//       }
+
+//       const response = await fetch(
+//         "https://sagarxo.app/web-api/customer/legal-details-verification-status",
+//         {
+//           method: "GET",
+//           headers: {
+//             Authorization: token,
+//             "Content-Type": "application/json",
+//           },
+//         }
+//       );
+
+//       const result = await response.json();
+
+//       if (result.success && result.data) {
+//         setLegalStatus(result.data.status);
+//         const original = result.data.message;
+//         setLegalMessageOriginal(original);
+//         setLegalMessage(translateLegalMessage(original, result.data.status));
+//         setIsLegalVerified(result.data.is_legal_details_verified === true);
+//       } else {
+//         setLegalMessage(result.message || t("withdrawal.errorNetwork"));
+//         setIsLegalVerified(false);
+//       }
+//     } catch (err) {
+//       console.error("Error fetching legal verification status:", err);
+//       setLegalMessage(t("withdrawal.errorNetwork"));
+//       setIsLegalVerified(false);
+//     } finally {
+//       setLegalLoading(false);
+//     }
+//   };
+
+//   const parsedAmount = parseFloat(requestedAmount) || 0;
+//   const platformFee = parseFloat(((parsedAmount * platformFeePercent) / 100).toFixed(2));
+//   const netAmount = parseFloat((parsedAmount - platformFee).toFixed(2));
+
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+
+//     if (!isLegalVerified) {
+//       showMessage(
+//         t("withdrawal.verificationRequired"),
+//         t("withdrawal.verificationMessage")
+//       );
+//       return;
+//     }
+
+//     if (!requestedAmount || parsedAmount <= 0) {
+//       showMessage(t("withdrawal.invalidAmount"), t("withdrawal.invalidAmountMessage"));
+//       return;
+//     }
+//     if (parsedAmount > credit) {
+//       showMessage(t("withdrawal.insufficientCredit"), t("withdrawal.insufficientCreditMessage"));
+//       return;
+//     }
+//     if (!bankDetails.name.trim() || !bankDetails.accountNumber.trim()) {
+//       showMessage(t("withdrawal.missingBankDetails"), t("withdrawal.missingBankDetailsMessage"));
+//       return;
+//     }
+
+//     try {
+//       setLoading(true);
+//       const token = localStorage.getItem("token");
+//       if (!token) {
+//         showMessage(t("withdrawal.authError"), t("withdrawal.authErrorMessage"));
+//         return;
+//       }
+
+//       const response = await fetch(
+//         "https://sagarxo.app/web-api/customer/withdrawal",
+//         {
+//           method: "POST",
+//           headers: {
+//             "Content-Type": "application/json",
+//             Authorization: token,
+//           },
+//           body: JSON.stringify({
+//             amount: String(parsedAmount),
+//           }),
+//         }
+//       );
+
+//       const result = await response.json();
+
+//       if (result.success) {
+//         showMessage(
+//           t("withdrawal.withdrawalSuccess"),
+//           result.message || t("withdrawal.withdrawalSuccessMessage")
+//         );
+//         setRequestedAmount("");
+//         fetchCustomerLegalDetails();
+//       } else {
+//         showMessage(
+//           t("withdrawal.withdrawalFailed"),
+//           result.message || t("withdrawal.withdrawalFailedMessage")
+//         );
+//       }
+//     } catch (err) {
+//       console.error("Withdrawal error:", err);
+//       showMessage(t("withdrawal.networkErrorTitle"), t("withdrawal.networkErrorMessage"));
+//     } finally {
+//       setLoading(false);
+//     }
+//   };
+
+//   const getLegalStatusClass = () => {
+//     switch (legalStatus) {
+//       case "APPROVED":
+//         return "legal-banner success";
+//       case "PENDING":
+//         return "legal-banner warning";
+//       case "REJECTED":
+//         return "legal-banner error";
+//       case "NOTSTARTED":
+//       default:
+//         return "legal-banner info";
+//     }
+//   };
+
+//   const showVerificationPopup = () => {
+//     if (!isLegalVerified && legalMessage) {
+//       showMessage(t("withdrawal.verificationStatusTitle"), legalMessage);
+//     }
+//   };
+
+//   const handleCloseSidebar = () => setIsSidebarOpen(false);
+
+//   return (
+//     <div className="main-container">
+//       <button
+//         className="mobile-toggle d-none"
+//         onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+//       >
+//         {isSidebarOpen ? <X /> : <Menu />}
+//       </button>
+
+//       {isSidebarOpen && (
+//         <div
+//           className="sidebar-overlay d-lg-none"
+//           onClick={handleCloseSidebar}
+//         />
+//       )}
+
+//       <Sidebar show={isSidebarOpen} onClose={handleCloseSidebar} />
+
+//       <div className="main-wrapper">
+//         <Header toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)} />
+
+//         <main className="p-0">
+//           <div className="withdrawal-page">
+//             <div className="withdrawal-wrapper">
+//               {/* Notice Banner */}
+//               <div className="notice-banner">
+//                 <div className="d-flex gap-2">
+//                   {/* <span className="notice-icon">&#9432;</span> */}
+//                   <span class="notice-icon text-colors"><i class="bi bi-info-circle"></i></span>
+//                   {/* <i className="bi bi-info-circle" style={{color:'red'}}></i> */}
+//                   <p className="text-colors" style={{ fontSize: "13px" }}>
+//                     {t("withdrawal.noticeMessage")}
+//                   </p>
+//                 </div>
+
+//                 <div>
+//                   {!legalLoading && legalMessage && (
+//                     <div className={`${getLegalStatusClass()} d-flex gap-2`}>
+//                       <span className="notice-icon text-colors">
+//                         <i
+//                           className={
+//                             legalStatus === "APPROVED"
+//                               ? "bi bi-check-circle-fill"
+//                               : "bi bi-info-circle"
+//                           }
+//                         ></i>
+//                       </span>
+//                       <p className="notice-text">{legalMessage}</p>
+//                     </div>
+//                   )}
+//                 </div>
+//               </div>
+
+//               {/* Credit Badge */}
+//               <div className="credit-badge">
+//                 {t("withdrawal.credit")}{" "}
+//                 {formatNumber(credit, i18n.language)}{" "}
+//                 {t("thb")}
+//               </div>
+
+//               {/* Form wrapper */}
+//               <div style={{ position: "relative" }}>
+//                 {/* Requested Amount */}
+//                 <div className="form-field mt-0" onClick={() => { if (!isLegalVerified) showVerificationPopup(); }} style={{ cursor: !isLegalVerified ? "pointer" : "default" }}>
+//                   <label className="field-label">{t("withdrawal.requestedAmount")}</label>
+//                   <input
+//                     type="text"
+//                     className="field-input text-white mt-0"
+//                     value={requestedAmount}
+//                     placeholder={t("withdrawal.amountPlaceholder")}
+//                     onChange={(e) => {
+//                       const value = e.target.value;
+//                       if (/^\d*\.?\d*$/.test(value)) {
+//                         setRequestedAmount(value);
+//                       }
+//                     }}
+//                     onBlur={() => {
+//                       if (requestedAmount) {
+//                         setRequestedAmount(parseFloat(requestedAmount).toFixed(2));
+//                       }
+//                     }}
+//                     inputMode="decimal"
+//                     disabled={!isLegalVerified}
+//                     onClick={() => {
+//                       if (!isLegalVerified) showVerificationPopup();
+//                     }}
+//                   />
+//                   <span className="field-hint">
+//                     {t("withdrawal.feeHint", { fee: platformFeePercent })}
+//                   </span>
+//                 </div>
+
+//                 {/* Bank Details Section with permanent blur overlay */}
+//                 <div
+//                   style={{
+//                     position: "relative",
+//                     minHeight: "200px",
+//                     background: "#f9ced921",
+//                     backdropFilter: "blur(1px)",
+//                     WebkitBackdropFilter: "blur(12px)",
+//                     borderRadius: "10px",
+//                     padding: "15px",
+//                   }}
+//                 >
+//                   {!isLegalVerified && (
+//                     <div
+//                       onClick={showVerificationPopup}
+//                       style={{
+//                         position: "absolute",
+//                         top: 0,
+//                         left: 0,
+//                         right: 0,
+//                         bottom: 0,
+//                         inset:" 500px",
+//                         backgroundcolor: "rgba(255, 255, 255, -19.5)",
+//                         backdropfilter: "blur(1px)",
+//                         WebkitBackdropFilter: "blur(3px)",
+//                         zIndex: 9999,
+//                         borderRadius: "8px",
+//                         cursor: "pointer",
+//                       }}
+//                     />
+//                   )}
+
+//                   <div className="section-title">
+//                     {t("withdrawal.bankDetailsTitle")}{" "}
+//                     <span style={{ fontSize: '12px' }}>{t("withdrawal.nonEditableNote")}</span>
+//                   </div>
+
+//                   <div className="form-field">
+//                     <label className="field-label">{t("withdrawal.enterName")}</label>
+//                     <input
+//                       type="text"
+//                       className="field-input text-white"
+//                       value={bankDetails.name}
+//                       disabled={true}
+//                       placeholder={t("withdrawal.namePlaceholder")}
+//                     />
+//                     <span className="field-hint">{t("withdrawal.nameHint")}</span>
+//                   </div>
+
+//                   <div className="form-field">
+//                     <label className="field-label z-3">{t("withdrawal.chooseBank")}</label>
+//                     <div className="select-wrapper w-100">
+//                       <select
+//                         className="field-select field-selectsss w-100 text-white"
+//                         value={bankDetails.bank}
+//                         disabled={true}
+//                       >
+//                         {bankList.map((bank) => (
+//                           <option key={bank.value} value={bank.value}>
+//                             {bank.label}
+//                           </option>
+//                         ))}
+//                       </select>
+//                     </div>
+//                   </div>
+
+//                   <div className="form-field">
+//                     <label className="field-label">
+//                       {t("withdrawal.bankAccountNumber")}
+//                     </label>
+//                     <input
+//                       type="text"
+//                       className="field-input text-white"
+//                       value={bankDetails.accountNumber}
+//                       disabled={true}
+//                       placeholder=""
+//                     />
+//                   </div>
+//                 </div>
+
+//                 {/* Summary Table */}
+//                 <div
+//                   className="summary-table"
+//                 >
+//                   <div className="summary-row">
+//                     <span className="summary-label">{t("withdrawal.requestedAmountLabel")}</span>
+//                     <span className="summary-value">
+//                       {parsedAmount > 0
+//                         ? `${formatNumber(parsedAmount, i18n.language)} ${t("thb")}`
+//                         : "—"}
+//                     </span>
+//                   </div>
+//                   <div className="summary-row">
+//                     {/* <span className="summary-label">
+//                       {t("withdrawal.legalFeeLabel", { fee: platformFeePercent })}
+//                     </span> */}
+
+//                     <span className="summary-label">
+//   {t("Tax Fee")}
+// </span>
+//                     <span className="summary-value">
+//                       {parsedAmount > 0
+//                         ? `${formatNumber(platformFee, i18n.language)} ${t("thb")}`
+//                         : "—"}
+//                     </span>
+//                   </div>
+//                   <div className="summary-row net-row">
+//                     <span className="summary-label net-label">{t("withdrawal.netAmountLabel")}</span>
+//                     <span className="summary-value net-value">
+//                       {parsedAmount > 0
+//                         ? `${formatNumber(netAmount, i18n.language)} ${t("thb")}`
+//                         : "—"}
+//                     </span>
+//                   </div>
+//                 </div>
+
+//                 <button
+//                   className="submit-btn"
+//                   onClick={handleSubmit}
+//                   disabled={loading || !isLegalVerified}
+//                 >
+//                   {loading ? t("withdrawal.submitting") : t("withdrawal.submit")}
+//                 </button>
+//               </div>
+//             </div>
+//           </div>
+//         </main>
+//       </div>
+
+//       {/* Message Modal Popup */}
+//       <Modal
+//         show={showMessageModal}
+//         onHide={() => setShowMessageModal(false)}
+//         centered
+//       >
+//         <Modal.Header closeButton>
+//           <Modal.Title>{modalTitle}</Modal.Title>
+//         </Modal.Header>
+//         <Modal.Body>
+//           <p className="mb-0">{modalMessage}</p>
+//         </Modal.Body>
+//         <Modal.Footer>
+//           <Button
+//             variant="primary"
+//             onClick={() => setShowMessageModal(false)}
+//             style={{ backgroundColor: "#e9527a", border: "none" }}
+//           >
+//             {t("withdrawal.ok")}
+//           </Button>
+//         </Modal.Footer>
+//       </Modal>
+//     </div>
+//   );
+// }
+
+
+
+
+
+
+
+
+
+
+
+
 import React, { useState, useEffect, useMemo } from "react";
 import { Menu, X } from "lucide-react";
 import { Modal, Button } from "react-bootstrap";
@@ -5499,15 +6033,16 @@ import { useTranslation } from "react-i18next";
 import Sidebar from "./Sidebar";
 import Header from "./Header";
 import "../css/Withdrawal.css";
-import 'bootstrap-icons/font/bootstrap-icons.css';
+import "bootstrap-icons/font/bootstrap-icons.css";
 
+// Bank keys used for translations only (no longer needed for select)
 const BANKS = [
-  "Bangkok Bank",
-  "Kasikorn Bank",
-  "Siam Commercial Bank",
-  "Krungthai Bank",
-  "Bank of Ayudhya",
-  "TMBThanachart Bank",
+  "Bangkok_Bank",
+  "Kasikorn_Bank",
+  "Siam_Commercial_Bank",
+  "Krung_Thai_Bank",
+  "Bank_of_Ayudhya",
+  "TMBThanachart_Bank",
 ];
 
 // Helper: format number with locale
@@ -5519,6 +6054,29 @@ const formatNumber = (value, locale) => {
   });
 };
 
+// --------------------------------------------------
+// Mapping from English bank name → i18n key
+// Add all banks your backend might return
+// --------------------------------------------------
+const ENGLISH_BANK_TO_KEY = {
+  "Bangkok Bank": "Bangkok_Bank",
+  "Kasikorn Bank": "Kasikorn_Bank",
+  "Siam Commercial Bank": "Siam_Commercial_Bank",
+  "SCB": "SCB",
+  "Krung Thai Bank": "Krung_Thai_Bank",
+  "Krungthai Bank": "Krungthai_Bank",
+  "Bank of Ayudhya": "Bank_of_Ayudhya",
+  "Krungsri": "Krungsri",
+  "Thanachart Bank": "Thanachart_Bank",
+  "TMB Bank": "TMB_Bank",
+  "TMBThanachart Bank": "TMBThanachart_Bank",
+  "ttb": "ttb",
+  "CIMB Thai Bank": "CIMB_Thai_Bank",
+  "Standard Chartered Bank": "Standard_Chartered_Bank",
+  "Hongkong and Shanghai Banking Corporation": "Hongkong_and_Shanghai_Banking_Corporation",
+  "HSBC": "HSBC",
+};
+
 export default function Withdrawal() {
   const { t, i18n } = useTranslation();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -5527,7 +6085,7 @@ export default function Withdrawal() {
 
   const [bankDetails, setBankDetails] = useState({
     name: "",
-    bank: "",
+    bank: "", // English name from backend
     accountNumber: "",
   });
 
@@ -5544,18 +6102,13 @@ export default function Withdrawal() {
   const [modalTitle, setModalTitle] = useState("");
   const [modalMessage, setModalMessage] = useState("");
 
-  // Translated bank list
-  const bankList = useMemo(() => {
-    return BANKS.map(bank => ({
-      value: bank,
-      label: t(`bankNames.${bank}`, { defaultValue: bank })
-    }));
-  }, [t]);
+  // Auto-fill credit modal state
+  const [showCreditModal, setShowCreditModal] = useState(false);
+  const [excessAmount, setExcessAmount] = useState(0);
 
-  // Helper to translate legal messages from API
+  // Translate legal messages from API
   const translateLegalMessage = (message, status) => {
-    if (i18n.language !== 'th') return message;
-
+    if (i18n.language !== "th") return message;
     const translations = {
       "Your identity verification is complete.": "การยืนยันตัวตนของคุณเสร็จสมบูรณ์แล้ว",
       "Your identity verification is pending.": "การยืนยันตัวตนของคุณอยู่ระหว่างดำเนินการ",
@@ -5565,17 +6118,20 @@ export default function Withdrawal() {
       "Your legal details have been approved.": "รายละเอียดทางกฎหมายของคุณได้รับการอนุมัติแล้ว",
       "Your legal details have been rejected.": "รายละเอียดทางกฎหมายของคุณถูกปฏิเสธ",
     };
-
     if (translations[message]) return translations[message];
     switch (status) {
-      case "APPROVED": return "รายละเอียดทางกฎหมายของคุณได้รับการอนุมัติแล้ว";
-      case "PENDING": return "รายละเอียดทางกฎหมายของคุณอยู่ระหว่างการตรวจสอบ";
-      case "REJECTED": return "รายละเอียดทางกฎหมายของคุณถูกปฏิเสธ";
-      default: return message;
+      case "APPROVED":
+        return "รายละเอียดทางกฎหมายของคุณได้รับการอนุมัติแล้ว";
+      case "PENDING":
+        return "รายละเอียดทางกฎหมายของคุณอยู่ระหว่างการตรวจสอบ";
+      case "REJECTED":
+        return "รายละเอียดทางกฎหมายของคุณถูกปฏิเสธ";
+      default:
+        return message;
     }
   };
 
-  // Re‑translate legal message when language changes
+  // Re‑translate when language changes
   useEffect(() => {
     if (legalMessageOriginal) {
       setLegalMessage(translateLegalMessage(legalMessageOriginal, legalStatus));
@@ -5612,7 +6168,8 @@ export default function Withdrawal() {
       const result = await response.json();
 
       if (result.success && result.data) {
-        const { legal_details, platform_fees_percentage, customer_credit } = result.data;
+        const { legal_details, platform_fees_percentage, customer_credit } =
+          result.data;
 
         setCredit(parseFloat(customer_credit) || 0);
         if (platform_fees_percentage) {
@@ -5621,14 +6178,17 @@ export default function Withdrawal() {
         if (legal_details) {
           setBankDetails({
             name: legal_details.legal_name || "",
-            bank: legal_details.bank_name || "",
+            bank: legal_details.bank_name || "", // still English
             accountNumber: legal_details.bank_account_no || "",
           });
         }
       }
     } catch (err) {
       console.error("Error fetching customer legal details:", err);
-      showMessage(t("withdrawal.errorLoadDetails"), t("withdrawal.errorLoadDetails"));
+      showMessage(
+        t("withdrawal.errorLoadDetails"),
+        t("withdrawal.errorLoadDetails")
+      );
     }
   };
 
@@ -5674,8 +6234,72 @@ export default function Withdrawal() {
   };
 
   const parsedAmount = parseFloat(requestedAmount) || 0;
-  const platformFee = parseFloat(((parsedAmount * platformFeePercent) / 100).toFixed(2));
+  const platformFee = parseFloat(
+    ((parsedAmount * platformFeePercent) / 100).toFixed(2)
+  );
   const netAmount = parseFloat((parsedAmount - platformFee).toFixed(2));
+
+  // Translate the bank name using the mapping
+  const translatedBankName = useMemo(() => {
+    if (!bankDetails.bank) return "";
+    const key = ENGLISH_BANK_TO_KEY[bankDetails.bank];
+    return key ? t(`bankNames.${key}`) : bankDetails.bank; // fallback to raw English
+  }, [bankDetails.bank, t]);
+
+  // Amount change with auto-fill modal
+  // const handleAmountChange = (e) => {
+  //   const value = e.target.value;
+
+  //   if (/^\d*\.?\d*$/.test(value)) {
+  //     const numValue = parseFloat(value) || 0;
+
+  //     if (numValue > credit && credit > 0) {
+  //       setExcessAmount(numValue);
+  //       setShowCreditModal(true);
+  //       setRequestedAmount(value); // keep entered value for modal display
+  //     } else {
+  //       setRequestedAmount(value);
+  //     }
+  //   }
+  // };
+
+
+
+  const handleAmountChange = (e) => {
+  let value = e.target.value;
+
+  // Allow numbers + optional decimal input (user can type 194.50)
+  if (!/^\d*\.?\d*$/.test(value)) return;
+
+  let numValue = parseFloat(value) || 0;
+
+  // 🔥 ROUND DOWN ALWAYS
+  numValue = Math.floor(numValue);
+
+  if (numValue > credit && credit > 0) {
+    setExcessAmount(numValue);
+    setShowCreditModal(true);
+    setRequestedAmount(value);
+  } else {
+    setRequestedAmount(value);
+  }
+};
+
+  // const handleAutoFillCredit = () => {
+  //   setRequestedAmount(credit.toFixed(2));
+  //   setShowCreditModal(false);
+  // };
+
+
+  const handleAutoFillCredit = () => {
+  const value = Math.floor(credit);
+  setRequestedAmount(value.toFixed(2)); // ✅ 1000.00
+  setShowCreditModal(false);
+};
+
+  const handleKeepEnteredAmount = () => {
+    setShowCreditModal(false);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -5689,15 +6313,24 @@ export default function Withdrawal() {
     }
 
     if (!requestedAmount || parsedAmount <= 0) {
-      showMessage(t("withdrawal.invalidAmount"), t("withdrawal.invalidAmountMessage"));
+      showMessage(
+        t("withdrawal.invalidAmount"),
+        t("withdrawal.invalidAmountMessage")
+      );
       return;
     }
     if (parsedAmount > credit) {
-      showMessage(t("withdrawal.insufficientCredit"), t("withdrawal.insufficientCreditMessage"));
+      showMessage(
+        t("withdrawal.insufficientCredit"),
+        t("withdrawal.insufficientCreditMessage")
+      );
       return;
     }
     if (!bankDetails.name.trim() || !bankDetails.accountNumber.trim()) {
-      showMessage(t("withdrawal.missingBankDetails"), t("withdrawal.missingBankDetailsMessage"));
+      showMessage(
+        t("withdrawal.missingBankDetails"),
+        t("withdrawal.missingBankDetailsMessage")
+      );
       return;
     }
 
@@ -5705,7 +6338,10 @@ export default function Withdrawal() {
       setLoading(true);
       const token = localStorage.getItem("token");
       if (!token) {
-        showMessage(t("withdrawal.authError"), t("withdrawal.authErrorMessage"));
+        showMessage(
+          t("withdrawal.authError"),
+          t("withdrawal.authErrorMessage")
+        );
         return;
       }
 
@@ -5740,7 +6376,10 @@ export default function Withdrawal() {
       }
     } catch (err) {
       console.error("Withdrawal error:", err);
-      showMessage(t("withdrawal.networkErrorTitle"), t("withdrawal.networkErrorMessage"));
+      showMessage(
+        t("withdrawal.networkErrorTitle"),
+        t("withdrawal.networkErrorMessage")
+      );
     } finally {
       setLoading(false);
     }
@@ -5754,7 +6393,6 @@ export default function Withdrawal() {
         return "legal-banner warning";
       case "REJECTED":
         return "legal-banner error";
-      case "NOTSTARTED":
       default:
         return "legal-banner info";
     }
@@ -5795,9 +6433,11 @@ export default function Withdrawal() {
               {/* Notice Banner */}
               <div className="notice-banner">
                 <div className="d-flex gap-2">
-                  {/* <span className="notice-icon">&#9432;</span> */}
-                  <span class="notice-icon text-colors"><i class="bi bi-info-circle"></i></span>
-                  {/* <i className="bi bi-info-circle" style={{color:'red'}}></i> */}
+                  <span className="notice-icon text-colors">
+                    {/* <i className="bi bi-info-circle"></i> */}
+
+                    <i class="fa-solid fa-circle-info"></i>
+                  </span>
                   <p className="text-colors" style={{ fontSize: "13px" }}>
                     {t("withdrawal.noticeMessage")}
                   </p>
@@ -5811,7 +6451,7 @@ export default function Withdrawal() {
                           className={
                             legalStatus === "APPROVED"
                               ? "bi bi-check-circle-fill"
-                              : "bi bi-info-circle"
+                              : "fa-solid fa-circle-info"
                           }
                         ></i>
                       </span>
@@ -5824,31 +6464,44 @@ export default function Withdrawal() {
               {/* Credit Badge */}
               <div className="credit-badge">
                 {t("withdrawal.credit")}{" "}
-                {formatNumber(credit, i18n.language)}{" "}
-                {t("thb")}
+                {formatNumber(credit, i18n.language)} {t("thb")}
               </div>
 
               {/* Form wrapper */}
               <div style={{ position: "relative" }}>
                 {/* Requested Amount */}
-                <div className="form-field mt-0" onClick={() => { if (!isLegalVerified) showVerificationPopup(); }} style={{ cursor: !isLegalVerified ? "pointer" : "default" }}>
-                  <label className="field-label">{t("withdrawal.requestedAmount")}</label>
+                <div
+                  className="form-field mt-0"
+                  onClick={() => {
+                    if (!isLegalVerified) showVerificationPopup();
+                  }}
+                  style={{ cursor: !isLegalVerified ? "pointer" : "default" }}
+                >
+                  <label className="field-label">
+                    {t("withdrawal.requestedAmount")}
+                  </label>
                   <input
                     type="text"
                     className="field-input text-white mt-0"
                     value={requestedAmount}
                     placeholder={t("withdrawal.amountPlaceholder")}
-                    onChange={(e) => {
-                      const value = e.target.value;
-                      if (/^\d*\.?\d*$/.test(value)) {
-                        setRequestedAmount(value);
-                      }
-                    }}
+                    onChange={handleAmountChange}
+                    // onBlur={() => {
+                    //   if (requestedAmount) {
+                    //     setRequestedAmount(
+                    //       parseFloat(requestedAmount).toFixed(2)
+                    //     );
+                    //   }
+                    // }}
+
                     onBlur={() => {
-                      if (requestedAmount) {
-                        setRequestedAmount(parseFloat(requestedAmount).toFixed(2));
-                      }
-                    }}
+  if (requestedAmount) {
+    const value = Math.floor(parseFloat(requestedAmount) || 0);
+    setRequestedAmount(value.toFixed(2)); // ✅ always .00
+  }
+}}
+
+
                     inputMode="decimal"
                     disabled={!isLegalVerified}
                     onClick={() => {
@@ -5860,7 +6513,7 @@ export default function Withdrawal() {
                   </span>
                 </div>
 
-                {/* Bank Details Section with permanent blur overlay */}
+                {/* Bank Details Section */}
                 <div
                   style={{
                     position: "relative",
@@ -5881,10 +6534,9 @@ export default function Withdrawal() {
                         left: 0,
                         right: 0,
                         bottom: 0,
-                        inset:" 500px",
-                        backgroundcolor: "rgba(255, 255, 255, -19.5)",
-                        backdropfilter: "blur(1px)",
-                        WebkitBackdropFilter: "blur(3px)",
+                        background: "rgba(255,255,255,0)",
+                        backdropFilter: "blur(0px)",
+                        WebkitBackdropFilter: "blur(0px)",
                         zIndex: 9999,
                         borderRadius: "8px",
                         cursor: "pointer",
@@ -5894,11 +6546,15 @@ export default function Withdrawal() {
 
                   <div className="section-title">
                     {t("withdrawal.bankDetailsTitle")}{" "}
-                    <span style={{ fontSize: '12px' }}>{t("withdrawal.nonEditableNote")}</span>
+                    <span style={{ fontSize: "12px" }}>
+                      {t("withdrawal.nonEditableNote")}
+                    </span>
                   </div>
 
                   <div className="form-field">
-                    <label className="field-label">{t("withdrawal.enterName")}</label>
+                    <label className="field-label">
+                      {t("withdrawal.enterName")}
+                    </label>
                     <input
                       type="text"
                       className="field-input text-white"
@@ -5906,24 +6562,23 @@ export default function Withdrawal() {
                       disabled={true}
                       placeholder={t("withdrawal.namePlaceholder")}
                     />
-                    <span className="field-hint">{t("withdrawal.nameHint")}</span>
+                    <span className="field-hint">
+                      {t("withdrawal.nameHint")}
+                    </span>
                   </div>
 
+                  {/* ✅ BANK NAME – now a disabled input showing the translated name */}
                   <div className="form-field">
-                    <label className="field-label z-3">{t("withdrawal.chooseBank")}</label>
-                    <div className="select-wrapper w-100">
-                      <select
-                        className="field-select field-selectsss w-100 text-white"
-                        value={bankDetails.bank}
-                        disabled={true}
-                      >
-                        {bankList.map((bank) => (
-                          <option key={bank.value} value={bank.value}>
-                            {bank.label}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
+                    <label className="field-label">
+                      {t("withdrawal.chooseBank")}
+                    </label>
+                    <input
+                      type="text"
+                      className="field-input text-white"
+                      value={translatedBankName}
+                      disabled={true}
+                      placeholder=""
+                    />
                   </div>
 
                   <div className="form-field">
@@ -5941,11 +6596,11 @@ export default function Withdrawal() {
                 </div>
 
                 {/* Summary Table */}
-                <div
-                  className="summary-table"
-                >
+                <div className="summary-table">
                   <div className="summary-row">
-                    <span className="summary-label">{t("withdrawal.requestedAmountLabel")}</span>
+                    <span className="summary-label">
+                      {t("withdrawal.requestedAmountLabel")}
+                    </span>
                     <span className="summary-value">
                       {parsedAmount > 0
                         ? `${formatNumber(parsedAmount, i18n.language)} ${t("thb")}`
@@ -5953,13 +6608,12 @@ export default function Withdrawal() {
                     </span>
                   </div>
                   <div className="summary-row">
-                    {/* <span className="summary-label">
-                      {t("withdrawal.legalFeeLabel", { fee: platformFeePercent })}
-                    </span> */}
-
                     <span className="summary-label">
-  {t("Legal Fee")}
-</span>
+                      {/* {t("withdrawal.legalfeeLabel", { fee: platformFeePercent })} */}
+                        
+                        {t("withdrawal.taxFeeLabel", { fee: platformFeePercent })}
+                    
+                    </span>
                     <span className="summary-value">
                       {parsedAmount > 0
                         ? `${formatNumber(platformFee, i18n.language)} ${t("thb")}`
@@ -5967,7 +6621,9 @@ export default function Withdrawal() {
                     </span>
                   </div>
                   <div className="summary-row net-row">
-                    <span className="summary-label net-label">{t("withdrawal.netAmountLabel")}</span>
+                    <span className="summary-label net-label">
+                      {t("withdrawal.netAmountLabel")}
+                    </span>
                     <span className="summary-value net-value">
                       {parsedAmount > 0
                         ? `${formatNumber(netAmount, i18n.language)} ${t("thb")}`
@@ -6011,20 +6667,72 @@ export default function Withdrawal() {
           </Button>
         </Modal.Footer>
       </Modal>
+
+      {/* Auto-fill Credit Modal */}
+      <Modal
+        show={showCreditModal}
+        onHide={() => setShowCreditModal(false)}
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title style={{ color: "#e9527a" }}>
+            <i className="bi bi-exclamation-triangle-fill me-2"></i>
+            {t("withdrawal.insufficientCredit")}
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div className="text-center mb-3">
+            <div className="mb-3">
+              <i
+                className="bi bi-wallet2"
+                style={{ fontSize: "48px", color: "#e9527a" }}
+              ></i>
+            </div>
+            <p className="mb-2">{t("withdrawal.insufficientCreditMessage")}</p>
+            <div className="d-flex justify-content-center gap-4 my-3">
+              <div className="text-center">
+                <small className="text-muted d-block">
+                  {t("withdrawal.requestedAmountLabel")}
+                </small>
+                <strong className="text-danger">
+                  {formatNumber(excessAmount, i18n.language)} {t("thb")}
+                </strong>
+              </div>
+              <div className="text-center">
+                <small className="text-muted d-block">
+                  {t("withdrawal.credit")}
+                </small>
+                <strong className="text-success">
+                  {formatNumber(credit, i18n.language)} {t("thb")}
+                </strong>
+              </div>
+            </div>
+            <p className="text-muted" style={{ fontSize: "14px" }}>
+              {i18n.language === "th"
+                ? "คุณต้องการใช้จำนวนเครดิตที่มีอยู่ทั้งหมดหรือไม่?"
+                : "Would you like to use your full available credit?"}
+            </p>
+          </div>
+        </Modal.Body>
+        <Modal.Footer className="justify-content-center">
+          {/* <Button
+            variant="outline-secondary"
+            onClick={handleKeepEnteredAmount}
+            className="px-4"
+          >
+            {i18n.language === "th" ? "ไม่, เก็บไว้" : "No, Keep it"}
+          </Button> */}
+          <Button
+            variant="primary"
+            onClick={handleAutoFillCredit}
+            style={{ backgroundColor: "#e9527a", border: "none" }}
+            className="px-4 w-50"
+          >
+            <i className="bi bi-check-lg me-1"></i>
+            {i18n.language === "th" ? "ใช่, เติมเต็ม" : "Yes, Auto Fill"}
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

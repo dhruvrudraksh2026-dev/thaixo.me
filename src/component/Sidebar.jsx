@@ -2145,7 +2145,7 @@ export default function Sidebar({ show, onClose, activeItem }) {
             e.stopPropagation();
             handleLogoutClick();
           }}
-          className={`sidebar-item sidebar-item-inactive ${isLoggingOut ? 'opacity-50' : ''}`}
+          className={`sidebar-item sidebar-item-inactive ps-2 ms-1 ${isLoggingOut ? 'opacity-50' : ''}`}
           style={{ cursor: isLoggingOut ? "not-allowed" : "pointer" }}
         >
           {isLoggingOut ? (

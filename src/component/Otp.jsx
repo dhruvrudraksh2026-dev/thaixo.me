@@ -3519,14 +3519,21 @@ export default function VerifyOtp() {
   return (
     <div className="Otp-container bg-white">
       <div className="Otp-image-side d-lg-flex">
-        <motion.img
+        {/* <motion.img
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
           src={Otps}
           alt="OTP Illustration"
           className="side-image w-75"
-        />
+        /> */}
+
+        <img
+  src={Otps}
+  alt="Community Illustration"
+  className="side-image w-75"
+/>
+      
       </div>
 
       <div className="Otp-form-side">
