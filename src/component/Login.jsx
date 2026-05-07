@@ -1788,14 +1788,34 @@ export default function Login() {
         }
       );
 
+      // if (response.data.success) {
+      //     localStorage.setItem("userId", response.data.data.userId); // ✅ store login state
+      //   navigate("/otp", {
+      //       replace: true,
+      //     state: {
+      //       userId: response.data.data.userId,
+      //     },
+      //   });
+      // } 
+      
+
       if (response.data.success) {
-          localStorage.setItem("userId", response.data.data.userId); // ✅ store login state
-        navigate("/otp", {
-          state: {
-            userId: response.data.data.userId,
-          },
-        });
-      } else {
+
+    // ✅ Save login info
+    localStorage.setItem("userId", response.data.data.userId);
+
+    // ✅ Save token
+    localStorage.setItem("token", response.data.data.token);
+
+    navigate("/otp", {
+      state: {
+        userId: response.data.data.userId,
+      },
+      replace: true,
+    });
+}
+      
+      else {
         setError(
           response.data.message || t("login.error.loginFailed")
         );

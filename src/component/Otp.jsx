@@ -3496,7 +3496,7 @@ export default function VerifyOtp() {
           localStorage.setItem('token', token);
         }
 
-        navigate('/dashboard');
+        navigate('/dashboard',  { replace: true });
       } else {
         setError(data.message || t('otp.error.verificationFailed', 'Verification failed'));
         setOtp(["", "", "", "", "", ""]);

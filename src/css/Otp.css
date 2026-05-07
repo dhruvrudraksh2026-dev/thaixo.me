@@ -226,7 +226,8 @@ html, body {
 }
 
 .error-message{
-  background-color:#C85269;
+  color:#C85269;
+  font-weight: 600;
 }
 
 .required-star {

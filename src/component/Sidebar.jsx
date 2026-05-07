@@ -2023,6 +2023,7 @@ export default function Sidebar({ show, onClose, activeItem }) {
       if (!token) {
         localStorage.clear();
         navigate("/");
+        window.location.reload();
         return;
       }
       await axios.post(
