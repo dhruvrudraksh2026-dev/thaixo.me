@@ -271,28 +271,6 @@
 
 // export default IncomeDashboard;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // import React, { useState } from "react";
 // import { motion, AnimatePresence } from "framer-motion";
 // import { ArrowLeft, Bell, Menu, X } from "lucide-react";
@@ -639,19 +617,6 @@
 // };
 // export default IncomeDashboard;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 // import React, { useState } from "react";
 // import { motion, AnimatePresence } from "framer-motion";
 // import { ArrowLeft, Menu, X } from "lucide-react";
@@ -863,35 +828,6 @@
 
 // export default IncomeDashboard;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // import React, { useState, useEffect } from "react";
 // import { motion, AnimatePresence } from "framer-motion";
 // import { ArrowLeft, Menu, X, Loader2 } from "lucide-react";
@@ -928,7 +864,7 @@
 //   }
 
 //   const data = await response.json();
-  
+
 //   if (!data.success) {
 //     throw new Error(data.message || "Failed to fetch earnings");
 //   }
@@ -985,7 +921,7 @@
 
 //   const typeLabels = {
 //     daily: "Daily",
-//     weekly: "Weekly", 
+//     weekly: "Weekly",
 //     monthly: "Monthly"
 //   };
 
@@ -1108,8 +1044,8 @@
 //   const tableData = formatBackendDataForTable(earnings, incomeType);
 
 //   // Use backend data if available, fallback to static for design preview
-//   const displayChartData = chartData.length > 0 ? chartData : 
-//     incomeType === "daily" ? 
+//   const displayChartData = chartData.length > 0 ? chartData :
+//     incomeType === "daily" ?
 //       [{ name: "Mon", value: 38 }, { name: "Tue", value: 40 }, { name: "Wed", value: 48 }, { name: "Thu", value: 50 }, { name: "Fri", value: 60 }, { name: "Sat", value: 65 }, { name: "Sun", value: 78 }] :
 //       [{ name: "Jan", value: 200 }, { name: "Feb", value: 400 }, { name: "Mar", value: 1000 }, { name: "Apr", value: 800 }, { name: "May", value: 900 }, { name: "Jun", value: 1200 }, { name: "Jul", value: 2000 }, { name: "Aug", value: 3600 }, { name: "Sep", value: 4500 }, { name: "Oct", value: 4000 }, { name: "Nov", value: 8800 }, { name: "Dec", value: 9999 }];
 
@@ -1240,17 +1176,6 @@
 // export { DailySeeMore };
 // export default IncomeDashboard;
 
-
-
-
-
-
-
-
-
-
-
-
 // import React, { useState, useEffect } from "react";
 // import { motion, AnimatePresence } from "framer-motion";
 // import { ArrowLeft, Menu, X, Loader2 } from "lucide-react";
@@ -1295,7 +1220,7 @@
 //   }
 
 //   const data = await response.json();
-  
+
 //   if (!data.success) {
 //     throw new Error(data.message || "Failed to fetch earnings");
 //   }
@@ -1363,7 +1288,7 @@
 
 //   const typeLabels = {
 //     daily: "Daily",
-//     weekly: "Weekly", 
+//     weekly: "Weekly",
 //     monthly: "Monthly"
 //   };
 
@@ -1614,23 +1539,6 @@
 // export { DailySeeMore };
 // export default IncomeDashboard;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // import React, { useState, useEffect } from "react";
 // import { motion } from "framer-motion";
 // import { ArrowLeft, Menu, X, Loader2 } from "lucide-react";
@@ -1672,7 +1580,7 @@
 //   }
 
 //   const data = await response.json();
-  
+
 //   if (!data.success) {
 //     throw new Error(data.message || "Failed to fetch earnings");
 //   }
@@ -1979,18 +1887,6 @@
 // export { EarningsSeeMore };
 // export default IncomeDashboard;
 
-
-
-
-
-
-
-
-
-
-
-
-
 // import React, { useState, useEffect, useMemo } from "react";
 // import { motion } from "framer-motion";
 // import { ArrowLeft, Menu, X, Loader2 } from "lucide-react";
@@ -2058,7 +1954,7 @@
 //   }
 
 //   const data = await response.json();
-  
+
 //   if (!data.success) {
 //     throw new Error(data.message || "Failed to fetch earnings");
 //   }
@@ -2069,7 +1965,7 @@
 // // --- Data Formatting Helpers (for daily view with full 7 days) ---
 // const formatDailyDataForChart = (earnings) => {
 //   const last7Days = generateLast7Days();
-  
+
 //   // Create a map of existing earnings by date string (DD/MM/YYYY)
 //   const earningsMap = {};
 //   earnings.forEach(item => {
@@ -2093,7 +1989,7 @@
 
 // const formatDailyDataForTable = (earnings) => {
 //   const last7Days = generateLast7Days();
-  
+
 //   const earningsMap = {};
 //   earnings.forEach(item => {
 //     if (item && item.date && item.total_earnings !== undefined) {
@@ -2394,23 +2290,6 @@
 
 // export { EarningsSeeMore };
 // export default IncomeDashboard;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // import React, { useState, useEffect, useMemo } from "react";
 // import { motion, AnimatePresence } from "framer-motion";
@@ -2829,24 +2708,6 @@
 
 // export default IncomeDashboard;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // import React, { useState, useEffect, useMemo } from "react";
 // import { motion, AnimatePresence } from "framer-motion";
 // import { ArrowLeft, Menu, X, Loader2 } from "lucide-react";
@@ -3302,26 +3163,6 @@
 
 // export default IncomeDashboard;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // import React, { useState, useEffect, useMemo } from "react";
 // import { motion, AnimatePresence } from "framer-motion";
 // import { Menu, X, Loader2 } from "lucide-react";
@@ -3739,29 +3580,6 @@
 
 // export default IncomeDashboard;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // import React, { useState, useEffect, useMemo } from "react";
 // import { motion, AnimatePresence } from "framer-motion";
 // import { Menu, X, Loader2 } from "lucide-react";
@@ -4009,7 +3827,7 @@
 
 //   const hasData = chartData.length > 0 && !error;
 //   const label = incomeType === "daily" ? t("incomeDashboard.dailyIncome") : t("incomeDashboard.monthlyIncome");
-  
+
 //   const dateLabel = incomeType === "daily"
 //     ? new Date().toLocaleDateString(i18n.language === "th" ? "th-TH" : "en-GB", {
 //         day: "numeric",
@@ -4209,19 +4027,6 @@
 
 // export default IncomeDashboard;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 import React, { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Loader2 } from "lucide-react";
@@ -4244,17 +4049,29 @@ const API_BASE_URL = "https://sagarxo.app/web-api";
 const getAuthToken = () => localStorage.getItem("token") || "";
 
 const ALL_MONTHS = [
-  "January", "February", "March", "April", "May", "June",
-  "July", "August", "September", "October", "November", "December"
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
 ];
 
 const getDayNameFromDateObj = (date, locale = "en") => {
-  return date.toLocaleDateString(locale === "th" ? "th-TH" : "en-US", { weekday: "short" });
+  return date.toLocaleDateString(locale === "th" ? "th-TH" : "en-US", {
+    weekday: "short",
+  });
 };
 
 const formatDateForAPI = (date) => {
-  const day = String(date.getDate()).padStart(2, '0');
-  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, "0");
+  const month = String(date.getMonth() + 1).padStart(2, "0");
   const year = date.getFullYear();
   return `${day}/${month}/${year}`;
 };
@@ -4272,13 +4089,20 @@ const generateLast7Days = () => {
 
 const fetchCustomerEarnings = async (type) => {
   const apiType = type === "daily" ? "daily" : "monthly";
-  const response = await fetch(`${API_BASE_URL}/customer/earnings?type=${apiType}`, {
-    method: "GET",
-    headers: { Authorization: getAuthToken(), "Content-Type": "application/json" },
-  });
+  const response = await fetch(
+    `${API_BASE_URL}/customer/earnings?type=${apiType}`,
+    {
+      method: "GET",
+      headers: {
+        Authorization: getAuthToken(),
+        "Content-Type": "application/json",
+      },
+    },
+  );
   if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
   const data = await response.json();
-  if (!data.success) throw new Error(data.message || "Failed to fetch earnings");
+  if (!data.success)
+    throw new Error(data.message || "Failed to fetch earnings");
   return Array.isArray(data.data.earnings) ? data.data.earnings : [];
 };
 
@@ -4286,26 +4110,26 @@ const fetchCustomerEarnings = async (type) => {
 const formatDailyDataForChart = (earnings, locale) => {
   const last7Days = generateLast7Days();
   const earningsMap = {};
-  earnings.forEach(item => {
+  earnings.forEach((item) => {
     if (item?.date && item.total_earnings !== undefined)
       earningsMap[item.date] = parseFloat(item.total_earnings);
   });
-  return last7Days.map(date => ({
+  return last7Days.map((date) => ({
     name: getDayNameFromDateObj(date, locale),
     value: earningsMap[formatDateForAPI(date)] || 0,
     fullDate: formatDateForAPI(date),
-    hasData: earningsMap.hasOwnProperty(formatDateForAPI(date))
+    hasData: earningsMap.hasOwnProperty(formatDateForAPI(date)),
   }));
 };
 
 const formatDailyDataForTable = (earnings, locale) => {
   const last7Days = generateLast7Days();
   const earningsMap = {};
-  earnings.forEach(item => {
+  earnings.forEach((item) => {
     if (item?.date && item.total_earnings !== undefined)
       earningsMap[item.date] = parseFloat(item.total_earnings);
   });
-  return last7Days.map(date => {
+  return last7Days.map((date) => {
     const dateStr = formatDateForAPI(date);
     const value = earningsMap[dateStr];
     const hasData = value !== undefined;
@@ -4314,7 +4138,7 @@ const formatDailyDataForTable = (earnings, locale) => {
     return {
       date: `${dayName} ${dayNum}`,
       income: hasData ? value : 0,
-      incomeDisplay: hasData ? formatCurrencyValue(value, locale) : "—"
+      incomeDisplay: hasData ? formatCurrencyValue(value, locale) : "—",
     };
   });
 };
@@ -4326,18 +4150,23 @@ const getShortMonthNames = (locale) => {
   const months = [];
   for (let i = 0; i < 12; i++) {
     const date = new Date(2020, i, 1);
-    months.push(date.toLocaleDateString(locale === "th" ? "th-TH" : "en-US", { month: "short" }));
+    months.push(
+      date.toLocaleDateString(locale === "th" ? "th-TH" : "en-US", {
+        month: "short",
+      }),
+    );
   }
   return months;
 };
 
 const formatMonthlyDataForChart = (earnings, locale) => {
-  const year = earnings.length > 0 && earnings[0]?.year
-    ? earnings[0].year
-    : new Date().getFullYear();
+  const year =
+    earnings.length > 0 && earnings[0]?.year
+      ? earnings[0].year
+      : new Date().getFullYear();
 
   const earningsMap = {};
-  earnings.forEach(item => {
+  earnings.forEach((item) => {
     if (item?.month && item.total_earnings !== undefined)
       earningsMap[item.month] = parseFloat(item.total_earnings);
   });
@@ -4347,22 +4176,23 @@ const formatMonthlyDataForChart = (earnings, locale) => {
   return ALL_MONTHS.map((monthName, index) => {
     const value = earningsMap[monthName] || 0;
     return {
-      name: shortMonths[index],   // localised short month (e.g. "ม.ค." for Thai)
+      name: shortMonths[index], // localised short month (e.g. "ม.ค." for Thai)
       value: value,
       month: monthName,
       year: year,
-      hasData: earningsMap.hasOwnProperty(monthName)
+      hasData: earningsMap.hasOwnProperty(monthName),
     };
   });
 };
 
 const formatMonthlyDataForTable = (earnings, locale) => {
-  const year = earnings.length > 0 && earnings[0]?.year
-    ? earnings[0].year
-    : new Date().getFullYear();
+  const year =
+    earnings.length > 0 && earnings[0]?.year
+      ? earnings[0].year
+      : new Date().getFullYear();
 
   const earningsMap = {};
-  earnings.forEach(item => {
+  earnings.forEach((item) => {
     if (item?.month && item.total_earnings !== undefined)
       earningsMap[item.month] = parseFloat(item.total_earnings);
   });
@@ -4372,12 +4202,12 @@ const formatMonthlyDataForTable = (earnings, locale) => {
     const hasData = value !== undefined;
     const localizedMonth = new Date(year, index, 1).toLocaleDateString(
       locale === "th" ? "th-TH" : "en-US",
-      { month: "long" }
+      { month: "long" },
     );
     return {
       date: `${localizedMonth} ${year}`,
       income: hasData ? value : 0,
-      incomeDisplay: hasData ? formatCurrencyValue(value, locale) : "—"
+      incomeDisplay: hasData ? formatCurrencyValue(value, locale) : "—",
     };
   });
 };
@@ -4436,23 +4266,36 @@ const EarningsContent = () => {
   }, [earnings, incomeType, i18n.language]);
 
   const totalIncome = useMemo(() => {
-    return earnings.reduce((sum, item) => sum + parseFloat(item.total_earnings || 0), 0);
+    return earnings.reduce(
+      (sum, item) => sum + parseFloat(item.total_earnings || 0),
+      0,
+    );
   }, [earnings]);
 
   const hasData = chartData.length > 0 && !error;
-  const label = incomeType === "daily" ? t("incomeDashboard.dailyIncome") : t("incomeDashboard.monthlyIncome");
-  const dateLabel = incomeType === "daily"
-    ? new Date().toLocaleDateString(i18n.language === "th" ? "th-TH" : "en-GB", {
-        day: "numeric",
-        month: "short",
-        year: "numeric",
-      })
-    : (earnings.length > 0 && earnings[0]?.year) || new Date().getFullYear();
+  const label =
+    incomeType === "daily"
+      ? t("incomeDashboard.dailyIncome")
+      : t("incomeDashboard.monthlyIncome");
+  const dateLabel =
+    incomeType === "daily"
+      ? new Date().toLocaleDateString(
+          i18n.language === "th" ? "th-TH" : "en-GB",
+          {
+            day: "numeric",
+            month: "short",
+            year: "numeric",
+          },
+        )
+      : (earnings.length > 0 && earnings[0]?.year) || new Date().getFullYear();
 
   const handleSeeMore = () => navigate(`/dailyseemore/${incomeType}`);
 
   const tooltipFormatter = (value) => {
-    return [`${formatNumber(value, i18n.language)} ${i18n.language === "th" ? "บาท" : "THB"}`, t("incomeDashboard.tooltipIncome")];
+    return [
+      `${formatNumber(value, i18n.language)} ${i18n.language === "th" ? "บาท" : "THB"}`,
+      t("incomeDashboard.tooltipIncome"),
+    ];
   };
 
   return (
@@ -4487,21 +4330,26 @@ const EarningsContent = () => {
           <div className="text-center py-5">
             <Loader2 size={40} className="spin" />
             <p className="mt-3 text-muted">
-              {incomeType === "daily" ? t("incomeDashboard.loadingDaily") : t("incomeDashboard.loadingMonthly")}
+              {incomeType === "daily"
+                ? t("incomeDashboard.loadingDaily")
+                : t("incomeDashboard.loadingMonthly")}
             </p>
           </div>
         ) : error ? (
           <div className="alert alert-danger m-3">{error}</div>
         ) : !hasData ? (
           <div className="text-center py-5">
-            <p className="text-muted">{t("incomeDashboard.noData", { type: label.toLowerCase() })}</p>
+            <p className="text-muted">
+              {t("incomeDashboard.noData", { type: label.toLowerCase() })}
+            </p>
           </div>
         ) : (
           <>
             <div className="earnings-header">
               <div>
                 <h2 className="total-amount">
-                  <span className="font-dollar">฿</span> {formatNumber(totalIncome, i18n.language)}
+                  <span className="font-dollar">฿</span>{" "}
+                  {formatNumber(totalIncome, i18n.language)}
                 </h2>
                 <p className="income-label">{label}</p>
               </div>
@@ -4513,22 +4361,46 @@ const EarningsContent = () => {
                 <ResponsiveContainer width="100%" height="100%">
                   <AreaChart data={chartData}>
                     <defs>
-                      <linearGradient id="colorValue" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="5%" stopColor="#ffffff" stopOpacity={0.3} />
-                        <stop offset="95%" stopColor="#ffffff" stopOpacity={0} />
+                      <linearGradient
+                        id="colorValue"
+                        x1="0"
+                        y1="0"
+                        x2="0"
+                        y2="1"
+                      >
+                        <stop
+                          offset="5%"
+                          stopColor="#ffffff"
+                          stopOpacity={0.3}
+                        />
+                        <stop
+                          offset="95%"
+                          stopColor="#ffffff"
+                          stopOpacity={0}
+                        />
                       </linearGradient>
                     </defs>
-                    <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(255,255,255,0.1)" />
+                    <CartesianGrid
+                      strokeDasharray="3 3"
+                      vertical={false}
+                      stroke="rgba(255,255,255,0.1)"
+                    />
                     <XAxis
                       dataKey="name"
                       axisLine={false}
                       tickLine={false}
                       tick={{ fill: "white", fontSize: 12 }}
                       dy={10}
+                      interval={0}
+                      padding={{ left: 20, right: 20 }}
                     />
                     <YAxis hide />
                     <Tooltip
-                      contentStyle={{ backgroundColor: "#e9527a", border: "1px solid white", borderRadius: "10px" }}
+                      contentStyle={{
+                        backgroundColor: "#e9527a",
+                        border: "1px solid white",
+                        borderRadius: "10px",
+                      }}
                       itemStyle={{ color: "white" }}
                       formatter={tooltipFormatter}
                     />
@@ -4539,7 +4411,12 @@ const EarningsContent = () => {
                       strokeWidth={3}
                       fillOpacity={1}
                       fill="url(#colorValue)"
-                      dot={{ r: 6, fill: "white", strokeWidth: 2, stroke: "#e9527a" }}
+                      dot={{
+                        r: 6,
+                        fill: "white",
+                        strokeWidth: 2,
+                        stroke: "#e9527a",
+                      }}
                       activeDot={{ r: 8, fill: "white" }}
                     />
                   </AreaChart>
@@ -4582,10 +4459,18 @@ export const IncomeDashboard = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   return (
     <div className="main-container">
-      <button className="mobile-toggle d-none" onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
+      <button
+        className="mobile-toggle d-none"
+        onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+      >
         {isSidebarOpen ? <X /> : <Menu />}
       </button>
-      {isSidebarOpen && <div className="sidebar-overlay d-lg-none" onClick={() => setIsSidebarOpen(false)} />}
+      {isSidebarOpen && (
+        <div
+          className="sidebar-overlay d-lg-none"
+          onClick={() => setIsSidebarOpen(false)}
+        />
+      )}
       <Sidebar show={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
       <div className="main-wrapper">
         <Header toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)} />

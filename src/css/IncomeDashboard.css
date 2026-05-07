@@ -10,6 +10,19 @@
   margin: 0 auto;
 }
 
+
+/* Remove default focus outline from all elements */
+*:focus,
+*:focus-visible {
+  outline:0px  none !important;
+  box-shadow: none !important;
+}
+
+.recharts-wrapper svg{
+  outline: none !important;
+}
+
+
 .income-toggle-container {
   display: flex;
   justify-content: center;

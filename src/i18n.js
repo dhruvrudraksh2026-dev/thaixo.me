@@ -1577,7 +1577,7 @@ const resources = {
       // Inside en.translation
       withdrawal: {
         noticeMessage: "All withdrawal requests placed between 6:00 PM and 10:00 AM (Thailand Time) will be processed after 10:00 AM.",
-        noticeMessage2: "Easily Withdraw Amounts Abouve 500 quick secure, and seamless.",
+        noticeMessage2: "Easily Withdraw Amount Above 500 quick secure, and seamless.",
         credit: "Credit",
         requestedAmount: "Requested Amount*",
         amountPlaceholder: "Enter amount",

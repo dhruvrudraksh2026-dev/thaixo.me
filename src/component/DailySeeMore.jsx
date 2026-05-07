@@ -4976,12 +4976,12 @@
 //           {/* View Toggle - Only Daily & Monthly */}
 //           <div style={styles.toggleContainer}>
 //             <div style={styles.toggleBox}>
-//               {/* <button 
+//               {/* <button
 //                 onClick={() => handleViewChange('daily')}
 //                 disabled={isTransitioning}
-//                 style={{ 
-//                   ...styles.toggleBtn, 
-//                   backgroundColor: view === 'daily' ? pinkColor : 'transparent', 
+//                 style={{
+//                   ...styles.toggleBtn,
+//                   backgroundColor: view === 'daily' ? pinkColor : 'transparent',
 //                   color: view === 'daily' ? 'white' : pinkColor,
 //                   opacity: isTransitioning ? 0.6 : 1,
 //                   cursor: isTransitioning ? 'not-allowed' : 'pointer'
@@ -4989,12 +4989,12 @@
 //               >
 //                 Daily Income
 //               </button>
-//               <button 
+//               <button
 //                 onClick={() => handleViewChange('monthly')}
 //                 disabled={isTransitioning}
-//                 style={{ 
-//                   ...styles.toggleBtn, 
-//                   backgroundColor: view === 'monthly' ? pinkColor : 'transparent', 
+//                 style={{
+//                   ...styles.toggleBtn,
+//                   backgroundColor: view === 'monthly' ? pinkColor : 'transparent',
 //                   color: view === 'monthly' ? 'white' : pinkColor,
 //                   opacity: isTransitioning ? 0.6 : 1,
 //                   cursor: isTransitioning ? 'not-allowed' : 'pointer'
@@ -5391,7 +5391,7 @@
 //         .custom-scrollbar::-webkit-scrollbar { width: 4px; }
 //         .custom-scrollbar::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.1); }
 //         .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.3); border-radius: 10px; }
-        
+
 //         /* Responsive adjustments */
 //         @media (max-width: 991px) {
 //           .mainContent {
@@ -5399,7 +5399,7 @@
 //             width: 100% !important;
 //           }
 //         }
-        
+
 //         @media (max-width: 768px) {
 //           .display-3 {
 //             font-size: 2.5rem;
@@ -5414,23 +5414,6 @@
 //     </div>
 //   );
 // }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // import React, { useState, useEffect, useMemo } from "react";
 // import { Loader2 } from "lucide-react";
@@ -6253,14 +6236,14 @@
 //         .custom-scrollbar::-webkit-scrollbar { width: 4px; }
 //         .custom-scrollbar::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.1); }
 //         .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.3); border-radius: 10px; }
-        
+
 //         @media (max-width: 991px) {
 //           .mainContent {
 //             margin-left: 0 !important;
 //             width: 100% !important;
 //           }
 //         }
-        
+
 //         @media (max-width: 768px) {
 //           .display-3 {
 //             font-size: 2.5rem;
@@ -6275,27 +6258,6 @@
 //     </div>
 //   );
 // }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // import React, { useState, useEffect, useMemo } from "react";
 // import { Loader2 } from "lucide-react";
@@ -7118,14 +7080,14 @@
 //         .custom-scrollbar::-webkit-scrollbar { width: 4px; }
 //         .custom-scrollbar::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.1); }
 //         .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.3); border-radius: 10px; }
-        
+
 //         @media (max-width: 991px) {
 //           .mainContent {
 //             margin-left: 0 !important;
 //             width: 100% !important;
 //           }
 //         }
-        
+
 //         @media (max-width: 768px) {
 //           .display-3 {
 //             font-size: 2.5rem;
@@ -7140,32 +7102,6 @@
 //     </div>
 //   );
 // }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // import React, { useState, useEffect, useMemo } from "react";
 // import { Loader2 } from "lucide-react";
@@ -7983,14 +7919,14 @@
 //         .custom-scrollbar::-webkit-scrollbar { width: 4px; }
 //         .custom-scrollbar::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.1); }
 //         .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.3); border-radius: 10px; }
-        
+
 //         @media (max-width: 991px) {
 //           .mainContent {
 //             margin-left: 0 !important;
 //             width: 100% !important;
 //           }
 //         }
-        
+
 //         @media (max-width: 768px) {
 //           .display-3 {
 //             font-size: 2.5rem;
@@ -8005,12 +7941,6 @@
 //     </div>
 //   );
 // }
-
-
-
-
-
-
 
 import React, { useState, useEffect, useMemo } from "react";
 import { Loader2 } from "lucide-react";
@@ -8061,20 +7991,26 @@ const getShortMonthNames = (locale) => {
   const months = [];
   for (let i = 0; i < 12; i++) {
     const date = new Date(2020, i, 1);
-    months.push(date.toLocaleDateString(locale === "th" ? "th-TH" : "en-US", { month: "short" }));
+    months.push(
+      date.toLocaleDateString(locale === "th" ? "th-TH" : "en-US", {
+        month: "short",
+      }),
+    );
   }
   return months;
 };
 
 // --- Helper: Get day name from Date object (localised) ---
 const getDayNameFromDateObj = (date, locale) => {
-  return date.toLocaleDateString(locale === "th" ? "th-TH" : "en-US", { weekday: "short" });
+  return date.toLocaleDateString(locale === "th" ? "th-TH" : "en-US", {
+    weekday: "short",
+  });
 };
 
 // --- Helper: Format date as DD/MM/YYYY (matching API format) ---
 const formatDateForAPI = (date) => {
-  const day = String(date.getDate()).padStart(2, '0');
-  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, "0");
+  const month = String(date.getMonth() + 1).padStart(2, "0");
   const year = date.getFullYear();
   return `${day}/${month}/${year}`;
 };
@@ -8102,7 +8038,7 @@ const fetchCustomerEarnings = async (type) => {
         Authorization: getAuthToken(),
         "Content-Type": "application/json",
       },
-    }
+    },
   );
 
   if (!response.ok) {
@@ -8134,20 +8070,20 @@ const formatCurrency = (value, locale, t) => {
 const formatDailyDataForChart = (earnings, locale) => {
   const last7Days = generateLast7Days();
   const earningsMap = {};
-  earnings.forEach(item => {
+  earnings.forEach((item) => {
     if (item?.date && item.total_earnings !== undefined) {
       earningsMap[item.date] = parseFloat(item.total_earnings);
     }
   });
 
-  return last7Days.map(date => {
+  return last7Days.map((date) => {
     const dateStr = formatDateForAPI(date);
     const value = earningsMap[dateStr] || 0;
     return {
       day: getDayNameFromDateObj(date, locale),
       income: value,
       date: dateStr,
-      hasData: earningsMap.hasOwnProperty(dateStr)
+      hasData: earningsMap.hasOwnProperty(dateStr),
     };
   });
 };
@@ -8155,13 +8091,13 @@ const formatDailyDataForChart = (earnings, locale) => {
 const formatDailyDataForTable = (earnings, locale, t) => {
   const last7Days = generateLast7Days();
   const earningsMap = {};
-  earnings.forEach(item => {
+  earnings.forEach((item) => {
     if (item?.date && item.total_earnings !== undefined) {
       earningsMap[item.date] = parseFloat(item.total_earnings);
     }
   });
 
-  return last7Days.map(date => {
+  return last7Days.map((date) => {
     const dateStr = formatDateForAPI(date);
     const value = earningsMap[dateStr];
     const hasData = value !== undefined;
@@ -8191,7 +8127,7 @@ const formatMonthlyChartData = (earnings, year, locale) => {
     const hasData = dataMap[monthName] !== undefined;
     const income = dataMap[monthName] || 0;
     return {
-      month: shortMonths[index],        // X‑axis label (localised)
+      month: shortMonths[index], // X‑axis label (localised)
       income: hasData ? income : 0,
       year: year,
       hasData: hasData,
@@ -8216,7 +8152,10 @@ const formatMonthlyTableData = (earnings, year, locale, t) => {
     const income = dataMap[monthName] || 0;
     // Localised full month name
     const dateObj = new Date(year, index, 1);
-    const localMonth = dateObj.toLocaleDateString(locale === "th" ? "th-TH" : "en-US", { month: "long" });
+    const localMonth = dateObj.toLocaleDateString(
+      locale === "th" ? "th-TH" : "en-US",
+      { month: "long" },
+    );
     return {
       date: `${localMonth} ${year}`,
       income: hasData ? income : 0,
@@ -8405,18 +8344,23 @@ export default function DailySeeMore() {
 
   // Daily data (full 7 days) – re-run when language changes
   const dailyChartData = useMemo(() => {
-    if (view === "daily") return formatDailyDataForChart(earnings, i18n.language);
+    if (view === "daily")
+      return formatDailyDataForChart(earnings, i18n.language);
     return [];
   }, [earnings, view, i18n.language]);
 
   const dailyTableData = useMemo(() => {
-    if (view === "daily") return formatDailyDataForTable(earnings, i18n.language, t);
+    if (view === "daily")
+      return formatDailyDataForTable(earnings, i18n.language, t);
     return [];
   }, [earnings, view, i18n.language, t]);
 
   // Total income (only from actual data)
   const totalIncome = useMemo(() => {
-    return earnings.reduce((sum, item) => sum + parseFloat(item.total_earnings || 0), 0);
+    return earnings.reduce(
+      (sum, item) => sum + parseFloat(item.total_earnings || 0),
+      0,
+    );
   }, [earnings]);
 
   // Group monthly data by year
@@ -8442,14 +8386,21 @@ export default function DailySeeMore() {
 
   // Helper for tooltip formatter
   const tooltipFormatter = (value) => {
-    return [formatCurrency(value, i18n.language, t), t("dailySeeMore.tooltipIncome")];
+    return [
+      formatCurrency(value, i18n.language, t),
+      t("dailySeeMore.tooltipIncome"),
+    ];
   };
 
   // Loading + Transition states
   if (loading && !isTransitioning) {
     return (
       <div className="d-flex">
-        <Sidebar show={isSidebarOpen} onClose={handleCloseSidebar} activeItem="earnings" />
+        <Sidebar
+          show={isSidebarOpen}
+          onClose={handleCloseSidebar}
+          activeItem="earnings"
+        />
         <div style={styles.mainContent} className="mainContent">
           <Header toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)} />
           <div style={styles.loadingContainer}>
@@ -8474,7 +8425,11 @@ export default function DailySeeMore() {
   if (error) {
     return (
       <div className="d-flex">
-        <Sidebar show={isSidebarOpen} onClose={handleCloseSidebar} activeItem="earnings" />
+        <Sidebar
+          show={isSidebarOpen}
+          onClose={handleCloseSidebar}
+          activeItem="earnings"
+        />
         <div style={styles.mainContent} className="mainContent">
           <Header toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)} />
           <div style={styles.errorContainer}>
@@ -8495,7 +8450,11 @@ export default function DailySeeMore() {
 
   return (
     <div className="d-flex">
-      <Sidebar show={isSidebarOpen} onClose={handleCloseSidebar} activeItem="earnings" />
+      <Sidebar
+        show={isSidebarOpen}
+        onClose={handleCloseSidebar}
+        activeItem="earnings"
+      />
       <div style={styles.mainContent} className="mainContent">
         <Header toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)} />
         <div className="container-lg">
@@ -8530,7 +8489,9 @@ export default function DailySeeMore() {
 
           {!isTransitioning && earnings.length === 0 && (
             <div className="text-center py-5 fade-in">
-              <p className="text-muted">{t("dailySeeMore.noData", { view: t(view) })}</p>
+              <p className="text-muted">
+                {t("dailySeeMore.noData", { view: t(view) })}
+              </p>
               <Button
                 variant="outline-primary"
                 onClick={() => window.location.reload()}
@@ -8557,7 +8518,9 @@ export default function DailySeeMore() {
                               {formatNumber(totalIncome, i18n.language)}
                             </span>
                           </div>
-                          <p className="opacity-75 h5">{t("dailySeeMore.dailyIncome")}</p>
+                          <p className="opacity-75 h5">
+                            {t("dailySeeMore.dailyIncome")}
+                          </p>
                         </div>
                         <span className="display-6 fw-bold opacity-25">
                           {new Date().getFullYear()}
@@ -8593,6 +8556,9 @@ export default function DailySeeMore() {
                               tickLine={false}
                               tick={{ fill: "#ffffff", fontSize: 12 }}
                               dy={10}
+                              interval={0}
+                              padding={{ left: 20, right: 20 }}
+                              allowDuplicatedCategory={false}
                             />
                             <Tooltip
                               contentStyle={{
@@ -8642,7 +8608,9 @@ export default function DailySeeMore() {
                             className="d-flex justify-content-between small mb-2"
                           >
                             <span className="opacity-75">{row.date}</span>
-                            <span className="fw-bold mx-3">{row.displayIncome}</span>
+                            <span className="fw-bold mx-3">
+                              {row.displayIncome}
+                            </span>
                           </div>
                         ))}
                       </div>
@@ -8670,7 +8638,9 @@ export default function DailySeeMore() {
             <div className="fade-in">
               {!hasMonthlyData ? (
                 <div className="text-center py-5">
-                  <p className="text-muted">{t("dailySeeMore.noData", { view: t("monthly") })}</p>
+                  <p className="text-muted">
+                    {t("dailySeeMore.noData", { view: t("monthly") })}
+                  </p>
                   <Button
                     variant="outline-primary"
                     onClick={() => window.location.reload()}
@@ -8684,25 +8654,44 @@ export default function DailySeeMore() {
                   .sort((a, b) => b - a)
                   .map((year) => {
                     const yearEarnings = monthlyByYear[year];
-                    const yearChartData = formatMonthlyChartData(yearEarnings, year, i18n.language);
-                    const yearTableData = formatMonthlyTableData(yearEarnings, year, i18n.language, t);
+                    const yearChartData = formatMonthlyChartData(
+                      yearEarnings,
+                      year,
+                      i18n.language,
+                    );
+                    const yearTableData = formatMonthlyTableData(
+                      yearEarnings,
+                      year,
+                      i18n.language,
+                      t,
+                    );
                     const yearTotalIncome = yearEarnings.reduce(
                       (sum, item) => sum + parseFloat(item.total_earnings || 0),
-                      0
+                      0,
                     );
 
                     return (
-                      <Card key={year} style={styles.incomeCard} className="mb-4">
+                      <Card
+                        key={year}
+                        style={styles.incomeCard}
+                        className="mb-4"
+                      >
                         <Row className="align-items-stretch">
                           <Col lg={8} md={12} className="mb-4 mb-lg-0">
-                            <div className="position-relative" style={{ zIndex: 1 }}>
+                            <div
+                              className="position-relative"
+                              style={{ zIndex: 1 }}
+                            >
                               <div className="d-flex justify-content-between align-items-start mb-4">
                                 <div>
                                   <div className="d-flex align-items-baseline gap-2 mb-1">
                                     {/* <span className="font-dollar">{t("thb")}</span> */}
                                     <span className="display-3 fw-bold">฿</span>
                                     <span className="display-3 fw-bold">
-                                      {formatNumber(yearTotalIncome, i18n.language)}
+                                      {formatNumber(
+                                        yearTotalIncome,
+                                        i18n.language,
+                                      )}
                                     </span>
                                   </div>
                                   {/* {view === "monthly" && (
@@ -8711,12 +8700,11 @@ export default function DailySeeMore() {
   </p>
 )} */}
 
-
-{view === "monthly" && (
-  <p className="opacity-75 h5">
-    {t("dailySeeMore.monthlyIncome")} - {year}
-  </p>
-)}
+                                  {view === "monthly" && (
+                                    <p className="opacity-75 h5">
+                                      {t("dailySeeMore.monthlyIncome")} - {year}
+                                    </p>
+                                  )}
                                 </div>
                                 <span className="display-6 fw-bold opacity-25">
                                   {year}
@@ -8752,6 +8740,9 @@ export default function DailySeeMore() {
                                       tickLine={false}
                                       tick={{ fill: "#ffffff", fontSize: 10 }}
                                       dy={10}
+                                      interval={0}
+                                      padding={{ left: 10, right: 10 }}
+                                      allowDuplicatedCategory={false}
                                     />
                                     <Tooltip
                                       contentStyle={{
@@ -8763,7 +8754,13 @@ export default function DailySeeMore() {
                                       formatter={(value, name, props) => {
                                         const hasData = props?.payload?.hasData;
                                         return [
-                                          hasData ? formatCurrency(value, i18n.language, t) : "—",
+                                          hasData
+                                            ? formatCurrency(
+                                                value,
+                                                i18n.language,
+                                                t,
+                                              )
+                                            : "—",
                                           t("dailySeeMore.tooltipIncome"),
                                         ];
                                       }}
@@ -8800,10 +8797,15 @@ export default function DailySeeMore() {
                             <div style={styles.monthlyTableBox}>
                               <div className="d-flex justify-content-between border-bottom border-white border-opacity-25 pb-2 mb-2 small fw-bold text-uppercase opacity-75">
                                 <span>{t("dailySeeMore.month")}</span>
-                                <span className="mx-5">{t("dailySeeMore.income")}</span>
+                                <span className="mx-5">
+                                  {t("dailySeeMore.income")}
+                                </span>
                               </div>
                               <div
-                                style={{ maxHeight: "300px", overflowY: "auto" }}
+                                style={{
+                                  maxHeight: "300px",
+                                  overflowY: "auto",
+                                }}
                                 className="custom-scrollbar"
                               >
                                 {yearTableData.map((m, idx) => (
@@ -8864,13 +8866,3 @@ export default function DailySeeMore() {
     </div>
   );
 }
-
-
-
-
-
-
-
-
-
-
