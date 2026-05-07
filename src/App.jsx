@@ -133,6 +133,7 @@ import SelfCreator from "./component/SelfCreator";
 import AgencyCreator from "./component/AgencyCreator";
 import Milestone from "./component/Milestone";
 import CreatorSelectionSelf from "./component/CreatorSelectionSelf";
+import NotFound from "./component/NotFound";
 
 function App() {
   return (
@@ -219,7 +220,9 @@ function App() {
           <CreatorSelectionSelf />
         </ProtectedRoute>
       } />
+      <Route path="*" element={<NotFound />} />
     </Routes>
+    
   );
 }
 

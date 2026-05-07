@@ -1,0 +1,95 @@
+.notfound-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #fff0f5, #ffffff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.notfound-card {
+  width: 100%;
+  max-width: 500px;
+  background: #fff;
+  border-radius: 24px;
+  padding: 50px 35px;
+  text-align: center;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  animation: fadeIn 0.4s ease;
+}
+
+.notfound-title {
+  font-size: 120px;
+  font-weight: 800;
+  margin: 0;
+  line-height: 1;
+  color: #e9527a;
+}
+
+.notfound-heading {
+  font-size: 32px;
+  font-weight: 700;
+  color: #222;
+  margin-top: 10px;
+}
+
+.notfound-text {
+  color: #777;
+  font-size: 16px;
+  margin-top: 15px;
+  line-height: 1.6;
+}
+
+.notfound-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  /* margin-top: 35px; */
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.home-btn,
+.back-btn {
+  border: none;
+  border-radius: 12px;
+  padding: 14px 24px;
+  font-size: 15px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.home-btn {
+  background: #e9527a;
+  color: white;
+}
+
+.home-btn:hover {
+  background: #d93d67;
+  transform: translateY(-2px);
+}
+
+.back-btn {
+  background: #f3f4f6;
+  color: #333;
+}
+
+.back-btn:hover {
+  background: #e5e7eb;
+  transform: translateY(-2px);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
