@@ -4834,11 +4834,24 @@ export default function Header({ toggleSidebar }) {
     try {
       setIsLoggingOut(true);
       const token = localStorage.getItem("token");
+      // if (!token) {
+      //   localStorage.clear();
+      //   navigate("/");
+      //   return;
+      // }
+
       if (!token) {
-        localStorage.clear();
-        navigate("/");
-        return;
-      }
+  const readIds = localStorage.getItem("readNotificationIds");
+
+  localStorage.clear();
+
+  if (readIds) {
+    localStorage.setItem("readNotificationIds", readIds);
+  }
+
+  navigate("/");
+  return;
+}
       const apiUrl = `${import.meta.env.VITE_SERVER_URL}/logout`;
       const response = await axios.post(apiUrl, {}, {
         headers: {
@@ -4853,17 +4866,51 @@ export default function Header({ toggleSidebar }) {
         navigate("/");
         return;
       }
+      // if (data.success) {
+      //   localStorage.clear();
+      //   navigate("/");
+      // } else {
+      //   localStorage.clear();
+      //   navigate("/");
+      // }
+
+
       if (data.success) {
-        localStorage.clear();
-        navigate("/");
-      } else {
-        localStorage.clear();
-        navigate("/");
-      }
+  const readIds = localStorage.getItem("readNotificationIds");
+
+  localStorage.clear();
+
+  if (readIds) {
+    localStorage.setItem("readNotificationIds", readIds);
+  }
+
+  navigate("/");
+} else {
+  const readIds = localStorage.getItem("readNotificationIds");
+
+  localStorage.clear();
+
+  if (readIds) {
+    localStorage.setItem("readNotificationIds", readIds);
+  }
+
+  navigate("/");
+}
     } catch (err) {
       console.error("Error during logout:", err);
-      localStorage.clear();
-      navigate("/");
+      // localStorage.clear();
+      // navigate("/");
+
+
+      const readIds = localStorage.getItem("readNotificationIds");
+
+localStorage.clear();
+
+if (readIds) {
+  localStorage.setItem("readNotificationIds", readIds);
+}
+
+navigate("/");
     } finally {
       setIsLoggingOut(false);
       setShowLogoutModal(false);

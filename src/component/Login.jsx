@@ -1930,14 +1930,6 @@
 
 
 
-
-
-
-
-
-
-
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -1961,26 +1953,12 @@ export default function Login() {
     i18n.changeLanguage(newLang);
   };
 
-  // ✅ NEW: Format 123-456-789
-  const formatPhone = (value) => {
-    const digits = value.replace(/\D/g, "").slice(0, 9);
-
-    let formatted = "";
-    if (digits.length > 0) formatted += digits.substring(0, 3);
-    if (digits.length > 3) formatted += "-" + digits.substring(3, 6);
-    if (digits.length > 6) formatted += "-" + digits.substring(6, 9);
-
-    return formatted;
-  };
-
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    const cleanNumber = contactNo.replace(/\D/g, "");
-
-    // ✅ Optional: update validation to 9 digits
-    if (cleanNumber.length !== 9) {
-      setError("Please enter valid 9 digit number");
+    // if (contactNo.trim().length < 8)
+    if (contactNo.replace(/\D/g, "").length < 10) {
+      setError(t("login.error.invalidPhone"));
       return;
     }
 
@@ -1990,7 +1968,8 @@ export default function Login() {
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_SERVER_URL}/login`,
-        { contactNo: cleanNumber }, // send clean digits
+        // { contactNo },
+        { contactNo: contactNo.replace(/\D/g, "") },
         {
           headers: {
             "Content-Type": "application/json",
@@ -1999,22 +1978,18 @@ export default function Login() {
         }
       );
 
-        if (response.data.success) {
+      // if (response.data.success) {
+      //     localStorage.setItem("userId", response.data.data.userId); // ✅ store login state
+      //   navigate("/otp", {
+      //       replace: true,
+      //     state: {
+      //       userId: response.data.data.userId,
+      //     },
+      //   });
+      // } 
+      
 
-//     // ✅ Save login info
-//     localStorage.setItem("userId", response.data.data.userId);
-
-//     // ✅ Save token
-//     localStorage.setItem("token", response.data.data.token);
-
-//     navigate("/otp", {
-//       state: {
-//         userId: response.data.data.userId,
-//       },
-//       replace: true,
-//     });
-
-
+      if (response.data.success) {
 
     // ✅ Save login info
     localStorage.setItem("userId", response.data.data.userId);
@@ -2028,7 +2003,7 @@ export default function Login() {
       },
       replace: true,
     });
-      }
+}
       
       else {
         setError(
@@ -2049,11 +2024,14 @@ export default function Login() {
     <div className="login-container">
       <div className="login-card">
         <div className="login-illustration d-lg-flex">
-          <img
-  src={Side}
-  alt="Community Illustration"
-  className="login-image"
-/>
+          <motion.img
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            src={Side}
+            alt="Community Illustration"
+            className="login-image"
+          />
         </div>
 
         <div className="login-form-section">
@@ -2104,13 +2082,28 @@ export default function Login() {
               <div className="phone-input-box">
                 <span className="input-label-floating">{t("login.phoneLabel")}</span>
                 <input
-                  type="tel"
-                  className="phone-input-field"
-                  placeholder="123-456-789"
-                  value={contactNo}
-                  onChange={(e) => setContactNo(formatPhone(e.target.value))} // ✅ UPDATED
-                  disabled={loading}
-                />
+  type="tel"
+  className="phone-input-field"
+  placeholder="012-345-6789"
+  value={contactNo}
+  onChange={(e) => {
+    // ✅ Remove non-numbers
+    let value = e.target.value.replace(/\D/g, "");
+
+    // ✅ Limit to 10 digits
+    value = value.substring(0, 10);
+
+    // ✅ Apply format 012-345-6789
+    if (value.length > 6) {
+      value = `${value.slice(0, 3)}-${value.slice(3, 6)}-${value.slice(6)}`;
+    } else if (value.length > 3) {
+      value = `${value.slice(0, 3)}-${value.slice(3)}`;
+    }
+
+    setContactNo(value);
+  }}
+  disabled={loading}
+/>
               </div>
             </div>
 
@@ -2123,3 +2116,215 @@ export default function Login() {
     </div>
   );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import { useState } from "react";
+// import { useNavigate } from "react-router-dom";
+// import { motion } from "framer-motion";
+// import axios from "axios";
+// import { useTranslation } from "react-i18next";
+
+// import Side from "../assets/Side.jpg";
+// import Logos from "../assets/Logos.png";
+// import "../css/Login.css";
+
+// export default function Login() {
+//   const { t, i18n } = useTranslation();
+//   const navigate = useNavigate();
+
+//   const [contactNo, setContactNo] = useState("");
+//   const [loading, setLoading] = useState(false);
+//   const [error, setError] = useState("");
+
+//   const toggleLanguage = () => {
+//     const newLang = i18n.language.startsWith("en") ? "th" : "en";
+//     i18n.changeLanguage(newLang);
+//   };
+
+//   // ✅ NEW: Format 123-456-789
+//   const formatPhone = (value) => {
+//     const digits = value.replace(/\D/g, "").slice(0, 9);
+
+//     let formatted = "";
+//     if (digits.length > 0) formatted += digits.substring(0, 3);
+//     if (digits.length > 3) formatted += "-" + digits.substring(3, 6);
+//     if (digits.length > 6) formatted += "-" + digits.substring(6, 9);
+
+//     return formatted;
+//   };
+
+//   const handleLogin = async (e) => {
+//     e.preventDefault();
+
+//     const cleanNumber = contactNo.replace(/\D/g, "");
+
+//     // ✅ Optional: update validation to 9 digits
+//     if (cleanNumber.length !== 9) {
+//       setError("Please enter valid 9 digit number");
+//       return;
+//     }
+
+//     setError("");
+//     setLoading(true);
+
+//     try {
+//       const response = await axios.post(
+//         `${import.meta.env.VITE_SERVER_URL}/login`,
+//         { contactNo: cleanNumber }, // send clean digits
+//         {
+//           headers: {
+//             "Content-Type": "application/json",
+//           },
+//           withCredentials: true,
+//         }
+//       );
+
+//         if (response.data.success) {
+
+// //     // ✅ Save login info
+// //     localStorage.setItem("userId", response.data.data.userId);
+
+// //     // ✅ Save token
+// //     localStorage.setItem("token", response.data.data.token);
+
+// //     navigate("/otp", {
+// //       state: {
+// //         userId: response.data.data.userId,
+// //       },
+// //       replace: true,
+// //     });
+
+
+
+//     // ✅ Save login info
+//     localStorage.setItem("userId", response.data.data.userId);
+
+//     // ✅ Save token
+//     localStorage.setItem("token", response.data.data.token);
+
+//     navigate("/otp", {
+//       state: {
+//         userId: response.data.data.userId,
+//       },
+//       replace: true,
+//     });
+//       }
+      
+//       else {
+//         setError(
+//           response.data.message || t("login.error.loginFailed")
+//         );
+//       }
+//     } catch (err) {
+//       setError(
+//         err.response?.data?.message ||
+//           t("login.error.genericError")
+//       );
+//     } finally {
+//       setLoading(false);
+//     }
+//   };
+
+//   return (
+//     <div className="login-container">
+//       <div className="login-card">
+//         <div className="login-illustration d-lg-flex">
+//           <img
+//   src={Side}
+//   alt="Community Illustration"
+//   className="login-image"
+// />
+//         </div>
+
+//         <div className="login-form-section">
+//           <div style={{ position: "absolute", top: "20px", right: "20px" }}>
+//             <button
+//               type="button"
+//               onClick={toggleLanguage}
+//               className="btn btn-sm btn-outline-secondary"
+//               style={{ borderRadius: "20px", padding: "4px 12px" }}
+//             >
+//               {i18n.language.startsWith("en") ? "English" : "ไทย"}
+//             </button>
+//           </div>
+
+//           <motion.div
+//             initial={{ opacity: 0, y: -20 }}
+//             animate={{ opacity: 1, y: 0 }}
+//             className="login-logo-wrapper"
+//           >
+//             <img
+//               src={Logos}
+//               alt="ThaiXO Logo"
+//               className="img-fluid w-25 mb-3"
+//             />
+//             <span className="login-brand-name">
+//               {t("header.title")}
+//             </span>
+//           </motion.div>
+
+//           <h2 className="login-title">{t("login.title")}</h2>
+//           <h3 className="login-subtitle">{t("login.subtitle")}</h3>
+//           <p className="login-description">{t("login.description")}</p>
+
+//           {error && (
+//             <div className="alert alert-danger mb-3 text-center">{error}</div>
+//           )}
+
+//           <form onSubmit={handleLogin} className="login-form">
+//             <div className="login-inputs-row">
+//               <div className="country-code-box">
+//                 <span className="input-label-floating">{t("login.countryCodeLabel")}</span>
+//                 <div className="country-code-content">
+//                   <img src="https://flagcdn.com/w40/th.png" alt="Thailand Flag" className="flag-icon" />
+//                   <span className="country-code-text text-black">(+66)</span>
+//                 </div>
+//               </div>
+
+//               <div className="phone-input-box">
+//                 <span className="input-label-floating">{t("login.phoneLabel")}</span>
+//                 <input
+//                   type="tel"
+//                   className="phone-input-field"
+//                   placeholder="123-456-789"
+//                   value={contactNo}
+//                   onChange={(e) => setContactNo(formatPhone(e.target.value))} // ✅ UPDATED
+//                   disabled={loading}
+//                 />
+//               </div>
+//             </div>
+
+//             <button type="submit" className="verify-btn" disabled={loading}>
+//               {loading ? t("login.buttonLoading") : t("login.button")}
+//             </button>
+//           </form>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
