@@ -117,7 +117,7 @@
 
 
 import { Routes, Route } from "react-router-dom";
-import ProtectedRoute from "./prot/ProtectedRoute";
+import ProtectedRoute from "./Prot/ProtectedRoute";
 
 import Login from "./component/Login";
 import Otp from "./component/Otp";
