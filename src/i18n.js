@@ -1577,6 +1577,7 @@ const resources = {
       // Inside en.translation
       withdrawal: {
         noticeMessage: "All withdrawal requests placed between 6:00 PM and 10:00 AM (Thailand Time) will be processed after 10:00 AM.",
+        noticeMessage2: "Easily Withdraw Amounts Abouve 500 quick secure, and seamless.",
         credit: "Credit",
         requestedAmount: "Requested Amount*",
         amountPlaceholder: "Enter amount",
@@ -1986,6 +1987,7 @@ const resources = {
       // Inside th.translation
       withdrawal: {
         noticeMessage: "คำขอถอนเงินทั้งหมดที่ยื่นระหว่างเวลา 18:00 น. ถึง 10:00 น. (ตามเวลาไทย) จะดำเนินการหลังจาก 10:00 น.",
+        noticeMessage2: "ถอนเงินจำนวนมากกว่า 500 ได้อย่างง่ายดาย รวดเร็ว ปลอดภัย และราบรื่น",
         credit: "เครดิต",
         requestedAmount: "จำนวนเงินที่ต้องการถอน*",
         amountPlaceholder: "กรอกจำนวนเงิน",
