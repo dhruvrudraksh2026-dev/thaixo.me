@@ -2087,7 +2087,22 @@ export default function Sidebar({ show, onClose, activeItem }) {
     return t(keyMap[labelKey] || labelKey);
   };
 
+  // return (
+  //   <div
+  //     className={`sidebar ${show ? 'show' : ''}`}
+  //     onClick={handleSidebarClick}
+  //   >
+
+
   return (
+  <>
+    {show && (
+      <div
+        className="sidebar-overlay d-lg-none"
+        onClick={onClose}
+      />
+    )}
+
     <div
       className={`sidebar ${show ? 'show' : ''}`}
       onClick={handleSidebarClick}
@@ -2192,6 +2207,7 @@ export default function Sidebar({ show, onClose, activeItem }) {
         </Modal.Footer>
       </Modal>
     </div>
+    </>
   );
 }
 

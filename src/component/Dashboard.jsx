@@ -2413,10 +2413,22 @@ export default function Dashboard() {
       <button className="mobile-toggle d-none" onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
         {isSidebarOpen ? <X /> : <Menu />}
       </button>
-      {isSidebarOpen && (
+      {/* {isSidebarOpen && (
         <div className="sidebar-overlay d-lg-none" onClick={handleCloseSidebar} />
-      )}
-      <Sidebar show={isSidebarOpen} onClose={handleCloseSidebar} />
+      )} */}
+
+      {isSidebarOpen && (
+  <div
+    className="sidebar-overlay"
+    onClick={handleCloseSidebar}
+  />
+)}
+      {/* <Sidebar show={isSidebarOpen}  onClose={handleCloseSidebar} /> */}
+
+      <Sidebar
+  show={isSidebarOpen}
+  onClose={handleCloseSidebar}
+/>
       <main className="main-content flex-grow-1">
         <Header toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)} />
 
