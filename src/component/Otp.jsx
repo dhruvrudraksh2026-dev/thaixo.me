@@ -3498,12 +3498,24 @@ export default function VerifyOtp() {
 
         navigate('/dashboard',  { replace: true });
       } else {
-        setError(data.message || t('otp.error.verificationFailed', 'Verification failed'));
+        // setError(data.message || t('otp.error.verificationFailed', 'Verification failed'));
+        setError(
+  data.message === "OTP does not match"
+    ? t("otp.error.otpMismatch")
+    : data.message || t("otp.error.verificationFailed", "Verification failed")
+);
         setOtp(["", "", "", "", "", ""]);
         otpRefs.current[0]?.focus();
       }
     } catch (err) {
-      setError(err.response?.data?.message || t('otp.error.genericError', 'Error'));
+      // setError(err.response?.data?.message || t('otp.error.genericError', 'Error'));
+      const errorMessage = err.response?.data?.message;
+
+setError(
+  errorMessage === "OTP does not match"
+    ? t("otp.error.otpMismatch")
+    : errorMessage || t("otp.error.genericError", "Error")
+);
       setOtp(["", "", "", "", "", ""]);
       otpRefs.current[0]?.focus();
     } finally {

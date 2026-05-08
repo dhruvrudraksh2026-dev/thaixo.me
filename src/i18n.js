@@ -1727,11 +1727,13 @@ const resources = {
         "sending": "Sending...",
         "timer": " - ",
         "resendSuccess": "OTP resent successfully!",
+
         "error": {
           "invalidOtp": "Please enter a valid 6-digit OTP",
           "verificationFailed": "Verification failed",
           "genericError": "An error occurred during OTP verification",
-          "resendFailed": "Failed to resend OTP"
+          "resendFailed": "Failed to resend OTP",
+          "otpMismatch": "OTP does not match"
         }
       },
 
@@ -2150,7 +2152,8 @@ const resources = {
           "invalidOtp": "กรุณากรอก สนข 6 หลักที่ถูกต้อง",
           "verificationFailed": "การยืนยันล้มเหลว",
           "genericError": "เกิดข้อผิดพลาดระหว่างการยืนยัน สนข",
-          "resendFailed": "ไม่สามารถส่ง สนข ใหม่ได้"
+          "resendFailed": "ไม่สามารถส่ง สนข ใหม่ได้",
+           "otpMismatch": "รหัส สนข ไม่ถูกต้อง"
         }
       },
 
