@@ -1655,22 +1655,22 @@ const resources = {
       // English (keep original names)
       bankNames: {
         "Bangkok_Bank": "Bangkok Bank",
-    "Kasikorn_Bank": "Kasikorn Bank",
-    "KASIKORN_BANK": "Kasikorn Bank",
-    "Siam_Commercial_Bank": "Siam Commercial Bank",
-    "SCB": "SCB",
-    "Krung_Thai_Bank": "Krung Thai Bank",
-    "Krungthai_Bank": "Krungthai Bank",
-    "Bank_of_Ayudhya": "Bank of Ayudhya",
-    "Krungsri": "Krungsri",
-    "Thanachart_Bank": "Thanachart Bank",
-    "TMB_Bank": "TMB Bank",
-    "TMBThanachart_Bank": "TMBThanachart Bank",
-    "ttb": "ttb",
-    "CIMB_Thai_Bank": "CIMB Thai Bank",
-    "Standard_Chartered_Bank": "Standard Chartered Bank",
-    "Hongkong_and_Shanghai_Banking_Corporation": "Hongkong and Shanghai Banking Corporation",
-    "HSBC": "HSBC"
+        "Kasikorn_Bank": "Kasikorn Bank",
+        "KASIKORN_BANK": "Kasikorn Bank",
+        "Siam_Commercial_Bank": "Siam Commercial Bank",
+        "SCB": "SCB",
+        "Krung_Thai_Bank": "Krung Thai Bank",
+        "Krungthai_Bank": "Krungthai Bank",
+        "Bank_of_Ayudhya": "Bank of Ayudhya",
+        "Krungsri": "Krungsri",
+        "Thanachart_Bank": "Thanachart Bank",
+        "TMB_Bank": "TMB Bank",
+        "TMBThanachart_Bank": "TMBThanachart Bank",
+        "ttb": "ttb",
+        "CIMB_Thai_Bank": "CIMB Thai Bank",
+        "Standard_Chartered_Bank": "Standard Chartered Bank",
+        "Hongkong_and_Shanghai_Banking_Corporation": "Hongkong and Shanghai Banking Corporation",
+        "HSBC": "HSBC"
       },
 
       // === API VALUE TRANSLATIONS (English - keep original) ===
@@ -1714,7 +1714,8 @@ const resources = {
         "error": {
           "invalidPhone": "Please enter a valid phone number",
           "loginFailed": "Login failed",
-          "genericError": "An error occurred during login"
+          "genericError": "An error occurred during login",
+          "accountNotExists": "Account does not exist"
         }
       },
       "otp": {
@@ -1738,63 +1739,63 @@ const resources = {
       },
 
       // Inside en.translation AND th.translation
-"notes": {
-  "Bank_server_down": "Bank server down",
-    "Incorrect_bank_account_details": "Incorrect bank account details",
-    "Name_mismatch_with_bank_account": "Name mismatch with bank account",
-    "Suspicious_activity": "Suspicious activity",
-    "Withdrawal_is_in_process": "Withdrawal is in process",
-    "Withdrawal_is_completed": "Withdrawal is completed",
-    "Processing": "Processing",
-    "Processed": "Processed",
-    "Completed": "Completed",
-    "Pending_verification": "Pending verification",
-    "Verified": "Verified",
-    "Under_review": "Under review",
-    "Rejected": "Rejected",
-    "Approved": "Approved",
-    "Auto_approved": "Auto-approved",
-    "Manual_review_required": "Manual review required",
-    "Waiting_for_bank_confirmation": "Waiting for bank confirmation",
-    "Bank_transfer_initiated": "Bank transfer initiated",
-    "Funds_transferred": "Funds transferred",
-    "Withdrawal_request_received": "Withdrawal request received",
-    "Queued_for_processing": "Queued for processing",
-    "Success": "Success",
-    "Failed": "Failed",
-    "Pending": "Pending",
-    "Cancelled": "Cancelled",
-    "Refunded": "Refunded",
-    "On_hold": "On hold",
-    "In_progress": "In progress",
-    "Done": "Done",
-    "DONE": "Done",
-    "PENDING": "Pending",
-    "COMPLETED": "Completed",
-    "APPROVED": "Approved",
-    "REJECTED": "Rejected",
-    "FAILED": "Failed",
-    "CANCELLED": "Cancelled"
-},
+      "notes": {
+        "Bank_server_down": "Bank server down",
+        "Incorrect_bank_account_details": "Incorrect bank account details",
+        "Name_mismatch_with_bank_account": "Name mismatch with bank account",
+        "Suspicious_activity": "Suspicious activity",
+        "Withdrawal_is_in_process": "Withdrawal is in process",
+        "Withdrawal_is_completed": "Withdrawal is completed",
+        "Processing": "Processing",
+        "Processed": "Processed",
+        "Completed": "Completed",
+        "Pending_verification": "Pending verification",
+        "Verified": "Verified",
+        "Under_review": "Under review",
+        "Rejected": "Rejected",
+        "Approved": "Approved",
+        "Auto_approved": "Auto-approved",
+        "Manual_review_required": "Manual review required",
+        "Waiting_for_bank_confirmation": "Waiting for bank confirmation",
+        "Bank_transfer_initiated": "Bank transfer initiated",
+        "Funds_transferred": "Funds transferred",
+        "Withdrawal_request_received": "Withdrawal request received",
+        "Queued_for_processing": "Queued for processing",
+        "Success": "Success",
+        "Failed": "Failed",
+        "Pending": "Pending",
+        "Cancelled": "Cancelled",
+        "Refunded": "Refunded",
+        "On_hold": "On hold",
+        "In_progress": "In progress",
+        "Done": "Done",
+        "DONE": "Done",
+        "PENDING": "Pending",
+        "COMPLETED": "Completed",
+        "APPROVED": "Approved",
+        "REJECTED": "Rejected",
+        "FAILED": "Failed",
+        "CANCELLED": "Cancelled"
+      },
 
 
-"status": {
-    "DONE": "Done",
-    "COMPLETED": "Completed",
-    "APPROVED": "Approved",
-    "PENDING": "Pending",
-    "PROCESSING": "Processing",
-    "UNDER_REVIEW": "Under Review",
-    "REJECTED": "Rejected",
-    "FAILED": "Failed",
-    "CANCELLED": "Cancelled"
-  },
-  "currency": {
-    "thb": "THB"
-  },
+      "status": {
+        "DONE": "Done",
+        "COMPLETED": "Completed",
+        "APPROVED": "Approved",
+        "PENDING": "Pending",
+        "PROCESSING": "Processing",
+        "UNDER_REVIEW": "Under Review",
+        "REJECTED": "Rejected",
+        "FAILED": "Failed",
+        "CANCELLED": "Cancelled"
+      },
+      "currency": {
+        "thb": "THB"
+      },
 
 
-  
+
 
 
     }
@@ -2063,33 +2064,33 @@ const resources = {
           authFailed: "การยืนยันตัวตนล้มเหลว กรุณาเข้าสู่ระบบอีกครั้ง",
           fetchFailed: "เกิดข้อผิดพลาดในการโหลดช่องทางการสนับสนุน"
         },
-         platformNames: {
-    "Line": "ไลน์",
-    "Telegram": "เทเลแกรม",
-    "Whatsapp": "วอทส์แอพ"
-  }
+        platformNames: {
+          "Line": "ไลน์",
+          "Telegram": "เทเลแกรม",
+          "Whatsapp": "วอทส์แอพ"
+        }
 
       },
 
       // Thai (display Thai script)
       bankNames: {
-         "Bangkok_Bank": "ธนาคารกรุงเทพ",
-    "Kasikorn_Bank": "ธนาคารกสิกรไทย",
-    "KASIKORN_BANK": "ธนาคารกสิกรไทย",
-    "Siam_Commercial_Bank": "ธนาคารไทยพาณิชย์",
-    "SCB": "ธนาคารไทยพาณิชย์",
-    "Krung_Thai_Bank": "ธนาคารกรุงไทย",
-    "Krungthai_Bank": "ธนาคารกรุงไทย",
-    "Bank_of_Ayudhya": "ธนาคารกรุงศรีอยุธยา",
-    "Krungsri": "ธนาคารกรุงศรีอยุธยา",
-    "Thanachart_Bank": "ธนาคารธนชาต",
-    "TMB_Bank": "ธนาคารทหารไทย",
-    "TMBThanachart_Bank": "ธนาคารทหารไทยธนชาต",
-    "ttb": "ธนาคารทหารไทยธนชาต",
-    "CIMB_Thai_Bank": "ธนาคารซีไอเอ็มบี ไทย",
-    "Standard_Chartered_Bank": "ธนาคารสแตนดาร์ดชาร์เตอร์ด",
-    "Hongkong_and_Shanghai_Banking_Corporation": "ธนาคารฮ่องกงและเซี่ยงไฮ้แบงกิ้งคอร์ปอเรชั่น",
-    "HSBC": "ธนาคารฮ่องกงและเซี่ยงไฮ้แบงกิ้งคอร์ปอเรชั่น"
+        "Bangkok_Bank": "ธนาคารกรุงเทพ",
+        "Kasikorn_Bank": "ธนาคารกสิกรไทย",
+        "KASIKORN_BANK": "ธนาคารกสิกรไทย",
+        "Siam_Commercial_Bank": "ธนาคารไทยพาณิชย์",
+        "SCB": "ธนาคารไทยพาณิชย์",
+        "Krung_Thai_Bank": "ธนาคารกรุงไทย",
+        "Krungthai_Bank": "ธนาคารกรุงไทย",
+        "Bank_of_Ayudhya": "ธนาคารกรุงศรีอยุธยา",
+        "Krungsri": "ธนาคารกรุงศรีอยุธยา",
+        "Thanachart_Bank": "ธนาคารธนชาต",
+        "TMB_Bank": "ธนาคารทหารไทย",
+        "TMBThanachart_Bank": "ธนาคารทหารไทยธนชาต",
+        "ttb": "ธนาคารทหารไทยธนชาต",
+        "CIMB_Thai_Bank": "ธนาคารซีไอเอ็มบี ไทย",
+        "Standard_Chartered_Bank": "ธนาคารสแตนดาร์ดชาร์เตอร์ด",
+        "Hongkong_and_Shanghai_Banking_Corporation": "ธนาคารฮ่องกงและเซี่ยงไฮ้แบงกิ้งคอร์ปอเรชั่น",
+        "HSBC": "ธนาคารฮ่องกงและเซี่ยงไฮ้แบงกิ้งคอร์ปอเรชั่น"
       },
 
       // === API VALUE TRANSLATIONS (Thai) ===
@@ -2125,22 +2126,24 @@ const resources = {
       "login": {
         "title": "เข้าสู่ระบบ",
         "subtitle": "สวัสดี! ยินดีต้อนรับกลับ",
-        "description": "กรุณากรอกหมายเลขโทรศัพท์ที่ลงทะเบียนไว้เพื่อเข้าสู่ระบบ เราจะส่ง OTP เพื่อยืนยันตัวตนของคุณ",
+        "description": "กรุณากรอกหมายเลขโทรศัพท์ที่ลงทะเบียนไว้เพื่อเข้าสู่ระบบ เราจะส่ง สนข เพื่อยืนยันตัวตนของคุณ",
         "countryCodeLabel": "รหัสประเทศ",
         "phoneLabel": "กรอกหมายเลขติดต่อ*",
         "phonePlaceholder": "12345-6789",
-        "button": "ส่ง OTP",
-        "buttonLoading": "กำลังส่ง OTP...",
+        "button": "ส่ง สนข",
+        "buttonLoading": "กำลังส่ง สนข...",
         "error": {
           "invalidPhone": "กรุณากรอกหมายเลขโทรศัพท์ที่ถูกต้อง",
           "loginFailed": "เข้าสู่ระบบไม่สำเร็จ",
-          "genericError": "เกิดข้อผิดพลาดระหว่างการเข้าสู่ระบบ"
+          "genericError": "เกิดข้อผิดพลาดระหว่างการเข้าสู่ระบบ",
+          "accountNotExists": "ไม่พบบัญชีผู้ใช้นี้"
+
         }
       },
 
       "otp": {
         "titles": "รับ สนข จาก วอทส์แอพพ์",
-        "instruction": "เปิด วอทส์แอพพ์ ของคุณ → คัดลอก OTP ที่ปลอดภัย",
+        "instruction": "เปิด วอทส์แอพพ์ ของคุณ → คัดลอก สนข ที่ปลอดภัย",
         "verifyButton": "ยืนยัน สนข",
         "verifying": "กำลังยืนยัน...",
         "didntReceive": "ไม่ได้รับโค้ด?",
@@ -2153,65 +2156,65 @@ const resources = {
           "verificationFailed": "การยืนยันล้มเหลว",
           "genericError": "เกิดข้อผิดพลาดระหว่างการยืนยัน สนข",
           "resendFailed": "ไม่สามารถส่ง สนข ใหม่ได้",
-           "otpMismatch": "รหัส สนข ไม่ถูกต้อง"
+          "otpMismatch": "รหัส สนข ไม่ถูกต้อง"
         }
       },
 
       "notes": {
-    "Bank_server_down": "เซิร์ฟเวอร์ธนาคารล่ม",
-    "Incorrect_bank_account_details": "รายละเอียดบัญชีธนาคารไม่ถูกต้อง",
-    "Name_mismatch_with_bank_account": "ชื่อไม่ตรงกับบัญชีธนาคาร",
-    "Suspicious_activity": "กิจกรรมที่น่าสงสัย",
-    "Withdrawal_is_in_process": "กำลังดำเนินการถอนเงิน",
-    "Withdrawal_is_completed": "การถอนเงินเสร็จสมบูรณ์",
-    "Processing": "กำลังดำเนินการ",
-    "Processed": "ดำเนินการแล้ว",
-    "Completed": "เสร็จสมบูรณ์",
-    "Pending_verification": "รอการตรวจสอบ",
-    "Verified": "ตรวจสอบแล้ว",
-    "Under_review": "อยู่ระหว่างการตรวจสอบ",
-    "Rejected": "ถูกปฏิเสธ",
-    "Approved": "อนุมัติแล้ว",
-    "Auto_approved": "อนุมัติอัตโนมัติ",
-    "Manual_review_required": "ต้องตรวจสอบด้วยตนเอง",
-    "Waiting_for_bank_confirmation": "รอการยืนยันจากธนาคาร",
-    "Bank_transfer_initiated": "เริ่มโอนเงินผ่านธนาคารแล้ว",
-    "Funds_transferred": "โอนเงินเสร็จสิ้น",
-    "Withdrawal_request_received": "ได้รับคำขอถอนเงิน",
-    "Queued_for_processing": "อยู่ในคิวรอดำเนินการ",
-    "Success": "สำเร็จ",
-    "Failed": "ล้มเหลว",
-    "Pending": "รอดำเนินการ",
-    "Cancelled": "ยกเลิก",
-    "Refunded": "คืนเงินแล้ว",
-    "On_hold": "ระงับชั่วคราว",
-    "In_progress": "กำลังดำเนินการ",
-    "Done": "เสร็จสิ้น",
-    "DONE": "เสร็จสิ้น",
-    "PENDING": "รอดำเนินการ",
-    "COMPLETED": "เสร็จสมบูรณ์",
-    "APPROVED": "อนุมัติแล้ว",
-    "REJECTED": "ถูกปฏิเสธ",
-    "FAILED": "ล้มเหลว",
-    "CANCELLED": "ยกเลิก"
-},
+        "Bank_server_down": "เซิร์ฟเวอร์ธนาคารล่ม",
+        "Incorrect_bank_account_details": "รายละเอียดบัญชีธนาคารไม่ถูกต้อง",
+        "Name_mismatch_with_bank_account": "ชื่อไม่ตรงกับบัญชีธนาคาร",
+        "Suspicious_activity": "กิจกรรมที่น่าสงสัย",
+        "Withdrawal_is_in_process": "กำลังดำเนินการถอนเงิน",
+        "Withdrawal_is_completed": "การถอนเงินเสร็จสมบูรณ์",
+        "Processing": "กำลังดำเนินการ",
+        "Processed": "ดำเนินการแล้ว",
+        "Completed": "เสร็จสมบูรณ์",
+        "Pending_verification": "รอการตรวจสอบ",
+        "Verified": "ตรวจสอบแล้ว",
+        "Under_review": "อยู่ระหว่างการตรวจสอบ",
+        "Rejected": "ถูกปฏิเสธ",
+        "Approved": "อนุมัติแล้ว",
+        "Auto_approved": "อนุมัติอัตโนมัติ",
+        "Manual_review_required": "ต้องตรวจสอบด้วยตนเอง",
+        "Waiting_for_bank_confirmation": "รอการยืนยันจากธนาคาร",
+        "Bank_transfer_initiated": "เริ่มโอนเงินผ่านธนาคารแล้ว",
+        "Funds_transferred": "โอนเงินเสร็จสิ้น",
+        "Withdrawal_request_received": "ได้รับคำขอถอนเงิน",
+        "Queued_for_processing": "อยู่ในคิวรอดำเนินการ",
+        "Success": "สำเร็จ",
+        "Failed": "ล้มเหลว",
+        "Pending": "รอดำเนินการ",
+        "Cancelled": "ยกเลิก",
+        "Refunded": "คืนเงินแล้ว",
+        "On_hold": "ระงับชั่วคราว",
+        "In_progress": "กำลังดำเนินการ",
+        "Done": "เสร็จสิ้น",
+        "DONE": "เสร็จสิ้น",
+        "PENDING": "รอดำเนินการ",
+        "COMPLETED": "เสร็จสมบูรณ์",
+        "APPROVED": "อนุมัติแล้ว",
+        "REJECTED": "ถูกปฏิเสธ",
+        "FAILED": "ล้มเหลว",
+        "CANCELLED": "ยกเลิก"
+      },
 
-"status": {
-    "DONE": "เสร็จสิ้น",
-    "COMPLETED": "เสร็จสมบูรณ์",
-    "APPROVED": "อนุมัติแล้ว",
-    "PENDING": "รอดำเนินการ",
-    "PROCESSING": "กำลังดำเนินการ",
-    "UNDER_REVIEW": "อยู่ระหว่างการตรวจสอบ",
-    "REJECTED": "ถูกปฏิเสธ",
-    "FAILED": "ล้มเหลว",
-    "CANCELLED": "ยกเลิก"
-  },
+      "status": {
+        "DONE": "เสร็จสิ้น",
+        "COMPLETED": "เสร็จสมบูรณ์",
+        "APPROVED": "อนุมัติแล้ว",
+        "PENDING": "รอดำเนินการ",
+        "PROCESSING": "กำลังดำเนินการ",
+        "UNDER_REVIEW": "อยู่ระหว่างการตรวจสอบ",
+        "REJECTED": "ถูกปฏิเสธ",
+        "FAILED": "ล้มเหลว",
+        "CANCELLED": "ยกเลิก"
+      },
 
 
-  "currency": {
-    "thb": "บาท"
-  },
+      "currency": {
+        "thb": "บาท"
+      },
 
     }
   }

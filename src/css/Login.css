@@ -7,6 +7,10 @@
   padding: 20px;
 }
 
+.text-colors{
+  color: #e9527a;
+}
+
 .login-card {
   width: 100%;
   max-width: 1100px;
