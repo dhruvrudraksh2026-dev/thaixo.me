@@ -4265,13 +4265,71 @@ const EarningsContent = () => {
     return formatMonthlyDataForTable(earnings, i18n.language);
   }, [earnings, incomeType, i18n.language]);
 
-  const totalIncome = useMemo(() => {
-    return earnings.reduce(
-      (sum, item) => sum + parseFloat(item.total_earnings || 0),
-      0,
-    );
-  }, [earnings]);
+  // const totalIncome = useMemo(() => {
+  //   return earnings.reduce(
+  //     (sum, item) => sum + parseFloat(item.total_earnings || 0),
+  //     0,
+  //   );
+  // }, [earnings]);
 
+  // const totalIncome = useMemo(() => {
+  //   // DAILY → show only today's earning
+  //   if (incomeType === "daily") {
+  //     const today = formatDateForAPI(new Date());
+
+  //     const todayData = earnings.find((item) => item.date === today);
+
+  //     return todayData ? parseFloat(todayData.total_earnings || 0) : 0;
+  //   }
+
+  //   // MONTHLY → show full month total
+  //   return earnings.reduce(
+  //     (sum, item) => sum + parseFloat(item.total_earnings || 0),
+  //     0,
+  //   );
+  // }, [earnings, incomeType]);
+
+  const totalIncome = useMemo(() => {
+
+  // =========================
+  // DAILY INCOME
+  // =========================
+  if (incomeType === "daily") {
+
+    const today = formatDateForAPI(new Date());
+
+    const todayData = earnings.find(
+      (item) => item.date === today
+    );
+
+    return todayData
+      ? parseFloat(todayData.total_earnings || 0)
+      : 0;
+  }
+
+  // =========================
+  // MONTHLY INCOME
+  // ONLY CURRENT RUNNING MONTH
+  // =========================
+
+  const currentMonth = new Date().toLocaleString("en-US", {
+    month: "long",
+  });
+
+  const currentYear = new Date().getFullYear();
+
+  const currentMonthData = earnings.filter(
+    (item) =>
+      item.month === currentMonth &&
+      Number(item.year) === currentYear
+  );
+
+  return currentMonthData.reduce(
+    (sum, item) => sum + parseFloat(item.total_earnings || 0),
+    0
+  );
+
+}, [earnings, incomeType]);
   const hasData = chartData.length > 0 && !error;
   const label =
     incomeType === "daily"
@@ -4345,7 +4403,7 @@ const EarningsContent = () => {
           </div>
         ) : (
           <>
-            <div className="earnings-header">
+            {/* <div className="earnings-header">
               <div>
                 <h2 className="total-amount">
                   <span className="font-dollar">฿</span>{" "}
@@ -4353,6 +4411,28 @@ const EarningsContent = () => {
                 </h2>
                 <p className="income-label">{label}</p>
               </div>
+              <div className="current-date">{dateLabel}</div>
+            </div> */}
+
+            <div className="earnings-header">
+              <div className="income-header-left">
+                <p className="income-label">
+                  {incomeType === "daily"
+                    ? t("incomeDashboard.dailyIncome")
+                    : t("incomeDashboard.monthlyIncome")}
+                </p>
+
+                <h2 className="total-amount">
+                  <span className="font-dollar">฿</span>
+
+                  {formatNumber(totalIncome, i18n.language)}
+
+                  <span className="thb-text">
+                    {i18n.language === "th" ? "บาท" : "THB"}
+                  </span>
+                </h2>
+              </div>
+
               <div className="current-date">{dateLabel}</div>
             </div>
 

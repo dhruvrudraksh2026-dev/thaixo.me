@@ -5362,7 +5362,7 @@ export default function Milestone() {
       <div className="main-wrapper">
         <Header toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)} />
 
-        <main className="p-3 p-md-5">
+        <main className="p-3 p-md-5 mb-lg-0 mb-5">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

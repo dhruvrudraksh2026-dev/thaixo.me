@@ -2354,7 +2354,7 @@ const VideoCallHistory = () => {
         <Sidebar show={isSidebarOpen} onClose={handleCloseSidebar} />
         <div className="main-wrapper">
           <Header toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)} />
-          <main className="video-history-content">
+          <main className="video-history-content mb-lg-0 mb-5">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}

@@ -8356,12 +8356,45 @@ export default function DailySeeMore() {
   }, [earnings, view, i18n.language, t]);
 
   // Total income (only from actual data)
+  // const totalIncome = useMemo(() => {
+  //   return earnings.reduce(
+  //     (sum, item) => sum + parseFloat(item.total_earnings || 0),
+  //     0,
+  //   );
+  // }, [earnings]);
+
   const totalIncome = useMemo(() => {
-    return earnings.reduce(
+    // =========================
+    // DAILY → ONLY TODAY
+    // =========================
+    if (view === "daily") {
+      const today = formatDateForAPI(new Date());
+
+      const todayData = earnings.find((item) => item.date === today);
+
+      return todayData ? parseFloat(todayData.total_earnings || 0) : 0;
+    }
+
+    // =========================
+    // MONTHLY → ONLY CURRENT MONTH
+    // =========================
+
+    const currentMonth = new Date().toLocaleString("en-US", {
+      month: "long",
+    });
+
+    const currentYear = new Date().getFullYear();
+
+    const currentMonthData = earnings.filter(
+      (item) =>
+        item.month === currentMonth && Number(item.year) === currentYear,
+    );
+
+    return currentMonthData.reduce(
       (sum, item) => sum + parseFloat(item.total_earnings || 0),
       0,
     );
-  }, [earnings]);
+  }, [earnings, view]);
 
   // Group monthly data by year
   const groupByYear = (data) => {
@@ -8514,8 +8547,16 @@ export default function DailySeeMore() {
                           <div className="d-flex align-items-baseline gap-2 mb-1">
                             {/* <span className="font-dollar">{t("thb")}</span> */}
                             <span className="display-3 fw-bold">฿</span>
+                            {/* <span className="display-3 fw-bold">
+                              {formatNumber(totalIncome, i18n.language)}
+                            </span> */}
+
                             <span className="display-3 fw-bold">
                               {formatNumber(totalIncome, i18n.language)}
+                            </span>
+
+                            <span className="fs-4 fw-semibold mt-2">
+                              {i18n.language === "th" ? "บาท" : "THB"}
                             </span>
                           </div>
                           <p className="opacity-75 h5">
@@ -8665,11 +8706,28 @@ export default function DailySeeMore() {
                       i18n.language,
                       t,
                     );
-                    const yearTotalIncome = yearEarnings.reduce(
-                      (sum, item) => sum + parseFloat(item.total_earnings || 0),
-                      0,
-                    );
+                    // const yearTotalIncome = yearEarnings.reduce(
+                    //   (sum, item) => sum + parseFloat(item.total_earnings || 0),
+                    //   0,
+                    // );
 
+                    const currentMonth = new Date().toLocaleString("en-US", {
+                      month: "long",
+                    });
+
+                    const currentYear = new Date().getFullYear();
+
+                    const yearTotalIncome = yearEarnings
+                      .filter(
+                        (item) =>
+                          item.month === currentMonth &&
+                          Number(item.year) === currentYear,
+                      )
+                      .reduce(
+                        (sum, item) =>
+                          sum + parseFloat(item.total_earnings || 0),
+                        0,
+                      );
                     return (
                       <Card
                         key={year}
@@ -8701,9 +8759,19 @@ export default function DailySeeMore() {
 )} */}
 
                                   {view === "monthly" && (
+                                    // <p className="opacity-75 h5">
+                                    //   {t("dailySeeMore.monthlyIncome")} - {year}
+                                    // </p>
+
                                     <p className="opacity-75 h5">
-                                      {t("dailySeeMore.monthlyIncome")} - {year}
-                                    </p>
+  {t("dailySeeMore.monthlyIncome")} - {" "}
+  {new Date().toLocaleString(
+    i18n.language === "th" ? "th-TH" : "en-US",
+    {
+      month: "long",
+    }
+  )}
+</p>
                                   )}
                                 </div>
                                 <span className="display-6 fw-bold opacity-25">

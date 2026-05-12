@@ -2504,7 +2504,7 @@ export default function Dashboard() {
             </div>
           </Col>
 
-          <Col xs={12} lg={4}>
+          <Col xs={12} lg={4} className="mb-lg-0 mb-5">
             <h5 className="h5 fw-bold text-dark mb-4">{t("weeklyList")}</h5>
             <div className="border rounded-3 overflow-hidden">
               <Table responsive className="custom-table mb-0">
