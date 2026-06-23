@@ -1720,7 +1720,7 @@ const resources = {
       },
       "otp": {
         "titles": "Get OTP via WhatsApp",
-        "instruction": "Open Your WhatsApp → Copy Your secure OTP.",
+        "instruction": "Open your Messages app -> Copy your secure OTP.",
         "verifyButton": "Verify OTP",
         "verifying": "Verifying...",
         "didntReceive": "Didn't receive code?",
@@ -2143,7 +2143,7 @@ const resources = {
 
       "otp": {
         "titles": "รับ สนข จาก วอทส์แอพพ์",
-        "instruction": "เปิด วอทส์แอพพ์ ของคุณ → คัดลอก สนข ที่ปลอดภัย",
+        "instruction": "เปิดแอปข้อความของคุณ -> คัดลอกรหัส OTP ที่ปลอดภัยของคุณ",
         "verifyButton": "ยืนยัน สนข",
         "verifying": "กำลังยืนยัน...",
         "didntReceive": "ไม่ได้รับโค้ด?",

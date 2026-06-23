@@ -570,7 +570,7 @@ export default function VerifyOtp() {
               {t("otp.titles")}
             </span>
             <p className="Otp-instruction">
-              {t('otp.instruction', 'Open Your WhatsApp → Copy Your secure OTP.')}
+              {t('otp.instruction', 'Open your Messages app -> Copy your secure OTP')}
             </p>
           </div>
 
