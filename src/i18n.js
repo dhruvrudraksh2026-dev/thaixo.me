@@ -1719,7 +1719,7 @@ const resources = {
         }
       },
       "otp": {
-        "titles": "Get OTP via WhatsApp",
+        "titles": "Get OTP via SMS",
         "instruction": "Open your Messages app -> Copy your secure OTP.",
         "verifyButton": "Verify OTP",
         "verifying": "Verifying...",
@@ -2142,7 +2142,7 @@ const resources = {
       },
 
       "otp": {
-        "titles": "รับ สนข จาก วอทส์แอพพ์",
+        "titles": "รับ สนข ทาง เอสเอ็มเอส",
         "instruction": "เปิดแอปข้อความของคุณ -> คัดลอกรหัส OTP ที่ปลอดภัยของคุณ",
         "verifyButton": "ยืนยัน สนข",
         "verifying": "กำลังยืนยัน...",
