@@ -1387,7 +1387,7 @@ const resources = {
   en: {
     translation: {
       welcome: "Welcome back {{name}}!",
-      todayEarnings: "Today's Earnings",
+      todayEarnings: "Today' s Earnings",
       currentBalance: "Current Balance",
       lastMonthEarnings: "Last Month Earnings",
       earningGraph: "Earning Graph",
