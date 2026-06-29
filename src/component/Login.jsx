@@ -338,7 +338,7 @@ export default function Login() {
                 <input
                   type="tel"
                   className="phone-input-field"
-                  placeholder="012-345-678"
+                  placeholder="123-456-789"
                   value={contactNo}
                   onChange={(e) => {
                     // Remove non-digits
