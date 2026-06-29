@@ -222,6 +222,7 @@ export default function Login() {
     i18n.changeLanguage(newLang);
   };
 
+  const [isPolicyAccepted, setIsPolicyAccepted] = useState(false);
   const handleLogin = async (e) => {
     e.preventDefault();
 
@@ -231,6 +232,8 @@ export default function Login() {
       setError(t("login.error.invalidPhone"));
       return;
     }
+
+    if (!isPolicyAccepted) { setError("Please accept the Creator Privacy & Platform Policy."); return; }
 
     setError("");
     setLoading(true);
@@ -360,6 +363,71 @@ export default function Login() {
                 {error}
               </div>
             )}
+
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "10px",
+                margin: "15px 0",
+                width: "100%",
+              }}
+            >
+              <input
+                type="checkbox"
+                id="policyCheck"
+                checked={isPolicyAccepted}
+                onChange={(e) => setIsPolicyAccepted(e.target.checked)}
+                style={{
+                  width: "18px",
+                  height: "18px",
+                  cursor: "pointer",
+                  flexShrink: 0,
+                }}
+              />
+
+              <label
+                htmlFor="policyCheck"
+                style={{
+                  margin: 0,
+                  fontSize: "13px",
+                  color: "#000000",
+                  lineHeight: "20px",
+                  display: "flex",
+                  alignItems: "center",
+                  flexWrap: "wrap",
+                  gap: "4px",
+                }}
+              >
+                <span>By ticking this box, I agree to the</span>
+
+                <a
+                  href="/privacy-policy"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    color: "#EB4D79",
+                    fontWeight: "600",
+                    textDecoration: "none",
+                  }}
+                >
+                  Creator Privacy & Platform Policy .
+                </a>
+
+                {/* <a
+                  href="/platform-policy"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    color: "#EB4D79",
+                    fontWeight: "600",
+                    textDecoration: "none",
+                  }}
+                >
+                  Platform Policy .
+                </a> */}
+              </label>
+            </div>
 
             <button type="submit" className="verify-btn" disabled={loading}>
               {loading ? t("login.buttonLoading") : t("login.button")}

@@ -1991,6 +1991,7 @@ import {
   LogOut,
   CreditCard,
   X,
+  Shield
 } from 'lucide-react';
 import axios from 'axios';
 import { Modal, Button } from 'react-bootstrap';
@@ -2002,10 +2003,11 @@ const menuItems = [
   { icon: Wallet,     labelKey: 'My Earnings',        path: '/IncomeDashboard',  id: 'earnings' },
   { icon: History,    labelKey: 'Pay Out History',    path: '/WithdrawalHistory', id: 'payout' },
   { icon: UserCheck,  labelKey: 'Verify Identity',    path: '/CreatorSelection', id: 'verify' },
-  { icon: CreditCard, labelKey: 'Withdraw',         path: '/Withdrawal',       id: 'withdrawal' },
+  { icon: CreditCard, labelKey: 'Withdraw',           path: '/Withdrawal',       id: 'withdrawal' },
   { icon: Trophy,     labelKey: 'Milestone',          path: '/Milestone',        id: 'milestone' },
   { icon: Video,      labelKey: 'Video Call History', path: '/VideoCallHistory', id: 'videohistory' },
   { icon: HelpCircle, labelKey: 'Help & Support',     path: '/helpsupport',      id: 'help' },
+  { icon: Shield, labelKey: 'Privacy-Policy',         path: '/privacy-policy',   id: 'privacy' },
 ];
 
 // ── Sidebar Component ────────────────────────────────────────────────────────

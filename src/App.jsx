@@ -134,6 +134,7 @@ import AgencyCreator from "./component/AgencyCreator";
 import Milestone from "./component/Milestone";
 import CreatorSelectionSelf from "./component/CreatorSelectionSelf";
 import NotFound from "./component/NotFound";
+import PlatformPolicy from "./component/platform-policy";
 
 function App() {
   return (
@@ -141,6 +142,7 @@ function App() {
       {/* Public Routes */}
       <Route path="/" element={<Login />} />
       <Route path="/otp" element={<Otp />} />
+      <Route path="/privacy-policy" element={<PlatformPolicy />} />
 
       {/* Protected Routes */}
       <Route path="/Dashboard" element={
