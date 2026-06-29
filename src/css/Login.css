@@ -155,8 +155,7 @@
 }
 
 .verify-btn {
-  background-color: var(--thaixo-pink);
-  color: white;
+  color: #fff;
   border: none;
   border-radius: 12px;
   padding: 15px 0;
@@ -166,12 +165,30 @@
   font-weight: 600;
   transition: all 0.3s ease;
   margin-top: 10px;
+  cursor: pointer;
 }
 
-.verify-btn:hover {
-  background-color: #d6436b;
+/* Initial state */
+.verify-btn.inactive {
+  background-color: #ff8eac;
+}
+
+/* After checkbox is checked */
+.verify-btn.active {
+  background-color: #e95d82;
+}
+
+/* Hover only when active */
+.verify-btn.active:hover {
+  background-color: #d84f75;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(233, 82, 122, 0.3);
+  box-shadow: 0 4px 12px rgba(233, 93, 130, 0.3);
+}
+
+/* Disabled while loading */
+.verify-btn:disabled {
+  opacity: 0.8;
+  cursor: not-allowed;
 }
 
 

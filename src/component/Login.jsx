@@ -46,7 +46,7 @@
 //           withCredentials: true,
 //         }
 //       ); 
-      
+
 //       if (response.data.success) {
 
 //     // ✅ Save login info
@@ -62,7 +62,7 @@
 //       replace: true,
 //     });
 // }
-      
+
 //       else {
 //         setError(
 //           response.data.message || t("login.error.loginFailed")
@@ -123,7 +123,7 @@
 //           <h3 className="login-subtitle">{t("login.subtitle")}</h3>
 //           <p className="login-description">{t("login.description")}</p>
 
-          
+
 
 //           <form onSubmit={handleLogin} className="login-form">
 //             <div className="login-inputs-row mb-3">
@@ -271,7 +271,7 @@ export default function Login() {
     } catch (err) {
       setError(
         err.response?.data?.message ||
-          t("login.error.genericError")
+        t("login.error.genericError")
       );
     } finally {
       setLoading(false);
@@ -413,23 +413,17 @@ export default function Login() {
                 >
                   Creator Privacy & Platform Policy .
                 </a>
-
-                {/* <a
-                  href="/platform-policy"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    color: "#EB4D79",
-                    fontWeight: "600",
-                    textDecoration: "none",
-                  }}
-                >
-                  Platform Policy .
-                </a> */}
               </label>
             </div>
 
-            <button type="submit" className="verify-btn" disabled={loading}>
+            {/* <button type="submit" className="verify-btn" disabled={loading}>
+              {loading ? t("login.buttonLoading") : t("login.button")}
+            </button> */}
+            <button
+              type="submit"
+              className={`verify-btn ${isPolicyAccepted ? "active" : "inactive"}`}
+              disabled={loading}
+            >
               {loading ? t("login.buttonLoading") : t("login.button")}
             </button>
           </form>
