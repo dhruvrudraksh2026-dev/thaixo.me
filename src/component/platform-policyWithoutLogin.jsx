@@ -9,7 +9,7 @@ export default function PlatformPolicy() {
         <img src={Logos} alt="ThaiXO" className="logo" />
 
         <h1 className="policy-title">
-          Become a Creator
+          Creator Privacy Policy
         </h1>
 
         <p className="policy-subtitle">
