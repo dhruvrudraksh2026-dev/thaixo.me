@@ -1,0 +1,126 @@
+.policy-container {
+    min-height: 100vh;
+    background: #fafafa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.policy-card {
+    width: 100%;
+    max-width: 900px;
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.08);
+    padding: 30px;
+}
+
+.policy-title {
+    text-align: center;
+    color: #EC5D80;
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.policy-subtitle {
+    text-align: center;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.policy-text {
+    color: #666;
+    margin-left: 13px;
+    line-height: 1.7;
+    text-align: justify;
+}
+
+@media (max-width: 768px) {
+    .policy-text {
+        text-align: left;
+    }
+}
+
+.policy-content {
+    max-height: 60vh;
+    overflow-y: auto;
+    padding-right: 10px;
+    line-height: 1.8;
+}
+
+.policy-section {
+    margin-bottom: 28px;
+}
+
+.policy-section h4 {
+    color: #222;
+    font-weight: 600;
+    margin-bottom: 12px;
+    border-left: 4px solid #EC5D80;
+    padding-left: 12px;
+}
+
+.policy-section ul {
+    padding-left: 20px;
+}
+
+.policy-section li {
+    margin-bottom: 8px;
+    color: #555;
+}
+
+.policy-footer {
+    margin-top: 25px;
+}
+
+.agree-box {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.accept-btn {
+    width: 100%;
+    height: 52px;
+    border: none;
+    border-radius: 50px;
+    background: #EC5D80;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.accept-btn:disabled {
+    opacity: .5;
+    cursor: not-allowed;
+}
+
+.policy-link {
+  color: #EC5D80;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.policy-link:hover {
+  color: #d94b70;
+  text-decoration: underline;
+}
+
+@media (max-width:768px) {
+    .policy-card {
+        padding: 20px;
+        border-radius: 15px;
+    }
+
+    .policy-title {
+        font-size: 26px;
+    }
+
+    .policy-content {
+        max-height: 55vh;
+    }
+}

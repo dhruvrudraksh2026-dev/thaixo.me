@@ -402,7 +402,7 @@ export default function Login() {
                 <span>By ticking this box, I agree to the</span>
 
                 <a
-                  href="/privacy-policy"
+                  href="/privacy"
                   target="_blank"
                   rel="noopener noreferrer"
                   style={{

@@ -4279,6 +4279,7 @@ export default function Header({ toggleSidebar }) {
   const { t, i18n } = useTranslation();
   const [showProfileDropdown, setShowProfileDropdown] = useState(false);
   const [showNotificationPopup, setShowNotificationPopup] = useState(false);
+  const [showLanguagePopup, setShowLanguagePopup] = useState(false);
   const [isLoggingOut, setIsLoggingOut] = useState(false);
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const [isLoadingProfile, setIsLoadingProfile] = useState(true);
@@ -4308,6 +4309,7 @@ export default function Header({ toggleSidebar }) {
   const navigate = useNavigate();
   const profileRef = useRef(null);
   const notificationRef = useRef(null);
+  const languageRef = useRef(null);
 
   const getAuthHeader = () => {
     const token = localStorage.getItem("token");
@@ -4798,6 +4800,12 @@ export default function Header({ toggleSidebar }) {
       ) {
         setShowNotificationPopup(false);
       }
+      if (
+        languageRef.current &&
+        !languageRef.current.contains(event.target)
+      ) {
+        setShowLanguagePopup(false);
+      }
     }
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
@@ -4945,7 +4953,7 @@ navigate("/");
         </div>
 
         {/* RIGHT SECTION */}
-        <div className="header-right d-flex align-items-center gap-4">
+        <div className="header-right d-flex align-items-center gap-2">
           {/* Notification */}
           <div className="position-relative" ref={notificationRef}>
             <div
@@ -4954,6 +4962,7 @@ navigate("/");
                 e.stopPropagation();
                 setShowNotificationPopup((prev) => !prev);
                 setShowProfileDropdown(false);
+                setShowLanguagePopup(false);
               }}
             >
               <Bell size={24} className="text-danger" />
@@ -5033,6 +5042,43 @@ navigate("/");
             )}
           </div>
 
+          {/* Language */}
+          <div className="position-relative" ref={languageRef}>
+            <div
+              className="notification-icon-wrapper cursor-pointer"
+              onClick={(e) => {
+                e.stopPropagation();
+                setShowLanguagePopup((prev) => !prev);
+                setShowNotificationPopup(false);
+                setShowProfileDropdown(false);
+              }}
+            >
+              <Languages size={24} className="text-danger" />
+            </div>
+            {showLanguagePopup && (
+              <div
+                className="notification-popup shadow-lg border rounded-3 p-3"
+                style={{ width: "240px" }}
+              >
+                <div className="dropdown-item-row d-flex align-items-center justify-content-between p-2 rounded gap-2">
+                  <div className="d-flex align-items-center gap-2 text-black">
+                    <Languages size={18} />
+                    <span>{t("header.language")}</span>
+                  </div>
+                  <select
+                    className="form-select form-select-sm border-0 bg-light language-select"
+                    style={{ minWidth: "90px" }}
+                    value={i18n.language}
+                    onChange={handleLanguageChange}
+                  >
+                    <option value="en">English</option>
+                    <option value="th">Thai</option>
+                  </select>
+                </div>
+              </div>
+            )}
+          </div>
+
           {/* Profile */}
           <div className="position-relative" ref={profileRef}>
             <div
@@ -5041,6 +5087,7 @@ navigate("/");
                 e.stopPropagation();
                 setShowProfileDropdown((prev) => !prev);
                 setShowNotificationPopup(false);
+                setShowLanguagePopup(false);
               }}
             >
               <img
@@ -5100,7 +5147,7 @@ navigate("/");
                 </div>
                 <div className="dropdown-divider m-0"></div>
                 {/* Settings */}
-                <div className="p-2">
+                {/* <div className="p-2">
                   <div className="dropdown-item-row d-flex align-items-center justify-content-between p-2 rounded gap-4">
                     <div className="d-flex align-items-center gap-2 text-black">
                       <Languages size={18} />
@@ -5116,7 +5163,7 @@ navigate("/");
                       <option value="th">Thai</option>
                     </select>
                   </div>
-                </div>
+                </div> */}
                 <div className="dropdown-divider m-0"></div>
                 {/* Logout */}
                 <div className="p-2">

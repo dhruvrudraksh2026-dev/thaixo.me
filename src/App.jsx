@@ -135,6 +135,7 @@ import Milestone from "./component/Milestone";
 import CreatorSelectionSelf from "./component/CreatorSelectionSelf";
 import NotFound from "./component/NotFound";
 import PlatformPolicy from "./component/platform-policy";
+import PlatformPolicyWithoutLogin from "./component/platform-policyWithoutLogin";
 
 function App() {
   return (
@@ -143,6 +144,7 @@ function App() {
       <Route path="/" element={<Login />} />
       <Route path="/otp" element={<Otp />} />
       <Route path="/privacy-policy" element={<PlatformPolicy />} />
+      <Route path="/privacy" element={<PlatformPolicyWithoutLogin />} />
 
       {/* Protected Routes */}
       <Route path="/Dashboard" element={
