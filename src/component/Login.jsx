@@ -399,7 +399,7 @@ export default function Login() {
                   gap: "4px",
                 }}
               >
-                <span>By ticking this box, I agree to the</span>
+                <span>{t("login.privacyPolicyTitle")}</span>
 
                 <a
                   href="/privacy"
@@ -411,7 +411,7 @@ export default function Login() {
                     textDecoration: "none",
                   }}
                 >
-                  Creator Privacy & Platform Policy .
+                  {t("login.privacyPolicyLink")}
                 </a>
               </label>
             </div>

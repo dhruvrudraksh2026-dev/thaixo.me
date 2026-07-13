@@ -2084,6 +2084,7 @@ export default function Sidebar({ show, onClose, activeItem }) {
       'Withdraw': 'sidebar.Withdraw',
       'Milestone': 'sidebar.milestone',
       'Video Call History': 'sidebar.videoCallHistory',
+      'Privacy-Policy': 'sidebar.privacyPolicy',
       'Help & Support': 'sidebar.helpSupport',
     };
     return t(keyMap[labelKey] || labelKey);

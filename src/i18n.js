@@ -1629,6 +1629,7 @@ const resources = {
         milestone: "Milestone",
         videoCallHistory: "Video Call History",
         helpSupport: "Help & Support",
+        privacyPolicy: "Privacy Policy",
         logout: "Log out",
         loggingOut: "Logging out...",
         loading: "Loading...",
@@ -1711,6 +1712,8 @@ const resources = {
         "phonePlaceholder": "12345-6789",
         "button": "Send OTP",
         "buttonLoading": "Sending OTP...",
+        "privacyPolicyTitle": "By ticking this box, I agree to the",
+        "privacyPolicyLink": "Creator Privacy & Platform Policy .",
         "error": {
           "invalidPhone": "Please enter a valid phone number",
           "loginFailed": "Login failed",
@@ -1718,6 +1721,100 @@ const resources = {
           "accountNotExists": "Account does not exist"
         }
       },
+
+      "privacyPolicy": {
+        "title": "Creator Privacy Policy",
+        "description": "Privacy Policy & Community Rules",
+
+        "firstTitle": "1. Information We Collect",
+        "firstOne": "Your profile details",
+        "firstTwo": "Your selfie for creator verification",
+        "firstThree": "Photos or content you upload/post",
+        "firstFour": "Basic app activity related to safety",
+
+        "secondTitle": "2. How We Use Your Information",
+        "secondDescription": "We use your information to:",
+        "secondOne": "Verify your creator profile",
+        "secondTwo": "Keep the community safe and trusted",
+        "secondThree": "Show your creator profile to users",
+        "secondFour": "Review reports, suspicious activity, or rule violations",
+        "secondFive": "Improve app safety and user experience",
+
+        "thirdTitle": "3. Creator Role",
+        "thirdOne": "As a ThaiXO creator, you are an individual creator on the platform.",
+        "thirdTwo": "You are not an employee, staff member, agent, or permanent worker of ThaiXO. Becoming a creator does not create any job, salary, employment, or company relationship.",
+        "thirdThree": "Creators are expected to communicate politely and responsibly with users.",
+
+        "fourthTitle": "4. Video Call Rules",
+        "fourthOne": "Creators can receive video calls from users, but creators cannot directly start video calls by themselves.",
+        "fourthDescription": "During a call, creators have the right to:",
+        "fourthTwo": "End/cut the call anytime",
+        "fourthThree": "Block a user",
+        "fourthFour": "Report inappropriate behavior",
+        "fourthFive": "Stop communication if they feel uncomfortable",
+        "fourthSix": "All calls and conversations must stay respectful, friendly, and safe.",
+
+        "fifthTitle": "5. Allowed Creator Activity",
+        "fifthDescription": "Creators should use ThaiXO only for:",
+        "fifthOne": "Friendly social conversation",
+        "fifthTwo": "Culture sharing",
+        "fifthThree": "Language exchange",
+        "fifthFour": "Travel and lifestyle discussions",
+        "fifthFive": "General respectful communication",
+        "fifthSix": "Helping users feel welcome in the community",
+        "fifthSeven": "Creators must talk politely and behave professionally with all users.",
+
+
+        "sixthTitle": "6. Strictly Not Allowed",
+        "sixthDescription": "The following activities are strictly prohibited:",
+        "sixthOne": "Sex chat, nude content, adult content, or sexual behavior",
+        "sixthTwo": "Sharing or asking for private photos/videos",
+        "sixthThree": "Illegal activities or promoting illegal services",
+        "sixthFour": "Abusive, hateful, threatening, or disrespectful language",
+        "sixthFive": "Scam, fraud, fake promises, or misleading activity",
+        "sixthSix": "Asking users for money, gifts, login details, passwords, OTP, ID, bank details, or personal documents",
+        "sixthSeven": "Moving users too quickly to WhatsApp, Instagram, Telegram, or other outside platforms",
+        "sixthEight": "Sharing another person's private information",
+        "sixthNine": "Fake profile, fake identity, or using someone else's photos",
+        "sixthTen": "Harassment, blackmail, pressure, or emotional manipulation",
+        "sixthEleven": "ThaiXO is only for safe, friendly, cultural, and social communication.",
+
+
+        "seventhTitle": "7. Personal Data Safety",
+        "seventhOne": "Creators must never ask users for sensitive personal information such as:",
+        "seventhTwo": "Passwords",
+        "seventhThree": "OTP or login codes",
+        "seventhFour": "Bank details",
+        "seventhFive": "Government ID",
+        "seventhSix": "Home address",
+        "seventhSeven": "Private photos or videos",
+        "seventhEight": "Payment information",
+        "seventhNine": "Personal account access",
+        "seventhTen": "If any user shares such information by mistake, creators should not misuse it and should report suspicious activity if needed.",
+
+        "eighthTitle": "8. Content Review and Reports",
+        "eighthOne": "ThaiXO may review creator profiles, uploaded photos, posts, reports, and suspicious activity to keep the platform safe.",
+        "eighthTwo": "If users report a creator for inappropriate behavior, ThaiXO may investigate the account and take action as required.",
+
+        "ninthTitle": "9. Account Suspension or Removal",
+        "ninthOne": "If a creator breaks these rules, ThaiXO has the right to:",
+        "ninthTwo": "Warn the creator",
+        "ninthThree": "Remove inappropriate content",
+        "ninthFour": "Limit creator features",
+        "ninthFive": "Suspend creator profile",
+        "ninthSix": "Permanently block or remove the account",
+        "ninthSeven": "Serious violations such as sexual content, scams, illegal activity, abuse, or asking for private data may result in immediate suspension without notice.",
+
+        "tenthTitle": "10. Your Responsibility",
+        "tenthOne": "As a creator, you are responsible for your own behavior, communication, content, and actions inside the app.",
+        "tenthTwo": "You agree to keep ThaiXO safe, respectful, and positive for all users.",
+
+        "eleventhTitle": "11. Contact Us",
+        "eleventhOne": "For any questions, safety concerns, or privacy-related requests, contact us:",
+        "eleventhTwo": "Email:",
+        "eleventhThree": "Website:",
+      },
+
       "otp": {
         "titles": "Get OTP via SMS",
         "instruction": "Open your Messages app -> Copy your secure OTP.",
@@ -1793,10 +1890,6 @@ const resources = {
       "currency": {
         "thb": "THB"
       },
-
-
-
-
 
     }
   },
@@ -2041,6 +2134,7 @@ const resources = {
         milestone: "เป้าหมาย",
         videoCallHistory: "ประวัติการสนทนาวิดีโอ",
         helpSupport: "ช่วยเหลือและสนับสนุน",
+        privacyPolicy: "นโยบายความเป็นส่วนตัว",
         logout: "ออกจากระบบ",
         loggingOut: "กำลังออกจากระบบ...",
         loading: "กำลังโหลด...",
@@ -2132,6 +2226,8 @@ const resources = {
         "phonePlaceholder": "12345-6789",
         "button": "ส่ง สนข",
         "buttonLoading": "กำลังส่ง สนข...",
+        "privacyPolicyTitle": "เมื่อทำเครื่องหมายในช่องนี้ ข้าพเจ้ายอมรับ",
+        "privacyPolicyLink": "นโยบายความเป็นส่วนตัวของครีเอเตอร์และแพลตฟอร์ม",
         "error": {
           "invalidPhone": "กรุณากรอกหมายเลขโทรศัพท์ที่ถูกต้อง",
           "loginFailed": "เข้าสู่ระบบไม่สำเร็จ",
@@ -2139,6 +2235,97 @@ const resources = {
           "accountNotExists": "ไม่พบบัญชีผู้ใช้นี้"
 
         }
+      },
+
+      "privacyPolicy": {
+        "title": "นโยบายความเป็นส่วนตัวสำหรับครีเอเตอร์",
+        "description": "นโยบายความเป็นส่วนตัวและกฎของชุมชน",
+
+        "firstTitle": "1. ข้อมูลที่เราเก็บรวบรวม",
+        "firstOne": "ข้อมูลโปรไฟล์ของคุณ",
+        "firstTwo": "ภาพเซลฟี่ของคุณเพื่อยืนยันตัวตนครีเอเตอร์",
+        "firstThree": "รูปภาพหรือเนื้อหาที่คุณอัปโหลดหรือโพสต์",
+        "firstFour": "ข้อมูลการใช้งานแอปพื้นฐานที่เกี่ยวข้องกับความปลอดภัย",
+
+        "secondTitle": "2. วิธีที่เราใช้ข้อมูลของคุณ",
+        "secondDescription": "เราใช้ข้อมูลของคุณเพื่อ:",
+        "secondOne": "ยืนยันตัวตนโปรไฟล์ครีเอเตอร์ของคุณ",
+        "secondTwo": "รักษาความปลอดภัยและความน่าเชื่อถือของชุมชน",
+        "secondThree": "แสดงโปรไฟล์ครีเอเตอร์ของคุณให้ผู้ใช้เห็น",
+        "secondFour": "ตรวจสอบรายงาน กิจกรรมที่น่าสงสัย หรือการละเมิดกฎ",
+        "secondFive": "ปรับปรุงความปลอดภัยของแอปและประสบการณ์การใช้งาน",
+
+        "thirdTitle": "3. บทบาทของครีเอเตอร์",
+        "thirdOne": "ในฐานะครีเอเตอร์ของ ThaiXO คุณเป็นครีเอเตอร์อิสระบนแพลตฟอร์ม",
+        "thirdTwo": "คุณไม่ใช่พนักงาน เจ้าหน้าที่ ตัวแทน หรือบุคลากรประจำของ ThaiXO การเป็นครีเอเตอร์ไม่ได้ก่อให้เกิดความสัมพันธ์ในฐานะการจ้างงาน เงินเดือน หรือความสัมพันธ์ทางบริษัท",
+        "thirdThree": "ครีเอเตอร์ควรสื่อสารกับผู้ใช้อย่างสุภาพและมีความรับผิดชอบ",
+
+        "fourthTitle": "4. กฎการวิดีโอคอล",
+        "fourthOne": "ครีเอเตอร์สามารถรับสายวิดีโอจากผู้ใช้ได้ แต่ไม่สามารถเริ่มวิดีโอคอลเองได้",
+        "fourthDescription": "ระหว่างการสนทนา ครีเอเตอร์มีสิทธิ์ที่จะ:",
+        "fourthTwo": "วางสายหรือยุติการสนทนาได้ทุกเมื่อ",
+        "fourthThree": "บล็อกผู้ใช้",
+        "fourthFour": "รายงานพฤติกรรมที่ไม่เหมาะสม",
+        "fourthFive": "หยุดการสื่อสารหากรู้สึกไม่สบายใจ",
+        "fourthSix": "การสนทนาและวิดีโอคอลทั้งหมดต้องเป็นไปด้วยความสุภาพ เป็นมิตร และปลอดภัย",
+
+        "fifthTitle": "5. กิจกรรมที่อนุญาตสำหรับครีเอเตอร์",
+        "fifthDescription": "ครีเอเตอร์ควรใช้ ThaiXO เพื่อ:",
+        "fifthOne": "การสนทนาอย่างเป็นมิตร",
+        "fifthTwo": "แลกเปลี่ยนวัฒนธรรม",
+        "fifthThree": "แลกเปลี่ยนภาษา",
+        "fifthFour": "พูดคุยเกี่ยวกับการท่องเที่ยวและไลฟ์สไตล์",
+        "fifthFive": "การสื่อสารที่สุภาพและให้เกียรติ",
+        "fifthSix": "ช่วยให้ผู้ใช้รู้สึกยินดีต้อนรับในชุมชน",
+        "fifthSeven": "ครีเอเตอร์ต้องพูดจาสุภาพและปฏิบัติต่อผู้ใช้อย่างเป็นมืออาชีพ",
+
+        "sixthTitle": "6. สิ่งที่ห้ามทำโดยเด็ดขาด",
+        "sixthDescription": "กิจกรรมต่อไปนี้ถือว่าต้องห้ามอย่างเคร่งครัด:",
+        "sixthOne": "การพูดคุยเชิงเพศ ภาพเปลือย เนื้อหาสำหรับผู้ใหญ่ หรือพฤติกรรมทางเพศ",
+        "sixthTwo": "การแชร์หรือขอรูปภาพหรือวิดีโอส่วนตัว",
+        "sixthThree": "กิจกรรมที่ผิดกฎหมายหรือการส่งเสริมบริการที่ผิดกฎหมาย",
+        "sixthFour": "การใช้ถ้อยคำหยาบคาย เกลียดชัง ข่มขู่ หรือไม่ให้เกียรติ",
+        "sixthFive": "การหลอกลวง การฉ้อโกง การให้คำมั่นสัญญาเท็จ หรือการให้ข้อมูลที่ทำให้เข้าใจผิด",
+        "sixthSix": "การขอเงิน ของขวัญ ข้อมูลเข้าสู่ระบบ รหัสผ่าน OTP บัตรประชาชน ข้อมูลธนาคาร หรือเอกสารส่วนตัวจากผู้ใช้",
+        "sixthSeven": "การชักชวนผู้ใช้ไปยัง WhatsApp, Instagram, Telegram หรือแพลตฟอร์มภายนอกอื่นอย่างรวดเร็ว",
+        "sixthEight": "การเปิดเผยข้อมูลส่วนตัวของผู้อื่น",
+        "sixthNine": "การใช้โปรไฟล์ปลอม ปลอมแปลงตัวตน หรือใช้รูปภาพของผู้อื่น",
+        "sixthTen": "การคุกคาม การแบล็กเมล์ การกดดัน หรือการชักจูงทางอารมณ์",
+        "sixthEleven": "ThaiXO มีไว้สำหรับการสื่อสารที่ปลอดภัย เป็นมิตร การแลกเปลี่ยนวัฒนธรรม และการเข้าสังคมเท่านั้น",
+
+        "seventhTitle": "7. ความปลอดภัยของข้อมูลส่วนบุคคล",
+        "seventhOne": "ครีเอเตอร์ต้องไม่ขอข้อมูลส่วนบุคคลที่มีความอ่อนไหวจากผู้ใช้ เช่น:",
+        "seventhTwo": "รหัสผ่าน",
+        "seventhThree": "OTP หรือรหัสเข้าสู่ระบบ",
+        "seventhFour": "ข้อมูลบัญชีธนาคาร",
+        "seventhFive": "บัตรประจำตัวประชาชนหรือเอกสารราชการ",
+        "seventhSix": "ที่อยู่บ้าน",
+        "seventhSeven": "รูปภาพหรือวิดีโอส่วนตัว",
+        "seventhEight": "ข้อมูลการชำระเงิน",
+        "seventhNine": "การเข้าถึงบัญชีส่วนตัว",
+        "seventhTen": "หากผู้ใช้เปิดเผยข้อมูลดังกล่าวโดยไม่ตั้งใจ ครีเอเตอร์ต้องไม่นำข้อมูลไปใช้ในทางที่ผิด และควรรายงานกิจกรรมที่น่าสงสัยหากจำเป็น",
+
+        "eighthTitle": "8. การตรวจสอบเนื้อหาและรายงาน",
+        "eighthOne": "ThaiXO อาจตรวจสอบโปรไฟล์ครีเอเตอร์ รูปภาพที่อัปโหลด โพสต์ รายงาน และกิจกรรมที่น่าสงสัย เพื่อรักษาความปลอดภัยของแพลตฟอร์ม",
+        "eighthTwo": "หากมีผู้ใช้รายงานว่าครีเอเตอร์มีพฤติกรรมที่ไม่เหมาะสม ThaiXO อาจตรวจสอบบัญชีและดำเนินการตามความเหมาะสม",
+
+        "ninthTitle": "9. การระงับหรือการลบบัญชี",
+        "ninthOne": "หากครีเอเตอร์ละเมิดกฎเหล่านี้ ThaiXO มีสิทธิ์:",
+        "ninthTwo": "ส่งคำเตือนแก่ครีเอเตอร์",
+        "ninthThree": "ลบเนื้อหาที่ไม่เหมาะสม",
+        "ninthFour": "จำกัดการใช้งานฟีเจอร์ของครีเอเตอร์",
+        "ninthFive": "ระงับโปรไฟล์ครีเอเตอร์",
+        "ninthSix": "ระงับหรือลบบัญชีอย่างถาวร",
+        "ninthSeven": "การละเมิดร้ายแรง เช่น เนื้อหาทางเพศ การหลอกลวง กิจกรรมผิดกฎหมาย การคุกคาม หรือการขอข้อมูลส่วนตัว อาจส่งผลให้บัญชีถูกระงับทันทีโดยไม่ต้องแจ้งให้ทราบล่วงหน้า",
+
+        "tenthTitle": "10. ความรับผิดชอบของคุณ",
+        "tenthOne": "ในฐานะครีเอเตอร์ คุณต้องรับผิดชอบต่อพฤติกรรม การสื่อสาร เนื้อหา และการกระทำของตนเองภายในแอป",
+        "tenthTwo": "คุณตกลงที่จะช่วยรักษาให้ ThaiXO เป็นพื้นที่ที่ปลอดภัย สุภาพ และเป็นมิตรสำหรับผู้ใช้ทุกคน",
+
+        "eleventhTitle": "11. ติดต่อเรา",
+        "eleventhOne": "หากมีคำถาม ข้อกังวลด้านความปลอดภัย หรือคำขอเกี่ยวกับความเป็นส่วนตัว โปรดติดต่อ:",
+        "eleventhTwo": "อีเมล:",
+        "eleventhThree": "เว็บไซต์:"
       },
 
       "otp": {
