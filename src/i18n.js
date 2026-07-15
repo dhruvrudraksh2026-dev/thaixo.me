@@ -1550,7 +1550,7 @@ const resources = {
         selectBank: "Select a bank",
         accountNumber: "Enter Your Bank Account Number",
         accountPlaceholder: "Enter account number",
-        uploadPassbook: "Upload Bank Passbook Photo",
+        uploadPassbook: "Upload Bank QR Code Photo",
         submitVerification: "Submit Verification",
         submitting: "Submitting...",
         legalDetailsSubmitted: "Your Legal Details Submitted",
@@ -1559,7 +1559,7 @@ const resources = {
         errorLegalName: "Legal Name Not Found",
         errorBankName: "Bank Name Not Found",
         errorAccountNumber: "Bank Account Number Not Found",
-        errorPassbookImage: "Passbook Image Not Found",
+        errorPassbookImage: "Bank QR Code Image Not Found",
         errorLegalIdImage: "Legal ID Image Not Found",
         errorDocumentType: "Document Type Not Found",
         errorImageFormat: "Please upload image as JPEG, JPG or PNG",
@@ -1577,7 +1577,7 @@ const resources = {
       // Inside en.translation
       withdrawal: {
         noticeMessage: "All withdrawal requests placed between 6:00 PM and 10:00 AM (Thailand Time) will be processed after 10:00 AM.",
-        noticeMessage2: "Easily Withdraw Amount Above 500 quick secure, and seamless.",
+        noticeMessage2: "You can request a withdrawal once your balance reaches 250 THB or more.",
         credit: "Credit",
         requestedAmount: "Requested Amount*",
         amountPlaceholder: "Enter amount",
@@ -2057,7 +2057,7 @@ const resources = {
         selectBank: "เลือกธนาคาร",
         accountNumber: "กรอกเลขที่บัญชีธนาคารของคุณ",
         accountPlaceholder: "กรอกเลขที่บัญชี",
-        uploadPassbook: "อัปโหลดรูปถ่ายสมุดบัญชีธนาคาร",
+        uploadPassbook: "อัปโหลดรูปภาพ QR Code ของธนาคาร",
         submitVerification: "ส่งข้อมูลการยืนยันตัวตน",
         submitting: "กำลังส่ง...",
         legalDetailsSubmitted: "ส่งข้อมูลรายละเอียดทางกฎหมายแล้ว",
@@ -2066,7 +2066,7 @@ const resources = {
         errorLegalName: "ไม่พบชื่อตามกฎหมาย",
         errorBankName: "ไม่พบชื่อธนาคาร",
         errorAccountNumber: "ไม่พบเลขที่บัญชีธนาคาร",
-        errorPassbookImage: "ไม่พบรูปถ่ายสมุดบัญชี",
+        errorPassbookImage: "ไม่พบรูปภาพ QR Code ของธนาคาร",
         errorLegalIdImage: "ไม่พบรูปถ่ายบัตรประจำตัว",
         errorDocumentType: "ไม่พบประเภทเอกสาร",
         errorImageFormat: "กรุณาอัปโหลดรูปภาพเป็นไฟล์ JPEG, JPG หรือ PNG",
@@ -2083,7 +2083,7 @@ const resources = {
       // Inside th.translation
       withdrawal: {
         noticeMessage: "คำขอถอนเงินทั้งหมดที่ยื่นระหว่างเวลา 18:00 น. ถึง 10:00 น. (ตามเวลาไทย) จะดำเนินการหลังจาก 10:00 น.",
-        noticeMessage2: "ถอนเงินจำนวนมากกว่า 500 ได้อย่างง่ายดาย รวดเร็ว ปลอดภัย และราบรื่น",
+        noticeMessage2: "คุณสามารถขอถอนเงินได้เมื่อยอดคงเหลือของคุณถึง 250 บาทขึ้นไป",
         credit: "เครดิต",
         requestedAmount: "จำนวนเงินที่ต้องการถอน*",
         amountPlaceholder: "กรอกจำนวนเงิน",

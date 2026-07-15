@@ -8078,8 +8078,8 @@ export default function Withdrawal() {
       );
       setModalMessage(
         i18n.language === "th"
-          ? "จำนวนเงินถอนขั้นต่ำคือ 500 บาท"
-          : "Minimum withdrawable amount is 500 THB"
+          ? "จำนวนเงินถอนขั้นต่ำคือ 250 บาท"
+          : "Minimum withdrawable amount is 250 THB"
       );
       setShowCreditModal(true);
     }
@@ -8125,13 +8125,13 @@ export default function Withdrawal() {
       );
       return;
     }
-    if (!bankDetails.name.trim() || !bankDetails.accountNumber.trim()) {
-      showMessage(
-        t("withdrawal.missingBankDetails"),
-        t("withdrawal.missingBankDetailsMessage"),
-      );
-      return;
-    }
+    // if (!bankDetails.name.trim() || !bankDetails.accountNumber.trim()) {
+    //   showMessage(
+    //     t("withdrawal.missingBankDetails"),
+    //     t("withdrawal.missingBankDetailsMessage"),
+    //   );
+    //   return;
+    // }
 
     try {
       setLoading(true);
@@ -8379,7 +8379,7 @@ export default function Withdrawal() {
                     onChange={handleAmountChange}
                     onBlur={handleAmountBlur}
                     inputMode="decimal"
-                    disabled={!isLegalVerified}
+                    readOnly={!isLegalVerified}
                     onClick={() => {
                       if (!isLegalVerified) showVerificationPopup();
                     }}
@@ -8393,7 +8393,7 @@ export default function Withdrawal() {
                 <div
                   style={{
                     position: "relative",
-                    minHeight: "200px",
+                    minHeight: "150px",
                     background: "#f9ced921",
                     backdropFilter: "blur(1px)",
                     WebkitBackdropFilter: "blur(12px)",
@@ -8438,13 +8438,13 @@ export default function Withdrawal() {
                       disabled={true}
                       placeholder={t("withdrawal.namePlaceholder")}
                     />
-                    <span className="field-hint">
+                    {/* <span className="field-hint">
                       {t("withdrawal.nameHint")}
-                    </span>
+                    </span> */}
                   </div>
 
                   {/* ✅ BANK NAME – now a disabled input showing the translated name */}
-                  <div className="form-field">
+                  {/* <div className="form-field">
                     <label className="field-label">
                       {t("withdrawal.chooseBank")}
                     </label>
@@ -8455,9 +8455,9 @@ export default function Withdrawal() {
                       disabled={true}
                       placeholder=""
                     />
-                  </div>
+                  </div> */}
 
-                  <div className="form-field">
+                  {/* <div className="form-field">
                     <label className="field-label">
                       {t("withdrawal.bankAccountNumber")}
                     </label>
@@ -8468,7 +8468,7 @@ export default function Withdrawal() {
                       disabled={true}
                       placeholder=""
                     />
-                  </div>
+                  </div> */}
                 </div>
 
                 {/* Summary Table */}
@@ -8624,11 +8624,11 @@ export default function Withdrawal() {
             </div>
 
             {/* Minimum amount message */}
-            {excessAmount > 0 && excessAmount < 500 ? (
+            {excessAmount > 0 && excessAmount < 250 ? (
               <p className="text-danger fw-bold" style={{ fontSize: "14px" }}>
                 {i18n.language === "th"
-                  ? "กรุณากรอกขั้นต่ำ 500 บาท"
-                  : "Please enter minimum 500 THB"}
+                  ? "กรุณากรอกขั้นต่ำ 250 บาท"
+                  : "Please enter minimum 250 THB"}
               </p>
             ) : (
               <p className="text-muted" style={{ fontSize: "14px" }}>

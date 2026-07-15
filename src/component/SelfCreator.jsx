@@ -5627,9 +5627,9 @@ const SelfCreator = () => {
     try {
       if (!formData.legal_name.trim())
         throw new Error(t("selfCreator.errorLegalName"));
-      if (!formData.bank_name) throw new Error(t("selfCreator.errorBankName"));
-      if (!formData.bank_account_no.trim())
-        throw new Error(t("selfCreator.errorAccountNumber"));
+      // if (!formData.bank_name) throw new Error(t("selfCreator.errorBankName"));
+      // if (!formData.bank_account_no.trim())
+      //   throw new Error(t("selfCreator.errorAccountNumber"));
       if (!passbookImageFile)
         throw new Error(t("selfCreator.errorPassbookImage"));
       if (!legalIdImageFile)
@@ -5639,8 +5639,8 @@ const SelfCreator = () => {
 
       const submitData = new FormData();
       submitData.append("legal_name", formData.legal_name);
-      submitData.append("bank_name", formData.bank_name);
-      submitData.append("bank_account_no", formData.bank_account_no);
+      // submitData.append("bank_name", formData.bank_name);
+      // submitData.append("bank_account_no", formData.bank_account_no);
       submitData.append("document_type", formData.document_type);
       submitData.append("passbook_image", passbookImageFile);
       submitData.append("legal_id_image", legalIdImageFile);
@@ -5943,7 +5943,7 @@ const SelfCreator = () => {
                 </div>
 
                 {/* ✅ UPDATED: Bank dropdown with i18n translations */}
-                <div className="form-group-custom">
+                {/* <div className="form-group-custom">
                   <label className="form-label-custom">
                     {t("selfCreator.chooseBank")}
                   </label>
@@ -5972,9 +5972,9 @@ const SelfCreator = () => {
                       ))}
                     </Dropdown.Menu>
                   </Dropdown>
-                </div>
+                </div> */}
 
-                <div className="form-group-custom">
+                {/* <div className="form-group-custom">
                   <label className="form-label-custom">
                     {t("selfCreator.accountNumber")}
                   </label>
@@ -5996,7 +5996,7 @@ const SelfCreator = () => {
                         : {}
                     }
                   />
-                </div>
+                </div> */}
 
                 <div className="form-group-custom">
                   <label className="form-label-custom">
