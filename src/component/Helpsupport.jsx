@@ -1353,14 +1353,14 @@ const HelpSupport = () => {
   // Default icons in case API icons fail to load
   const defaultIcons = {
     Line: "https://upload.wikimedia.org/wikipedia/commons/4/41/LINE_logo.svg",
-    Telegram: "https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg",
+    Facebook: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Facebook_Logo_2023.png/1280px-Facebook_Logo_2023.png",
     Whatsapp: "https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
   };
 
   // Color mapping for each platform
   const platformColors = {
     Line: "#00c300",
-    Telegram: "#0088cc",
+    Facebook: "#4267B2",
     Whatsapp: "#25d366"
   };
 
