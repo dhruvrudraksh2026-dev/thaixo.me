@@ -7912,7 +7912,7 @@ export default function Withdrawal() {
   useEffect(() => {
     fetchCustomerLegalDetails();
     fetchLegalVerificationStatus();
-  }, []);
+  }, [i18n.language]);
 
   // const showMessage = (title, message) => {
   //   setModalTitle(title);
@@ -7979,8 +7979,9 @@ export default function Withdrawal() {
         return;
       }
 
+      const language = localStorage.getItem("language");
       const response = await fetch(
-        "https://sagarxo.app/web-api/customer/legal-details-verification-status",
+        `https://sagarxo.app/web-api/customer/legal-details-verification-status?language=${language}`,
         {
           method: "GET",
           headers: {

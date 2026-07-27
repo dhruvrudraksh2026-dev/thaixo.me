@@ -4835,6 +4835,8 @@ export default function Header({ toggleSidebar }) {
   const handleLanguageChange = (e) => {
     const newLang = e.target.value;
     i18n.changeLanguage(newLang);
+    // store in localStorage
+    localStorage.setItem("language", newLang);
   };
 
   const handleLogout = async () => {
