@@ -1415,6 +1415,19 @@ const resources = {
         noData: "No video call history found"
       },
 
+      gift: {
+        id: "ID",
+        giftName: "Gift Name",
+        sendBy: "Sent By",
+        giftImage: "Gift Image",
+        sendDate: "Send Date",
+        giftAmount: "Diamonds",
+        totalDiamonds: "Total Diamonds",
+        remainingDiamonds: "Remaining Diamonds",
+        btn: "Convert Diamonds to THB",
+        noData: "No gift data found"
+      },
+
       header: {
         title: "ThaiXO Creator Studio",
         notifications: "Notifications",
@@ -1623,6 +1636,7 @@ const resources = {
         title: "ThaiXO Social",
         home: "Home",
         myEarnings: "My Earnings",
+        gift: "Gift",
         payOutHistory: "Pay Out History",
         verifyIdentity: "Verify Identity",
         Withdraw: "Withdraw",
@@ -1924,6 +1938,19 @@ const resources = {
         noData: "ไม่มีประวัติการวิดีโอคอล"
       },
 
+      gift: {
+        id: "รหัส",
+        giftName: "ชื่อของขวัญ",
+        sendBy: "ส่งโดย",
+        giftImage: "รูปของขวัญ",
+        sendDate: "วันที่ส่ง",
+        giftAmount: "เพชร",
+        totalDiamonds: "จำนวนเพชรทั้งหมด",
+        remainingDiamonds: "จำนวนเพชรที่เหลือ",
+        btn: "แปลงเพชรเป็นเงินบาท",
+        noData: "ไม่มีข้อมูลของขวัญ"
+      },
+
       header: {
         title: "ไทยเอ็กซ์โอ ผู้สร้าง สตูดิโอ",
         notifications: "การแจ้งเตือน",
@@ -2128,6 +2155,7 @@ const resources = {
         title: "ไทยXO โซเชียล",
         home: "หน้าหลัก",
         myEarnings: "รายได้ของฉัน",
+        gift: "ของขวัญ",
         payOutHistory: "ประวัติการจ่ายเงิน",
         verifyIdentity: "ยืนยันตัวตน",
         Withdraw: "ถอน",

@@ -136,6 +136,7 @@ import CreatorSelectionSelf from "./component/CreatorSelectionSelf";
 import NotFound from "./component/NotFound";
 import PlatformPolicy from "./component/platform-policy";
 import PlatformPolicyWithoutLogin from "./component/platform-policyWithoutLogin";
+import Gift from "./component/Gift";
 
 function App() {
   return (
@@ -168,6 +169,12 @@ function App() {
       <Route path="/IncomeDashboard" element={
         <ProtectedRoute>
           <IncomeDashboard />
+        </ProtectedRoute>
+      } />
+
+      <Route path="/Gift" element={
+        <ProtectedRoute>
+          <Gift />
         </ProtectedRoute>
       } />
 

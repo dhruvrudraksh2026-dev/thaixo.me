@@ -1991,7 +1991,8 @@ import {
   LogOut,
   CreditCard,
   X,
-  Shield
+  Shield,
+  Gift
 } from 'lucide-react';
 import axios from 'axios';
 import { Modal, Button } from 'react-bootstrap';
@@ -2001,6 +2002,7 @@ import Logos from "../assets/Logoos.png";
 const menuItems = [
   { icon: Home,       labelKey: 'Home',               path: '/dashboard',        id: 'home' },
   { icon: Wallet,     labelKey: 'My Earnings',        path: '/IncomeDashboard',  id: 'earnings' },
+  { icon: Gift,       labelKey: 'Gift',               path: '/Gift',             id: 'gift' },
   { icon: History,    labelKey: 'Pay Out History',    path: '/WithdrawalHistory', id: 'payout' },
   { icon: UserCheck,  labelKey: 'Verify Identity',    path: '/CreatorSelection', id: 'verify' },
   { icon: CreditCard, labelKey: 'Withdraw',           path: '/Withdrawal',       id: 'withdrawal' },
@@ -2079,6 +2081,7 @@ export default function Sidebar({ show, onClose, activeItem }) {
     const keyMap = {
       'Home': 'sidebar.home',
       'My Earnings': 'sidebar.myEarnings',
+      'Gift': 'sidebar.gift',
       'Pay Out History': 'sidebar.payOutHistory',
       'Verify Identity': 'sidebar.verifyIdentity',
       'Withdraw': 'sidebar.Withdraw',

@@ -199,7 +199,7 @@
 
 
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import axios from "axios";
@@ -216,6 +216,19 @@ export default function Login() {
   const [contactNo, setContactNo] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [isLargeScreen, setIsLargeScreen] = useState(() =>
+    typeof window !== "undefined" ? window.innerWidth > 993 : true
+  );
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const handleResize = () => {
+      setIsLargeScreen(window.innerWidth > 993);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const toggleLanguage = () => {
     const newLang = i18n.language.startsWith("en") ? "th" : "en";
@@ -281,16 +294,18 @@ export default function Login() {
   return (
     <div className="login-container">
       <div className="login-card">
-        <div className="login-illustration d-lg-flex">
-          <motion.img
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            src={Side}
-            alt="Community Illustration"
-            className="login-image"
-          />
-        </div>
+        {isLargeScreen && (
+          <div className="login-illustration d-lg-flex">
+            <motion.img
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              src={Side}
+              alt="Community Illustration"
+              className="login-image"
+            />
+          </div>
+        )}
 
         <div className="login-form-section">
           <div style={{ position: "absolute", top: "20px", right: "20px" }}>
