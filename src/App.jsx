@@ -136,7 +136,7 @@ import CreatorSelectionSelf from "./component/CreatorSelectionSelf";
 import NotFound from "./component/NotFound";
 import PlatformPolicy from "./component/platform-policy";
 import PlatformPolicyWithoutLogin from "./component/platform-policyWithoutLogin";
-import Gift from "./component/Gift";
+import Gift from "./component/gift";
 
 function App() {
   return (
