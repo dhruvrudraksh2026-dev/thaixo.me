@@ -30,7 +30,8 @@
 
 
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import VerificationModal from "../component/VerificationModal";
 
 const ProtectedRoute = ({ children }) => {
   const userId = localStorage.getItem("userId");
@@ -63,8 +64,52 @@ const ProtectedRoute = ({ children }) => {
     };
   }, [navigate, location]);
 
+  // Check legal details verification on mount
+  const [showVerificationModal, setShowVerificationModal] = useState(false);
+  const [verificationMessage, setVerificationMessage] = useState("");
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    const fetchStatus = async () => {
+      try {
+        const res = await fetch(
+          "https://sagarxo.app/web-api/customer/legal-details-verification-status",
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              ...(token ? { Authorization: `Bearer ${token}` } : {}),
+            },
+          }
+        );
+
+        if (!res.ok) return;
+
+        const body = await res.json();
+        if (body && body.data && body.data.is_legal_details_verified === false) {
+          setVerificationMessage(body.data.message || "Please verify your identity.");
+          setShowVerificationModal(true);
+        }
+      } catch (err) {
+        // fail silently
+        console.error("Verification status fetch failed", err);
+      }
+    };
+
+    fetchStatus();
+  }, []);
+
   // ✅ Allow access
-  return children;
+  return (
+    <>
+      {children}
+      <VerificationModal
+        open={showVerificationModal}
+        onClose={() => setShowVerificationModal(false)}
+        message={verificationMessage}
+      />
+    </>
+  );
 };
 
 export default ProtectedRoute;

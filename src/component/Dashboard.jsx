@@ -2155,6 +2155,7 @@ import Header from "./Header";
 import "../css/Dashboard.css";
 import Coinicon from "../assets/Coinicon.png";
 import axios from "axios";
+import VerificationModal from "./VerificationModal";
 import { Menu, X, AlertCircle } from "lucide-react";
 import {
   AreaChart,
@@ -2192,7 +2193,57 @@ export default function Dashboard() {
   const [error, setError] = useState(null);
   const [userName, setUserName] = useState("User");
   const navigate = useNavigate();
+  const [showVerificationModal, setShowVerificationModal] = useState(false);
+  const [verificationMessage, setVerificationMessage] = useState("");
   const handleCloseSidebar = () => setIsSidebarOpen(false);
+
+  // Check for flag set after login to decide whether to run legal-details verification
+  useEffect(() => {
+    const flag = localStorage.getItem("showLegalVerificationModal");
+    if (!flag) return;
+
+    // remove flag immediately so it runs only once after login
+    try {
+      localStorage.removeItem("showLegalVerificationModal");
+    } catch (e) {}
+
+    const checkLegal = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const res = await axios.get(
+          "https://sagarxo.app/web-api/customer/legal-details-verification-status",
+          {
+            headers: {
+              "Content-Type": "application/json",
+              ...(token ? { Authorization: `${token}` } : {}),
+            },
+            withCredentials: true,
+          }
+        );
+
+        const body = res.data;
+        if (body && body.data && body.data.is_legal_details_verified === false) {
+          // translate message to Thai when app language is Thai
+          const apiMsg = body.data.message || "Before proceeding with withdrawals, please complete your Identity Verification. Once your details are successfully verified, you will become eligible for withdrawal.";
+          const isThai = i18n?.language && i18n.language.toLowerCase().startsWith("th");
+          const thaiFallback = "ก่อนถอนเงิน กรุณาทำการยืนยันตัวตน เมื่อรายละเอียดของคุณได้รับการยืนยันแล้ว คุณจะมีสิทธิ์ถอนเงิน";
+
+          setVerificationMessage(isThai ? /* try to map known API msg */ (apiMsg.includes("Before proceeding") ? thaiFallback : thaiFallback) : apiMsg);
+          setShowVerificationModal(true);
+        }
+      } catch (err) {
+        console.error("Error checking legal verification:", err);
+      }
+    };
+
+    checkLegal();
+  }, []);
+
+  // when user clicks OK on modal, go to CreatorSelection
+  const handleVerificationConfirm = () => {
+    setShowVerificationModal(false);
+    navigate('/CreatorSelection');
+  };
 
   // Helper: format number with locale
   const formatNumber = (value, locale = i18n.language) => {
@@ -2534,6 +2585,16 @@ export default function Dashboard() {
             </div>
           </Col>
         </Row>
+
+        {/* Verification modal shown right after login if needed */}
+        <VerificationModal
+          open={showVerificationModal}
+          onClose={() => setShowVerificationModal(false)}
+          onConfirm={handleVerificationConfirm}
+          message={verificationMessage}
+          title={i18n?.language && i18n.language.toLowerCase().startsWith("th") ? "สถานะการยืนยัน" : "Verification Status"}
+          confirmText={i18n?.language && i18n.language.toLowerCase().startsWith("th") ? "เริ่มกระบวนการ" : "Start Process"}
+        />
       </main>
     </div>
   );

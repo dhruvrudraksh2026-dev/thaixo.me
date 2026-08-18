@@ -505,7 +505,12 @@ export default function VerifyOtp() {
         }
 
         navigate('/dashboard', { replace: true });
-      } else {
+          // signal Dashboard to run verification check and show modal if needed
+          try {
+            localStorage.setItem('showLegalVerificationModal', 'true');
+          } catch (e) {}
+
+          navigate('/dashboard', { replace: true });
         // Handle "OTP does not match" specifically
         const errorMsg = data.message;
         setError(
